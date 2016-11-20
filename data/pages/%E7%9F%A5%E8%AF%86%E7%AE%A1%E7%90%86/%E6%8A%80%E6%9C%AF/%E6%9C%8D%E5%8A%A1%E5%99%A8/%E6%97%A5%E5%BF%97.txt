@@ -1,0 +1,30 @@
+==== php日志 ====
+
+Php运行错误时
+位置 error_log
+
+
+==== apache日志 ====
+
+errorLog
+customLog
+
+==== mysql日志 ====
+
+
+  * 错误日志
+ Log Error=[file name]
+  * 普通查询日志
+ #Log="D:/phpStudy/MySQL/log/query.log"
+
+  * 慢查询日志
+log-slow-queries = D:/phpStudy/MySQL/log/mysql_slow_query.log
+long_query_time=5
+
+**5.0版本**的经过  show varibles like '%log%'
+
+general_log=1
+general_log_file= C:/phpStudy/MySQL/log/query.log
+slow_query_log=1
+slow-query-log-file = C:/phpStudy/MySQL/log/mysql_slow_query.log
+long_query_time=1

@@ -1,0 +1,11 @@
+====== 版本管理 ======
+
+===== GIT =====
+
+{{:知识管理:技_软件设计与管_pasted:20161119-155808.png}}
+<code>
+因为TortoiseGit和Git的冲突。 改正如下：
+1、TortoiseGit -> Settings -> Network
+2、将SSH client设置成 Git\bin\usr\ssh.exe
+然后，TortoiseGit 就可以正常工作了！
+</code>

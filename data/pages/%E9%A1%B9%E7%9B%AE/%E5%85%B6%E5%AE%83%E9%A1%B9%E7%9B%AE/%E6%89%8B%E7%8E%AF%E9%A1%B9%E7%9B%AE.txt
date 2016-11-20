@@ -1,0 +1,3312 @@
+====== 手环项目 ======
+
+
+====== 统一说明 ======
+
+  * 格式说明：CODE值为0请求成功，此时message为统一值，其它值为请求成功但有系统提示的出错信息,message值为提示的信息，data空数组或空对象
+  * 如：
+{
+    "code": 1,
+    "message": "该手机号码已经被注册",
+    "data": {}
+}
+  * 加密-测试期间
+  * 用户UID&TOKEN-测试期用UID，上线后用UID & TOKEN 验证UID合法性，token值为用户登录后返回的值
+  * 传参统一用 POST方式，参数类型统一字符串
+  * 只要有列表的地方，统一用page分页
+  * 只要有需要用户信息的地方，统一传值uid & token(登录后服务器返回的值，测试期间不用传)
+  * 关于经纬度，小数点后面最多支持到6位
+  * 写死的栏目ID及名称如下
+
+    'CATEGORY'=>[
+        1=>'首页推荐',
+        2=>'宝宝日记',
+        3=>'育儿知识',
+        4=>'我的圈圈',
+        5=>'猜你喜欢',
+        6=>'医疗在线',
+        25=>'宝宝辅食',
+        26=>'在线咨询',
+    ]
+    
+    
+====== 用户相关 ======
+
+===== 获取验证码 =====
+
+  * 地址： api/sms/GetVerifyCode
+  * 传参：
+
+^参数名称^含义^
+|mobile|用户手机号码|
+|from|用途，只有两个值，reg为注册，req为找回密码|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "success",
+    "data": {
+        "vid": 644
+    }
+}
+
+
+===== 注册 =====
+
+  * 地址：api/user/reg
+  * 传参：
+
+^参数名称^含义^
+|mobile|用户手机号码|
+|password |用户密码|
+|vid  |获取验证码时返回的vid值|
+|verifyCode|验证码（测试期间统一为123456）|
+|inviter_mobile|邀请人的手机号|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "userInfo": {
+            "mobile": "18782967009",
+            "nickname": "187****7009",
+            "sex": "0",
+            "birthday": "2016-02-01",
+            "baby_status": "0",
+            "avatar": "http://oss/Public/images/default_avatar_128_128_100_auto.jpg"
+        },
+        "uid": "151",
+        "token": "TsnKXtglprH8ybEOehJZLaDikB9d4qS1UWYQjGCo"
+    }
+}
+===== 登录 =====
+  * 地址：api/user/login
+  * 传参：
+
+^参数名称^含义^
+|mobile|用户手机号码|
+|password|用户密码|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "userInfo": {
+            "mobile": "18782967230",
+            "nickname": "给狗狗",
+            "sex": "2",
+            "birthday": "2016-01-22",
+            "baby_status": "2",
+            "avatar": "http://120.26.212.241/Public/images/default_avatar_128_128_100_auto.jpg"
+        },
+        "uid": "137",
+        "token": "3yIN6XZvTS0GLUDOHcogCz8qw4YVaJW1KQRFi2x9"
+    }
+}
+===== 找回密码 =====
+ * 地址：api/user/findPassword
+ * 传参：
+
+^参数名称^含义^
+|mobile|用户手机号码|
+|password|用户密码|
+|repassword|第二次用户密码|
+|vid  |获取验证码时返回的vid值|
+|verifyCode|验证码（测试期间统一为123456）|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "success",
+    "data": {}
+}
+
+===== 保存用户信息 =====
+ * 地址：api/user/saveInfo
+ 
+* 传参：uid必传
+
+^参数名称^含义^
+|mobile|非必传，用户注册的手机号码，如果传此值，则不需要传登录信息|
+|nickname|用户昵称，如果不传的话，将生成随机昵称|
+|baby_status|宝妈状态（1=>'怀孕中',2=>'备孕中',3=>'已出生'）|
+|sex|宝贝性别，1男 2女|
+|birthday|宝贝生日（格式0000-00-00）|
+|lat|必须与lng同时传，当有此值时，会保存用户的经纬度信息，Lat经度，lng纬度|
+|lng|必须与lat同时传，同上|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "message": "保存成功"
+    }
+}
+===== 搜索用户 =====
+ * 地址：api/user/search
+
+ * 传参：
+
+^参数名称^含义^
+|username|用户昵称或用户手机号码，模糊匹配,必传|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "uid": "100",
+            "nickname": "lijin",
+            "mobile": "",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        },
+        {
+            "uid": "101",
+            "nickname": "lijin2",
+            "mobile": "",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        },
+        {
+            "uid": "102",
+            "nickname": "lijin3",
+            "mobile": "",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        },
+        {
+            "uid": "103",
+            "nickname": "lijin4",
+            "mobile": "",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        },
+        {
+            "uid": "104",
+            "nickname": "lijin5",
+            "mobile": "",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        },
+        {
+            "uid": "105",
+            "nickname": "lijin6",
+            "mobile": "",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        }
+    ]
+}
+===== 上传用户头像 =====
+ * 地址：api/user/userAvatar(和通用接口的上传图片类似,返回值不同)
+
+ * 传参：
+
+^参数名称^含义^
+|$_FILES['file']|表单数组|
+
+  * 成功返回值(用户头像)：
+
+
+
+===== 获取用户附近的人 =====
+ * 地址：api/user/nearby(需要登陆，需要已保存过用户的经纬度)
+
+ * 传参：
+
+^参数名称^含义^
+|km|默认值为1，表示获取附近1公里内|
+|lat & lng|选传值，用户当前的经纬度信息，会为用户自动保存；如果不传，会自动获取已保存过的用户经纬|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "uid": "101",
+            "nickname": "lijin2",
+            "avatar": "Public/images/default_avatar_32_32.jpg",
+            "mobile": "18782967231",
+            "distance": "400米以内"
+        },
+        {
+            "uid": "102",
+            "nickname": "lijin3",
+            "avatar": "Public/images/default_avatar_32_32.jpg",
+            "mobile": "18782967231",
+            "distance": "1.5千米以内"
+        }
+    ]
+}
+
+
+===== 按照手机号队列获取用户信息 =====
+ * 地址：api/user/getUsersInfo
+
+ * 传参：
+
+^参数名称^含义^
+|phones|手机号队列，格式如:18782967230,18782967200|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "uid": "106",
+            "nickname": "jHwbnl",
+            "mobile": "18782967230",
+            "avatar": "http://oss/Public/static/thumb/thumb.php?src=http://oss/Public/images/default_avatar_32_32.jpg&zc=0&f=jpeg&w=720&h=480&q=100"
+        },
+        {
+            "uid": "107",
+            "nickname": "89HyOV",
+            "mobile": "18782967200",
+            "avatar": "http://oss/Public/static/thumb/thumb.php?src=http://oss/Public/images/default_avatar_32_32.jpg&zc=0&f=jpeg&w=720&h=480&q=100"
+        }
+    ]
+}
+
+===== 保存用户好友信息-手机号 =====
+ * 地址：api/user/addFriend
+
+ * 传参：（需要登录）
+
+^参数名称^含义^
+|phone|手机号|
+
+  * 成功返回值：
+
+
+
+===== 删除用户好友信息-手机号 =====
+ * 地址：api/user/deleteFriend
+
+ * 传参：（需要登录）
+
+^参数名称^含义^
+|phone|手机号|
+
+  * 成功返回值：
+
+
+
+===== 获取用户好友信息 =====
+ * 地址：api/user/getFriends
+
+ * 传参：（需要登录）
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "uid": "106",
+            "nickname": "jHwbnl",
+            "mobile": "18782967230",
+            "avatar": "http://oss/Public/static/thumb/thumb.php?src=http://oss/Public/images/default_avatar_32_32.jpg&zc=0&f=jpeg&w=720&h=480&q=100"
+        },
+        {
+            "uid": "107",
+            "nickname": "89HyOV",
+            "mobile": "18782967200",
+            "avatar": "http://oss/Public/static/thumb/thumb.php?src=http://oss/Public/images/default_avatar_32_32.jpg&zc=0&f=jpeg&w=720&h=480&q=100"
+        }
+    ]
+}
+
+
+===== 获取用户统计数据 =====
+
+* 地址：api/user/getUserStat
+
+* 传参：需要登陆
+
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "comments": 0,
+        "collections": 0,
+        "shares": 0,
+        "score": 0
+    }
+}
+
+
+===== 三方登录 =====
+ * 地址：api/user/thirdLogin
+
+ * 传参：
+
+^参数名称^含义^
+|uuid|用户唯一标识符|
+|avatar|用户头像|
+|nickname|用户昵称|
+
+  * 成功返回值：（和登录接口一致）
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "userInfo": {
+            "nickname": "lijin",
+            "sex": "0",
+            "birthday": "0000-00-00",
+            "baby_status": "0",
+            "avatar": "http://oss/Public/static/thumb/thumb.php?src=http://oss/Public/images/default_avatar_128_128.jpg&zc=0&f=jpeg&w=720&h=480&q=100"
+        },
+        "uid": "100",
+        "token": "3nOJCDNq5AW76mZfcVTjeyY8G4XRosHwStdELvPb"
+    }
+}
+
+
+===== 获取我的关注 =====
+ * 地址：api/user/myFollows
+
+ * 传参：（需要登陆）
+
+  * 成功返回值：(和搜索结果一致)
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "uid": "1",
+            "nickname": "admin",
+            "mobile": "",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        },
+        {
+            "uid": "100",
+            "nickname": "lijin",
+            "mobile": "",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        },
+        {
+            "uid": "101",
+            "nickname": "lijin2",
+            "mobile": "",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        },
+        {
+            "uid": "102",
+            "nickname": "lijin3",
+            "mobile": "",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        },
+        {
+            "uid": "103",
+            "nickname": "lijin4",
+            "mobile": "",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        },
+        {
+            "uid": "104",
+            "nickname": "lijin5",
+            "mobile": "",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        },
+        {
+            "uid": "105",
+            "nickname": "lijin6",
+            "mobile": "",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        },
+        {
+            "uid": "106",
+            "nickname": "jHwbnl",
+            "mobile": "18782967230",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        },
+        {
+            "uid": "107",
+            "nickname": "89HyOV",
+            "mobile": "18782967200",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        },
+        {
+            "uid": "108",
+            "nickname": "cFDVxs",
+            "mobile": "13678033146",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        }
+    ]
+}
+====== 环信相关(需要登陆) ======
+  * 可能情况：旧用户不适用
+
+
+===== 获取所有群组 =====
+ * 地址：api/webim/getAllGroup
+
+ * 传参：需要登陆
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "owner": "maodu#bubumaochat_15114023665",
+            "created": "1452312131903",
+            "groupid": "1452312130405",
+            "affiliations": 2,
+            "type": "group",
+            "groupname": "新的群",
+            "last_modified": "1452312133229"
+        },
+        {
+            "owner": "maodu#bubumaochat_admin",
+            "created": "1452909719920",
+            "groupid": "151805275043529200",
+            "affiliations": 1,
+            "type": "group",
+            "groupname": "第一聊天室",
+            "last_modified": "1452909719920"
+        },
+        {
+            "owner": "maodu#bubumaochat_15114023665",
+            "created": "1452859839281",
+            "groupid": "1452859838803",
+            "affiliations": 4,
+            "type": "group",
+            "groupname": "新群假的",
+            "last_modified": "1452860100309"
+        },
+        {
+            "owner": "maodu#bubumaochat_15114023665",
+            "created": "1452095302869",
+            "groupid": "1452095302381",
+            "affiliations": 2,
+            "type": "group",
+            "groupname": "健健康康",
+            "last_modified": "1452310598641"
+        }
+    ]
+}
+
+===== 获取所有聊天室 =====
+ * 地址：api/webim/getAllChatroom
+
+ * 传参：需要登陆
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "id": "156050656799490512",
+            "name": "第二个聊天室",
+            "owner": "admin",
+            "affiliations_count": 1
+        },
+        {
+            "id": "156050505758409172",
+            "name": "第一个聊天室",
+            "owner": "admin",
+            "affiliations_count": 1
+        }
+    ]
+}
+====== 首页 ======
+
+* 地址：api/index/index
+* 传参：无
+* 成功返回值：
+
+返回值说明：
+
+^参数名称^含义^
+|slider|幻灯片组|
+|news|分栏目资讯，限制最多显示3篇|
+
+{
+    "code": 0,
+    "message": "success",
+    "data": {
+        "slider": [
+            {
+                "id": "2",
+                "thumb": "Uploads/Lunbo/show-2.jpg",
+                "link": "http://baidu.com"
+            },
+            {
+                "id": "1",
+                "thumb": "Uploads/Lunbo/show-1.jpg",
+                "link": "http://baidu.com"
+            },
+            {
+                "id": "7",
+                "thumb": "Uploads/Lunbo/show-7.jpg",
+                "link": "http://baidu.com"
+            }
+        ],
+        "news": [
+            {
+                "category_id": "1",
+                "category_title": "首页推荐位",
+                "category_list": [
+                    {
+                        "id": "2",
+                        "title": "哪些因素影响胎儿的生长发育",
+                        "cover": "/Uploads/Picture/2015-12-26/567e058e210f5.jpg",
+                        "view": "12",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1451100701",
+                        "category_name": "首页推荐位"
+                    },
+                    {
+                        "id": "1",
+                        "title": "钓傲天下第一商",
+                        "cover": false,
+                        "view": "5",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1448259561",
+                        "category_name": "首页推荐位"
+                    }
+                ]
+            },
+            {
+                "category_id": "2",
+                "category_title": "宝宝日记",
+                "category_list": [
+                    {
+                        "id": "99",
+                        "title": "哪些因素影响胎儿的NKk35",
+                        "cover": "/Uploads/Picture/2015-12-26/567e057d2a11b.jpg",
+                        "view": "22",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1451103838",
+                        "category_name": "宝宝日记分类2"
+                    },
+                    {
+                        "id": "9",
+                        "title": "哪些因素影响胎儿的X0YxT",
+                        "cover": "/Uploads/Picture/2015-12-26/567e058e210f5.jpg",
+                        "view": "0",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1451103838",
+                        "category_name": "宝宝日记分类2"
+                    },
+                    {
+                        "id": "12",
+                        "title": "哪些因素影响胎儿的0VZqL",
+                        "cover": "/Uploads/Picture/2015-12-26/567e057d2a11b.jpg",
+                        "view": "0",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1451103838",
+                        "category_name": "宝宝日记分类一"
+                    }
+                ]
+            },
+            {
+                "category_id": "6",
+                "category_title": "医疗在线",
+                "category_list": [
+                    {
+                        "id": "101",
+                        "title": "哪些因素影响胎儿的hLCmD",
+                        "cover": "/Uploads/Picture/2015-12-26/567e058e210f5.jpg",
+                        "view": "0",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1451103838",
+                        "category_name": "医疗在线"
+                    },
+                    {
+                        "id": "13",
+                        "title": "哪些因素影响胎儿的JzKCY",
+                        "cover": "/Uploads/Picture/2015-12-26/567e0590665e1.jpg",
+                        "view": "0",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1451103838",
+                        "category_name": "医疗在线"
+                    },
+                    {
+                        "id": "16",
+                        "title": "哪些因素影响胎儿的SNJR7",
+                        "cover": "/Uploads/Picture/2015-12-26/567e058e210f5.jpg",
+                        "view": "0",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1451103838",
+                        "category_name": "医疗在线分类2"
+                    }
+                ]
+            },
+            {
+                "category_id": "3",
+                "category_title": "育儿知识",
+                "category_list": [
+                    {
+                        "id": "102",
+                        "title": "哪些因素影响胎儿的4lgLK",
+                        "cover": "/Uploads/Picture/2015-12-26/567e057d2a11b.jpg",
+                        "view": "0",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1451103838",
+                        "category_name": "知识普及"
+                    },
+                    {
+                        "id": "6",
+                        "title": "哪些因素影响胎儿的VBnN6",
+                        "cover": "/Uploads/Picture/2015-12-26/567e0590665e1.jpg",
+                        "view": "0",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1451103838",
+                        "category_name": "育儿知识"
+                    },
+                    {
+                        "id": "8",
+                        "title": "哪些因素影响胎儿的5uWNX",
+                        "cover": "/Uploads/Picture/2015-12-26/567e0590665e1.jpg",
+                        "view": "0",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1451103838",
+                        "category_name": "育儿知识"
+                    }
+                ]
+            },
+            {
+                "category_id": "4",
+                "category_title": "我的圈圈",
+                "category_list": [
+                    {
+                        "id": "100",
+                        "title": "哪些因素影响胎儿的FYR6U",
+                        "cover": "/Uploads/Picture/2015-12-26/567e058e210f5.jpg",
+                        "view": "0",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1451103838",
+                        "category_name": "我的圈圈"
+                    },
+                    {
+                        "id": "14",
+                        "title": "哪些因素影响胎儿的k699V",
+                        "cover": "/Uploads/Picture/2015-12-26/567e057d2a11b.jpg",
+                        "view": "0",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1451103838",
+                        "category_name": "我的圈圈"
+                    },
+                    {
+                        "id": "17",
+                        "title": "哪些因素影响胎儿的h19Av",
+                        "cover": "/Uploads/Picture/2015-12-26/567e0590665e1.jpg",
+                        "view": "0",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1451103838",
+                        "category_name": "我的圈圈"
+                    }
+                ]
+            },
+            {
+                "category_id": "5",
+                "category_title": "猜你喜欢",
+                "category_list": [
+                    {
+                        "id": "94",
+                        "title": "哪些因素影响胎儿的hwFrJ",
+                        "cover": "/Uploads/Picture/2015-12-26/567e057d2a11b.jpg",
+                        "view": "0",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1451103838",
+                        "category_name": "猜你喜欢"
+                    },
+                    {
+                        "id": "11",
+                        "title": "哪些因素影响胎儿的Nq2QI",
+                        "cover": "/Uploads/Picture/2015-12-26/567e0590665e1.jpg",
+                        "view": "0",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1451103838",
+                        "category_name": "猜你喜欢"
+                    },
+                    {
+                        "id": "15",
+                        "title": "哪些因素影响胎儿的M4wTS",
+                        "cover": "/Uploads/Picture/2015-12-26/567e057d2a11b.jpg",
+                        "view": "0",
+                        "address": "",
+                        "level": "0",
+                        "create_time": "1451103838",
+                        "category_name": "猜你喜欢"
+                    }
+                ]
+            }
+        ]
+    }
+}
+
+
+====== 在线咨询 ======
+
+* 地址：api/index/questions
+
+* 传参：无
+
+* 成功返回值：(position = 4 置顶；2 精华；其它情况为普通)
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "user_info": {
+                "mobile": "",
+                "nickname": "admin",
+                "uid": "1",
+                "birthday": 1,
+                "is_following": "0",
+                "avatar": "Public/images/default_avatar_32_32.jpg"
+            },
+            "news_info": {
+                "id": "130",
+                "address": "",
+                "create_time": "19分钟前",
+                "view": "0",
+                "title": "在线咨询-置顶",
+                "comment": "0",
+                "collection": "0",
+                "uid": "1",
+                "pictures": "",
+                "position": "4",
+                "create_timestamp": "1453357217",
+                "category_name": "在线咨询",
+                "color": "#99ffff",
+                "is_collected": "0",
+                "multi_cover": []
+            }
+        },
+        {
+            "user_info": {
+                "mobile": "",
+                "nickname": "admin",
+                "uid": "1",
+                "birthday": 1,
+                "is_following": "0",
+                "avatar": "Public/images/default_avatar_32_32.jpg"
+            },
+            "news_info": {
+                "id": "131",
+                "address": "",
+                "create_time": "2秒前",
+                "view": "0",
+                "title": "在线咨询2-精华",
+                "comment": "0",
+                "collection": "0",
+                "uid": "1",
+                "pictures": "",
+                "position": "2",
+                "create_timestamp": "1453358397",
+                "category_name": "在线咨询",
+                "color": "#99ffff",
+                "is_collected": "0",
+                "multi_cover": []
+            }
+        }
+    ]
+}
+
+
+====== 获取区域 ======
+
+* 地址：api/index/district
+
+* 传参：id(非必须，上级区域ID，默认为顶级区域，即省份，为0)
+
+* 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "hotCity": [
+            {
+                "id": "510100",
+                "name": "成都市"
+            },
+            {
+                "id": "110100",
+                "name": "北京市"
+            },
+            {
+                "id": "310000",
+                "name": "上海市"
+            },
+            {
+                "id": "440300",
+                "name": "深圳市"
+            },
+            {
+                "id": "440100",
+                "name": "广州市"
+            },
+            {
+                "id": "320100",
+                "name": "南京市"
+            }
+        ],
+        "allCity": [
+            {
+                "id": "110000",
+                "name": "北京市"
+            },
+            {
+                "id": "120000",
+                "name": "天津市"
+            },
+            {
+                "id": "130000",
+                "name": "河北省"
+            },
+            {
+                "id": "140000",
+                "name": "山西省"
+            },
+            {
+                "id": "150000",
+                "name": "内蒙古"
+            },
+            {
+                "id": "210000",
+                "name": "辽宁省"
+            },
+            {
+                "id": "220000",
+                "name": "吉林省"
+            },
+            {
+                "id": "230000",
+                "name": "黑龙江"
+            },
+            {
+                "id": "310000",
+                "name": "上海市"
+            },
+            {
+                "id": "320000",
+                "name": "江苏省"
+            },
+            {
+                "id": "330000",
+                "name": "浙江省"
+            },
+            {
+                "id": "340000",
+                "name": "安徽省"
+            },
+            {
+                "id": "350000",
+                "name": "福建省"
+            },
+            {
+                "id": "360000",
+                "name": "江西省"
+            },
+            {
+                "id": "370000",
+                "name": "山东省"
+            },
+            {
+                "id": "410000",
+                "name": "河南省"
+            },
+            {
+                "id": "420000",
+                "name": "湖北省"
+            },
+            {
+                "id": "430000",
+                "name": "湖南省"
+            },
+            {
+                "id": "440000",
+                "name": "广东省"
+            },
+            {
+                "id": "450000",
+                "name": "广西省"
+            },
+            {
+                "id": "460000",
+                "name": "海南省"
+            },
+            {
+                "id": "500000",
+                "name": "重庆市"
+            },
+            {
+                "id": "510000",
+                "name": "四川省"
+            },
+            {
+                "id": "520000",
+                "name": "贵州省"
+            },
+            {
+                "id": "530000",
+                "name": "云南省"
+            },
+            {
+                "id": "540000",
+                "name": "西　藏"
+            },
+            {
+                "id": "610000",
+                "name": "陕西省"
+            },
+            {
+                "id": "620000",
+                "name": "甘肃省"
+            },
+            {
+                "id": "630000",
+                "name": "青海省"
+            },
+            {
+                "id": "640000",
+                "name": "宁　夏"
+            },
+            {
+                "id": "650000",
+                "name": "新　疆"
+            },
+            {
+                "id": "710000",
+                "name": "台湾省"
+            },
+            {
+                "id": "810000",
+                "name": "香　港"
+            },
+            {
+                "id": "820000",
+                "name": "澳　门"
+            }
+        ]
+    }
+}
+
+====== 育儿知识版块 ======
+
+===== 首页 =====
+* 地址：api/child/index
+* 传参：
+
+^参数名称^含义^
+|uid|非必须，有用户登录则传|
+
+  * 成功返回值：
+
+返回值说明：
+
+^参数名称^含义^
+|now_category|当前栏目信息，如果有子栏目，将在字段sub列出|
+|newest|最新推荐|
+|normal|育儿普通知识|
+|history|浏览记录，如果有用户登录，否则不显示|
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "now_category": {
+            "id": "3",
+            "title": "育儿知识",
+            "pid": "0",
+            "cover": "",
+            "sub": [
+                {
+                    "id": "8",
+                    "title": "知识普及",
+                    "pid": "3",
+                    "sort": "0",
+                    "cover": ""
+                },
+                {
+                    "id": "7",
+                    "title": "婴幼护理",
+                    "pid": "3",
+                    "sort": "0",
+                    "cover": ""
+                },
+                {
+                    "id": "15",
+                    "title": "测试",
+                    "pid": "3",
+                    "sort": "0",
+                    "cover": ""
+                }
+            ]
+        },
+        "newest": [
+            {
+                "id": "4",
+                "title": "哪些因素影响胎儿的dzM1F",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "0",
+                "category_name": "育儿知识"
+            },
+            {
+                "id": "6",
+                "title": "哪些因素影响胎儿的VBnN6",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "0",
+                "category_name": "育儿知识"
+            },
+            {
+                "id": "8",
+                "title": "哪些因素影响胎儿的5uWNX",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "0",
+                "category_name": "育儿知识"
+            }
+        ],
+        "normal": [
+            {
+                "id": "68",
+                "title": "哪些因素影响胎儿的MJnDx",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "0",
+                "category_name": "育儿知识"
+            },
+            {
+                "id": "66",
+                "title": "哪些因素影响胎儿的TirCx",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "2",
+                "category_name": "育儿知识"
+            },
+            {
+                "id": "63",
+                "title": "哪些因素影响胎儿的EAKPp",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "0",
+                "category_name": "育儿知识"
+            }
+        ],
+        "history": [
+            {
+                "id": "66",
+                "title": "哪些因素影响胎儿的TirCx",
+                "cover": "1346",
+                "view": "2",
+                "category": "3"
+            },
+            {
+                "id": "48",
+                "title": "哪些因素影响胎儿的oENBZ",
+                "cover": "1347",
+                "view": "1",
+                "category": "3"
+            },
+            {
+                "id": "62",
+                "title": "哪些因素影响胎儿的xWEUk",
+                "cover": "1346",
+                "view": "1",
+                "category": "3"
+            }
+        ]
+    }
+}
+
+
+
+
+===== 列表页 =====
+* 地址：api/child/subLists
+* 传参：
+
+
+  * 成功返回值：
+
+返回值说明：
+
+^参数名称^含义^
+|now_category|当前栏目信息，如果有子栏目，将在字段_列出|
+|list|当前栏目列表页|
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "now_category": {
+            "id": "3",
+            "title": "育儿知识",
+            "pid": "0",
+            "cover": "",
+            "sub": [
+                {
+                    "id": "8",
+                    "title": "知识普及",
+                    "pid": "3",
+                    "sort": "0",
+                    "cover": ""
+                },
+                {
+                    "id": "7",
+                    "title": "婴幼护理",
+                    "pid": "3",
+                    "sort": "0",
+                    "cover": ""
+                },
+                {
+                    "id": "15",
+                    "title": "测试",
+                    "pid": "3",
+                    "sort": "0",
+                    "cover": ""
+                }
+            ]
+        },
+        "list": [
+            {
+                "id": "102",
+                "title": "生个健康宝宝孕期该注意啥？",
+                "cover": "/Uploads/Picture/2015-12-26/567e97ba9cfb5.jpeg",
+                "view": "5",
+                "category_name": "知识普及"
+            },
+            {
+                "id": "97",
+                "title": "必知：孕期用药的安全指导",
+                "cover": "/Uploads/Picture/2015-12-26/567e97405ce4a.png",
+                "view": "15",
+                "category_name": "婴幼护理"
+            },
+            {
+                "id": "95",
+                "title": "哪些因素影响胎儿的hye8o",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "1",
+                "category_name": "知识普及"
+            },
+            {
+                "id": "91",
+                "title": "哪些因素影响胎儿的63bbi",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "1",
+                "category_name": "知识普及"
+            },
+            {
+                "id": "79",
+                "title": "哪些因素影响胎儿的2PPc0",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "2",
+                "category_name": "婴幼护理"
+            },
+            {
+                "id": "77",
+                "title": "哪些因素影响胎儿的tf8w3",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "1",
+                "category_name": "知识普及"
+            },
+            {
+                "id": "69",
+                "title": "哪些因素影响胎儿的YQWMQ",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "2",
+                "category_name": "婴幼护理"
+            },
+            {
+                "id": "68",
+                "title": "哪些因素影响胎儿的MJnDx",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "0",
+                "category_name": "育儿知识"
+            },
+            {
+                "id": "66",
+                "title": "哪些因素影响胎儿的TirCx",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "2",
+                "category_name": "育儿知识"
+            },
+            {
+                "id": "64",
+                "title": "哪些因素影响胎儿的3Zcwj",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "0",
+                "category_name": "婴幼护理"
+            }
+        ]
+    }
+}
+===== 详情页 =====
+
+
+* 地址：api/child/detail
+* 传参：news_id
+
+^参数名称^含义^
+|news_id|资讯的ID|
+|w|所需要图片的宽度|
+
+  * 成功返回值：
+
+^参数名称^含义^
+|detail|含HTML代码|
+
+{
+    "code": 0,
+    "message": "success",
+    "data": {
+        "id": "2",
+        "title": "哪些因素影响胎儿的生长发育",
+        "category": "1",
+        "cover": "/Uploads/Picture/2015-12-26/567e058e210f5.jpg",
+        "view": "10",
+        "create_time": "1451100701",
+        "detail": "哪些因素影响胎儿的生长发育哪些因素影响胎儿的生长发育哪些因素影响胎儿的生长发育哪些因素影响胎儿的生长发育哪些因素影响胎儿的生长发育",
+        "category_name": "首页推荐位",
+        "is_collected": "0"
+    }
+}
+====== 医院版块 ======
+
+===== 医院首页 =====
+
+* 地址：api/Hospital/index(或者请求栏目分发接口api/index/category,传参category_id = 6，实现效果与当前接口一致)
+
+* 传参：
+
+^参数名称^含义^
+|city_id|城市id|
+|lat|位置筛选条件之一，定位的经度|
+|lng|位置筛选条件之一，定位的纬度|
+|km|位置筛选条件之一，在多少公里范围内，格式如，500米 ，传值 0.5，1公里的话传1，如果有经纬度则默认1公里|
+|order|筛选条件之一，目前两个值  level desc(按医院星级倒序) 和 level asc（按医院星级顺序）|
+|classify|筛选条件之一，分类,1-6|
+
+医院分类，例
+    'HOSPITAL_CLASSIFY'=>[
+        1 => '一级',
+        2 => '二级',
+        3 => '三级',
+        4 => '公立',
+        5 => '私立',
+        6 => '妇幼保健院',
+    ]
+
+  * 成功返回值：
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "id": "51",
+            "title": "成都中医附属医院4",
+            "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+            "address": "成都市青羊区蜀辉路19号中大君悦金沙2期9-1-30",
+            "level": "4",
+            "create_time": "1451103838"
+        },
+        {
+            "id": "46",
+            "title": "成都中医附属医院4",
+            "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+            "address": "成都锦江区",
+            "level": "5",
+            "create_time": "1451103838"
+        },
+        {
+            "id": "82",
+            "title": "成都中医附属医院3",
+            "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+            "address": "",
+            "level": "1",
+            "create_time": "1451103838"
+        },
+        {
+            "id": "83",
+            "title": "成都中医附属医院2",
+            "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+            "address": "",
+            "level": "1",
+            "create_time": "1451103838"
+        },
+        {
+            "id": "96",
+            "title": "成都中医附属医院1",
+            "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+            "address": "",
+            "level": "1",
+            "create_time": "1451103838"
+        }
+    ]
+}
+
+===== 医院详情 =====
+
+* 地址：api/Hospital/detail
+* 传参：
+
+^参数名称^含义^
+|hospital_id|必传，医院的ID|
+
+
+  * 成功返回值：
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "hospital_detail": {
+            "id": "51",
+            "title": "成都中医附属医院4",
+            "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+            "address": "成都市青羊区蜀辉路19号中大君悦金沙2期9-1-30",
+            "level": "4",
+            "contact_phone": "028-12345678",
+            "detail": "哪些因素影响胎儿的生长发育哪些因素影响胎儿的生长发育哪些因素影响胎儿的生长发育哪些因素影响胎儿的生长发育哪些因素影响胎儿的生长发育",
+            "category_name": "首页推荐"
+        },
+        "hospital_expert": [
+            {
+                "uid": "100",
+                "export_name": "李娜",
+                "avatar": "/Uploads/Picture/2015-12-29/5681eb71b4a98.png",
+                "export_depart": "妇产科",
+                "export_position": "主任医师",
+                "export_desc": "擅长宫腹腔镜手术、阴式手术、宫外孕等,擅长宫腹腔镜手术、阴式手术、宫外孕等",
+                "export_time": "周三/周四"
+            },
+            {
+                "uid": "101",
+                "export_name": "李娜",
+                "avatar": "/Uploads/Picture/2015-12-29/5681eb71b4a98.png",
+                "export_depart": "妇产科",
+                "export_position": "主任医师",
+                "export_desc": "擅长宫腹腔镜手术、阴式手术、宫外孕等,擅长宫腹腔镜手术、阴式手术、宫外孕等",
+                "export_time": "周三/周四"
+            },
+            {
+                "uid": "102",
+                "export_name": "李娜",
+                "avatar": "/Uploads/Picture/2015-12-29/5681eb71b4a98.png",
+                "export_depart": "妇产科",
+                "export_position": "主任医师",
+                "export_desc": "擅长宫腹腔镜手术、阴式手术、宫外孕等,擅长宫腹腔镜手术、阴式手术、宫外孕等",
+                "export_time": "周三/周四"
+            }
+        ]
+    }
+}
+
+
+===== 医院专家列表 =====
+
+* 地址：api/Hospital/expert
+* 传参：hospital_id
+
+^参数名称^含义^
+|hospital_id|必传，医院的ID|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "uid": "100",
+            "export_name": "李娜",
+            "avatar": "/Uploads/Picture/2015-12-29/5681eb71b4a98.png",
+            "export_position": "主任医师",
+            "export_signature": "博士生导师、医学博士，学科带头人",
+            "export_time": "周三/周四"
+        },
+        {
+            "uid": "101",
+            "export_name": "李娜",
+            "avatar": "/Uploads/Picture/2015-12-29/5681eb71b4a98.png",
+            "export_position": "主任医师",
+            "export_signature": "博士生导师、医学博士，学科带头人",
+            "export_time": "周三/周四"
+        },
+        {
+            "uid": "102",
+            "export_name": "李娜",
+            "avatar": "/Uploads/Picture/2015-12-29/5681eb71b4a98.png",
+            "export_position": "主任医师",
+            "export_signature": "博士生导师、医学博士，学科带头人",
+            "export_time": "周三/周四"
+        }
+    ]
+}
+
+
+===== 医院最新活动 =====
+
+* 地址：api/Hospital/activity
+
+* 传参：hospital_id
+
+^参数名称^含义^
+|hospital_id|必传，医院的ID|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        ["title"] => string(18) "最新活动标题"
+        ["content"] => string(211) "<p><span style="color: rgb(53, 53, 53); font-family: &#39;Microsoft Yahei&#39;, 宋体; font-size: 13px; font-weight: bold; line-height: 20px; background-color: rgb(255, 255, 255);">最新活动内容</span></p>"
+    ]
+}
+====== 社区版块 ======
+
+===== 首页 =====
+
+
+* 地址：api/circle/index
+* 传参：
+
+  * 返回参数
+^参数名称^含义^
+|hot_tags|热门标签|
+|news|文章列表|
+|news.news_info|文章详情|
+|news.news_info.comment|文章评论数|
+|news.news_info.collection|文章收藏数|
+|news.user_info|作者（宝宝）详情|
+|news.user_info.is_following|是否关注 1是 0否|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "hot_tags": [
+            {
+                "id": "9",
+                "title": "受孕指南",
+                "cover": "/Uploads/Picture/2016-01-07/568e5c82aac38.png",
+                "joined_person": 68
+            },
+            {
+                "id": "10",
+                "title": "孕前检查",
+                "cover": "/Uploads/Picture/2016-01-07/568e5c9f8e6ca.png",
+                "joined_person": 22
+            },
+            {
+                "id": "16",
+                "title": "求助",
+                "cover": "/Uploads/Picture/2016-01-07/568e5c96b1a09.png",
+                "joined_person": 0
+            },
+            {
+                "id": "17",
+                "title": "孕前",
+                "cover": "/Uploads/Picture/2016-01-07/568e5c8e07cab.png",
+                "joined_person": 0
+            },
+            {
+                "id": "18",
+                "title": "不孕不育",
+                "cover": "/Uploads/Picture/2016-01-07/568e5c82aac38.png",
+                "joined_person": 6
+            }
+        ],
+        "news": [
+            {
+                "user_info": {
+                    "nickname": "MM92om",
+                    "uid": "126",
+                    "birthday": "7个月20天",
+                    "is_following": "0",
+                    "avatar": "Public/images/default_avatar_32_32.jpg"
+                },
+                "news_info": {
+                    "id": "115",
+                    "address": "成都市",
+                    "create_time": "1周前",
+                    "view": "0",
+                    "title": "测试",
+                    "comment": "0",
+                    "collection": "31",
+                    "uid": "126",
+                    "pictures": "1363,1361",
+                    "category_name": "受孕指南",
+                    "color": "#25D86C",
+                    "is_collected": "0",
+                    "multi_cover": [
+                        {
+                            "img": "/Uploads/Picture/2016-01-07/568e321d676dd.jpg"
+                        },
+                        {
+                            "img": "/Uploads/Picture/2016-01-07/568e2d243e702.jpg"
+                        }
+                    ]
+                }
+            },
+            {
+                "user_info": {
+                    "nickname": "MM92om",
+                    "uid": "126",
+                    "birthday": "7个月20天",
+                    "is_following": "0",
+                    "avatar": "Public/images/default_avatar_32_32.jpg"
+                },
+                "news_info": {
+                    "id": "114",
+                    "address": "成都市",
+                    "create_time": "1周前",
+                    "view": "0",
+                    "title": "健健康康",
+                    "comment": "0",
+                    "collection": "10",
+                    "uid": "126",
+                    "pictures": "1361",
+                    "category_name": "受孕指南",
+                    "color": "#25D86C",
+                    "is_collected": "0",
+                    "multi_cover": [
+                        {
+                            "img": "/Uploads/Picture/2016-01-07/568e2d243e702.jpg"
+                        }
+                    ]
+                }
+            },
+            {
+                "user_info": {
+                    "nickname": "OwpBmG",
+                    "uid": "119",
+                    "birthday": "7个月20天",
+                    "is_following": "0",
+                    "avatar": "Public/images/default_avatar_32_32.jpg"
+                },
+                "news_info": {
+                    "id": "113",
+                    "address": "北京市 海淀区",
+                    "create_time": "1周前",
+                    "view": "0",
+                    "title": "理解",
+                    "comment": "0",
+                    "collection": "4",
+                    "uid": "119",
+                    "pictures": "1357",
+                    "category_name": "生男生女",
+                    "color": "#99ffff",
+                    "is_collected": "0",
+                    "multi_cover": [
+                        {
+                            "img": "/Uploads/Picture/2016-01-06/568ccc8b4da23.jpg"
+                        }
+                    ]
+                }
+            },
+            {
+                "user_info": {
+                    "nickname": "O0LuJw",
+                    "uid": "122",
+                    "birthday": "7个月20天",
+                    "is_following": "0",
+                    "avatar": "Public/images/default_avatar_32_32.jpg"
+                },
+                "news_info": {
+                    "id": "112",
+                    "address": "",
+                    "create_time": "1周前",
+                    "view": "0",
+                    "title": "egg",
+                    "comment": "0",
+                    "collection": "4",
+                    "uid": "122",
+                    "pictures": "1357,1358",
+                    "category_name": "不孕不育",
+                    "color": "#00cccc",
+                    "is_collected": "0",
+                    "multi_cover": [
+                        {
+                            "img": "/Uploads/Picture/2016-01-06/568ccc8b4da23.jpg"
+                        },
+                        {
+                            "img": "/Uploads/Picture/2016-01-06/568ccc8c4a4e1.jpg"
+                        }
+                    ]
+                }
+            },
+            {
+                "user_info": {
+                    "nickname": "O0LuJw",
+                    "uid": "122",
+                    "birthday": "7个月20天",
+                    "is_following": "0",
+                    "avatar": "Public/images/default_avatar_32_32.jpg"
+                },
+                "news_info": {
+                    "id": "111",
+                    "address": "",
+                    "create_time": "1周前",
+                    "view": "0",
+                    "title": "Duffy",
+                    "comment": "0",
+                    "collection": "0",
+                    "uid": "122",
+                    "pictures": "",
+                    "category_name": "不孕不育",
+                    "color": "#00cccc",
+                    "is_collected": "0",
+                    "multi_cover": []
+                }
+            },
+            {
+                "user_info": {
+                    "nickname": "O0LuJw",
+                    "uid": "122",
+                    "birthday": "7个月20天",
+                    "is_following": "0",
+                    "avatar": "Public/images/default_avatar_32_32.jpg"
+                },
+                "news_info": {
+                    "id": "110",
+                    "address": "",
+                    "create_time": "1周前",
+                    "view": "0",
+                    "title": "Duffy",
+                    "comment": "0",
+                    "collection": "1",
+                    "uid": "122",
+                    "pictures": "",
+                    "category_name": "受孕指南",
+                    "color": "#25D86C",
+                    "is_collected": "0",
+                    "multi_cover": []
+                }
+            },
+            {
+                "user_info": {
+                    "nickname": "lijin",
+                    "uid": "100",
+                    "birthday": "7个月20天",
+                    "is_following": "0",
+                    "avatar": "Public/images/default_avatar_32_32.jpg"
+                },
+                "news_info": {
+                    "id": "109",
+                    "address": "12312",
+                    "create_time": "1周前",
+                    "view": "0",
+                    "title": "123",
+                    "comment": "0",
+                    "collection": "4",
+                    "uid": "100",
+                    "pictures": "",
+                    "category_name": "孕前检查",
+                    "color": "#99ffff",
+                    "is_collected": "0",
+                    "multi_cover": []
+                }
+            },
+            {
+                "user_info": {
+                    "nickname": "lijin",
+                    "uid": "100",
+                    "birthday": "7个月20天",
+                    "is_following": "0",
+                    "avatar": "Public/images/default_avatar_32_32.jpg"
+                },
+                "news_info": {
+                    "id": "108",
+                    "address": "12312",
+                    "create_time": "1周前",
+                    "view": "0",
+                    "title": "123",
+                    "comment": "0",
+                    "collection": "3",
+                    "uid": "100",
+                    "pictures": "",
+                    "category_name": "孕前检查",
+                    "color": "#99ffff",
+                    "is_collected": "0",
+                    "multi_cover": []
+                }
+            },
+            {
+                "user_info": {
+                    "nickname": "OwpBmG",
+                    "uid": "119",
+                    "birthday": "7个月20天",
+                    "is_following": "0",
+                    "avatar": "Public/images/default_avatar_32_32.jpg"
+                },
+                "news_info": {
+                    "id": "106",
+                    "address": "北京市 海淀区",
+                    "create_time": "1周前",
+                    "view": "2",
+                    "title": "考虑考虑",
+                    "comment": "0",
+                    "collection": "8",
+                    "uid": "119",
+                    "pictures": "1357",
+                    "category_name": "受孕指南",
+                    "color": "#25D86C",
+                    "is_collected": "0",
+                    "multi_cover": [
+                        {
+                            "img": "/Uploads/Picture/2016-01-06/568ccc8b4da23.jpg"
+                        }
+                    ]
+                }
+            },
+            {
+                "user_info": {
+                    "nickname": "OwpBmG",
+                    "uid": "119",
+                    "birthday": "7个月20天",
+                    "is_following": "0",
+                    "avatar": "Public/images/default_avatar_32_32.jpg"
+                },
+                "news_info": {
+                    "id": "105",
+                    "address": "北京市 海淀区",
+                    "create_time": "1周前",
+                    "view": "0",
+                    "title": "咔咔咔",
+                    "comment": "0",
+                    "collection": "5",
+                    "uid": "119",
+                    "pictures": "1357",
+                    "category_name": "受孕指南",
+                    "color": "#25D86C",
+                    "is_collected": "0",
+                    "multi_cover": [
+                        {
+                            "img": "/Uploads/Picture/2016-01-06/568ccc8b4da23.jpg"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
+===== 获取所有热门标签 =====
+* 地址：api/circle/hotTagsAll
+
+* 传参：
+
+^参数名称^含义^
+|limit|条数限制，默认显示最多20条，此列表暂无分页|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "id": "9",
+            "title": "受孕指南",
+            "cover": "/Uploads/Picture/2016-01-07/568e5c82aac38.png",
+            "joined_person": 57
+        },
+        {
+            "id": "10",
+            "title": "孕前检查",
+            "cover": "/Uploads/Picture/2016-01-07/568e5c9f8e6ca.png",
+            "joined_person": 20
+        },
+        {
+            "id": "16",
+            "title": "求助",
+            "cover": "/Uploads/Picture/2016-01-07/568e5c96b1a09.png",
+            "joined_person": 0
+        },
+        {
+            "id": "17",
+            "title": "遗传优生",
+            "cover": "/Uploads/Picture/2016-01-07/568e5c8e07cab.png",
+            "joined_person": 0
+        },
+        {
+            "id": "18",
+            "title": "不孕不育",
+            "cover": "/Uploads/Picture/2016-01-07/568e5c82aac38.png",
+            "joined_person": 6
+        },
+        {
+            "id": "19",
+            "title": "生男生女",
+            "cover": "/Uploads/Picture/2016-01-07/568e5c8e07cab.png",
+            "joined_person": 11
+        }
+    ]
+}
+
+===== 详情页 =====
+
+
+* 地址：api/circle/detail
+* 传参：
+
+^参数名称^含义^
+|id|文章id|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "user_info": {
+            "nickname": "admin",
+            "birthday": "7个月20天",
+            "is_following": "0",
+            "avatar": "Public/images/default_avatar_32_32.jpg"
+        },
+        "news_info": {
+            "id": "99",
+            "address": "",
+            "create_time": "5天前",
+            "view": "47",
+            "title": "宝宝日记-孕期预防感冒的11个小窍门",
+            "cover": "/Uploads/Picture/2015-12-26/567e9760bccd7.png",
+            "comment": "0",
+            "collection": "0",
+            "uid": "1",
+            "is_collected": "1",
+            "detail": "　红糖姜水，美美一觉　　当准妈妈受凉，或感觉要感冒时，喝一碗热的红糖姜水，然后美美地睡上一觉。生蒜、生葱赛过药常吃生蒜、生葱头是预防感冒的好方法。大蒜素胶囊就是从蒜中提炼出来的。蒜不但有预防感冒之功效，还能抑制肠道致病菌。　　锌与呼吸道防御　　多吃含锌食物。缺锌时，呼吸道防御功能下降，孕妇需要比平时摄入更多的含锌食品，海产品、瘦肉、花生米、葵花子和豆类等食品都富含锌。　　维生素C与呼吸道纤毛运动　　维生素C是体内有害物质过氧化物的清除剂，同时具有提高呼吸道纤毛运动和防御功能。建议多吃富含维生素C的食物或维生素C片剂，如番茄、菜花、青椒、柑橘、草莓、猕猴桃、西瓜、葡萄等。维生素C在加热过程中会大量丢失，烹饪时要注意保护。　　盐水漱口，廉价功效大　　每天清晨起床洗漱后，用盐水漱口，再喝半杯白开水，不但可预防感冒，还对齿龈的健康有好处，因为孕期齿龈充血，易患齿龈炎。　　晨起冷水洗脸　　晨起用冷水洗脸可增强抗感冒的能力。晚上可用温水洗脸，以免由于冷的刺激影响睡意。　　室内湿度保持在45%　　冬季空气湿度低，尤其是在北方，室内多用暖气取暖，空气非常干燥，干燥的空气有利于病毒在呼吸道内聚集生长。可使用加湿器保持室内适宜的湿度。　　有争议，但无害的醋熏蒸　　醋熏蒸法是否对预防感冒有效尚存在争议，但因没有害处，有些家庭还沿用此法。　　不要忘了白开水　　多喝水对预防感冒和咽炎具有很好的效果，每天最好保证喝600～800毫升水。　　空调换气，不能代替开窗　　应让新鲜空气不断进入室内，大多数人都喜欢在早晨打开窗门通气，而后就一天门窗紧闭了。这样不好，至少在午睡后和晚睡前进行通风换气。使用空调的家庭也不能一天24小时门窗紧闭，不能完全靠空调的换气保持室内空气新鲜。　　另外，要在太阳出来后再开窗换气，如果太阳还没有出来开窗通风，室外的二氧化碳浓度较高，对孕妇不利。如果空气污染指数大，不利于通风换气，可借助空气清新器。　　避开人群　　尽量不去或少去人群密集的公共场所，人越多被感染的概率越大，规避是最好的选择。　　坚持锻炼更重要　　锻炼是提高身体抗病能力的有效途径，孕妇在整个孕期都要坚持锻炼。"
+        },
+        "comment_list": {
+            "total_count": "320",
+            "list": [
+                {
+                    "uid": 1,
+                    "nickname": "灯火阑珊",
+                    "content": "评论内容",
+                    "avatar": "Public/images/default_avatar_32_32.jpg",
+                    "create_time": "8分钟前"
+                },
+                {
+                    "uid": 1,
+                    "nickname": "灯火阑珊",
+                    "content": "评论内容",
+                    "avatar": "Public/images/default_avatar_32_32.jpg",
+                    "create_time": "8分钟前"
+                },
+                {
+                    "uid": 1,
+                    "nickname": "灯火阑珊",
+                    "content": "评论内容",
+                    "avatar": "Public/images/default_avatar_32_32.jpg",
+                    "create_time": "8分钟前"
+                }
+            ]
+        },
+        "collection_list": {
+            "total_count": "120",
+            "list": [
+                {
+                    "uid": 1,
+                    "nickname": "灯火阑珊",
+                    "avatar": "Public/images/default_avatar_32_32.jpg",
+                    "create_time": "8分钟前"
+                },
+                {
+                    "uid": 1,
+                    "nickname": "灯火阑珊",
+                    "avatar": "Public/images/default_avatar_32_32.jpg",
+                    "create_time": "8分钟前"
+                },
+                {
+                    "uid": 1,
+                    "nickname": "灯火阑珊",
+                    "avatar": "Public/images/default_avatar_32_32.jpg",
+                    "create_time": "8分钟前"
+                }
+            ]
+        }
+    }
+}
+===== 为文章点赞/收藏 =====
+
+
+* 地址：api/circle/doCollection
+
+* 传参：需要登录
+
+^参数名称^含义^
+|id|文章id|
+|uid|用户id|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "message": "成功点赞"
+    }
+}
+
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "message": "已经取消点赞"
+    }
+}
+
+
+===== 关注与取消关注用户 =====
+
+
+* 地址：api/circle/follow
+
+* 传参：需要登录
+
+^参数名称^含义^
+|uid|用户UID|
+|to_uid|对方用户UID|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "message": "成功关注"
+    }
+}
+
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "message": "已经取消关注"
+    }
+}
+
+===== 删除我的文章 =====
+
+
+* 地址：api/index/delNews
+
+* 传参：需要登录
+
+^参数名称^含义^
+|id|社区动态文章id|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "notice_message": "",
+    "data": {
+        "message": "删除成功"
+    }
+}
+===== 评论文章 =====
+
+
+* 地址：api/circle/doComment
+
+* 传参：需要登录
+
+^参数名称^含义^
+|id|文章id|
+|uid|用户id|
+|content|评论内容|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "uid": "1",
+        "content": "我是评论内容",
+        "news_id": "99",
+        "create_time": 1451527367
+    }
+}
+
+===== 发布动态时，先获取文章标签 =====
+
+
+* 地址：api/circle/getTags
+
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "id": "9",
+            "title": "受孕指南"
+        },
+        {
+            "id": "10",
+            "title": "孕前检查"
+        },
+        {
+            "id": "16",
+            "title": "求助"
+        },
+        {
+            "id": "17",
+            "title": "遗传优生"
+        },
+        {
+            "id": "18",
+            "title": "不孕不育"
+        },
+        {
+            "id": "19",
+            "title": "生男生女"
+        }
+    ]
+}
+
+
+===== 发布动态(文章) =====
+
+
+* 地址：api/circle/push
+
+* 传参：需要登录
+
+^参数名称^含义^
+|title|文章标题，必须，字符串最好30字以内|
+|content|文章内容，必须|
+|category_id|通过接口获取到的标签，必须,用户选择后所传的ID|
+|address|地址，这里不存储地区分类，直接传字符串，如'成都 锦江区'|
+|pictures|上传成功后图片地址，字符串，格式如，'1,2,3',将图片ID用逗号分隔|
+|type|普通日记：1，宝宝第一次：2，疾病记录：3|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "message": "发布成功"
+    }
+}
+
+
+
+===== 获取文章评论 =====
+
+* 地址：api/circle/commentList
+
+* 传参：
+
+^参数名称^含义^
+|id|文章ID|
+
+  * 成功返回值：
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "total_count": "1",
+        "list": [
+            {
+                "uid": "100",
+                "content": "abc",
+                "create_time": "3小时前",
+                "avatar": "Public/images/default_avatar_32_32.jpg",
+                "nickname": "lijin"
+            }
+        ]
+    }
+}
+
+===== 文章分享(WEB页) =====
+
+* 地址：api/circle/share
+
+* 传参：
+
+^参数名称^含义^
+|id|文章ID|
+
+  * 成功返回值：
+
+
+===== 获取用户发布的日记 =====
+
+* 地址：api/circle/lists
+
+* 传参：(需要登陆)
+
+^参数名称^含义^
+|type|文章分类，1为普通日记 ，2为第一次,3为疾病记录|
+
+  * 成功返回值：(和首页格式一样)
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "user_info": {
+                "nickname": "admin",
+                "uid": "1",
+                "birthday": "7个月20天",
+                "is_following": "0",
+                "avatar": "Public/images/default_avatar_32_32.jpg"
+            },
+            "news_info": {
+                "id": "72",
+                "address": "",
+                "create_time": "2周前",
+                "view": "0",
+                "title": "哪些因素影响胎儿的t1jJb",
+                "comment": "0",
+                "collection": "0",
+                "uid": "1",
+                "pictures": "",
+                "category_name": "宝宝日记",
+                "color": "#99ffff",
+                "is_collected": "0",
+                "multi_cover": []
+            }
+        },
+        {
+            "user_info": {
+                "nickname": "admin",
+                "uid": "1",
+                "birthday": "7个月20天",
+                "is_following": "0",
+                "avatar": "Public/images/default_avatar_32_32.jpg"
+            },
+            "news_info": {
+                "id": "44",
+                "address": "",
+                "create_time": "2周前",
+                "view": "0",
+                "title": "哪些因素影响胎儿的0OBzO",
+                "comment": "0",
+                "collection": "0",
+                "uid": "1",
+                "pictures": "",
+                "category_name": "宝宝日记",
+                "color": "#99ffff",
+                "is_collected": "0",
+                "multi_cover": []
+            }
+        },
+        {
+            "user_info": {
+                "nickname": "admin",
+                "uid": "1",
+                "birthday": "7个月20天",
+                "is_following": "0",
+                "avatar": "Public/images/default_avatar_32_32.jpg"
+            },
+            "news_info": {
+                "id": "28",
+                "address": "",
+                "create_time": "2周前",
+                "view": "0",
+                "title": "哪些因素影响胎儿的BhvWk",
+                "comment": "0",
+                "collection": "0",
+                "uid": "1",
+                "pictures": "",
+                "category_name": "宝宝日记",
+                "color": "#99ffff",
+                "is_collected": "0",
+                "multi_cover": []
+            }
+        }
+    ]
+}
+
+===== 获取我的收藏 =====
+
+* 地址：api/Index/myCollections
+
+* 传参：(需要登陆)
+
+  * 成功返回值：(和首页格式一样)
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "id": "115",
+            "title": "测试",
+            "cover": "",
+            "view": "0",
+            "create_time": "1452163852",
+            "category_name": "受孕指南"
+        },
+        {
+            "id": "114",
+            "title": "健健康康",
+            "cover": "",
+            "view": "0",
+            "create_time": "1452162480",
+            "category_name": "受孕指南"
+        },
+        {
+            "id": "112",
+            "title": "egg",
+            "cover": "",
+            "view": "0",
+            "create_time": "1452075036",
+            "category_name": "不孕不育"
+        },
+        {
+            "id": "106",
+            "title": "考虑考虑",
+            "cover": "",
+            "view": "2",
+            "create_time": "1451902301",
+            "category_name": "受孕指南"
+        },
+        {
+            "id": "105",
+            "title": "咔咔咔",
+            "cover": "",
+            "view": "0",
+            "create_time": "1451902301",
+            "category_name": "受孕指南"
+        },
+        {
+            "id": "104",
+            "title": "咔咔咔",
+            "cover": "",
+            "view": "0",
+            "create_time": "1451902301",
+            "category_name": "受孕指南"
+        },
+        {
+            "id": "103",
+            "title": "km监控",
+            "cover": "",
+            "view": "0",
+            "create_time": "1451902301",
+            "category_name": "生男生女"
+        },
+        {
+            "id": "98",
+            "title": "孕妈妈孕期检查注意事项",
+            "cover": "/Uploads/Picture/2015-12-26/567e59eb9e962.png",
+            "view": "148",
+            "create_time": "1451902301",
+            "category_name": "首页推荐"
+        }
+    ]
+}
+====== 智能手环及成长足迹版块 ======
+
+  * 本版块所有接口都需要登录
+===== 手环首页 =====
+
+* 地址：api/Band/index
+* 传参：
+
+^参数名称^含义^
+
+* 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "newest": [
+            {
+                "id": "4",
+                "title": "哪些因素影响胎儿的dzM1F",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "0",
+                "category_name": "育儿知识"
+            },
+            {
+                "id": "6",
+                "title": "哪些因素影响胎儿的VBnN6",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "0",
+                "category_name": "育儿知识"
+            }
+        ]
+    }
+}
+===== 成长足迹首页 =====
+
+* 地址：api/Band/grows
+* 传参：
+
+* 成功返回值：
+
+^参数名称^含义^
+|now_category|当前栏目及子栏目，目前客户端写死|
+|baby_status|宝宝当前状态|
+|baby_status.month|宝宝设置过后的年龄(以月为单位)|
+|baby_status.min_*|max_*|根据宝宝当前年龄（几个月）获取的后台设置衡量值|
+|news|宝宝日记|
+|feed_log|喂养记录|
+|vac_log|接种记录|
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "now_category": [],
+        "baby_status": {
+            "id": "9",
+            "uid": "106",
+            "day": "2016-01-05",
+            "height": "46.0",
+            "weight": "5.0",
+            "head": "25.0",
+            "create_time": "1451973039",
+            "height_unusual": 1,
+            "height_text": "太高",
+            "weight_unusual": 0,
+            "weight_text": "体重正常",
+            "head_unusual": 0,
+            "head_text": "头正常",
+            "month": "1",
+            "min_height": "11.0",
+            "max_height": "23.0",
+            "min_weight": "5.0",
+            "max_weight": "6.0",
+            "min_head": "19.0",
+            "max_head": "27.0"
+        },
+        "news": [
+            {
+                "id": "68",
+                "title": "哪些因素影响胎儿的MJnDx",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "7",
+                "category_name": "育儿知识"
+            },
+            {
+                "id": "66",
+                "title": "哪些因素影响胎儿的TirCx",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "5",
+                "category_name": "育儿知识"
+            },
+            {
+                "id": "63",
+                "title": "哪些因素影响胎儿的EAKPp",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "3",
+                "category_name": "育儿知识"
+            }
+        ],
+        "feed_log": [],
+        "vac_log": []
+    }
+}
+===== 获取睡眠/体温/运动数据 =====
+
+* 地址：api/Band/babyTempStatus
+* 传参：
+
+^参数名称^含义^
+
+|type|可选值，如果传值则只有三个值，体温用temp,睡眠用sleep,运动用movement|
+
+* 成功返回值(传type = temp时)：
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "logs": [
+            {
+                "id": "9",
+                "day": "2016-01-05",
+                "temp": "json_string"
+            },
+            {
+                "id": "10",
+                "day": "2016-01-04",
+                "temp": "{'json':'json_string'}"
+            },
+            {
+                "id": "11",
+                "day": "2016-01-03",
+                "temp": "{'json':'json_string'}"
+            }
+        ]
+    }
+}
+
+* 成功返回值(当不传type时)：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "logs": [
+            {
+                "id": "9",
+                "uid": "106",
+                "day": "2016-01-05",
+                "sleep": "{'json':'json_string'}",
+                "temp": "json_string",
+                "movement": "{'json':'json_string'}",
+                "create_time": "1451973039"
+            },
+            {
+                "id": "10",
+                "uid": "106",
+                "day": "2016-01-04",
+                "sleep": "{'json':'json_string'}",
+                "temp": "{'json':'json_string'}",
+                "movement": "{'json':'json_string'}",
+                "create_time": "1451973467"
+            },
+            {
+                "id": "11",
+                "uid": "106",
+                "day": "2016-01-03",
+                "sleep": "{'json':'json_string'}",
+                "temp": "{'json':'json_string'}",
+                "movement": "{'json':'json_string'}",
+                "create_time": "1451973564"
+            }
+        ],
+        "normal": [
+            {
+                "id": "68",
+                "title": "哪些因素影响胎儿的MJnDx",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "0",
+                "category_name": "育儿知识"
+            },
+            {
+                "id": "66",
+                "title": "哪些因素影响胎儿的TirCx",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "2",
+                "category_name": "育儿知识"
+            },
+            {
+                "id": "63",
+                "title": "哪些因素影响胎儿的EAKPp",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "0",
+                "category_name": "育儿知识"
+            }
+        ]
+    }
+}
+===== 记录宝宝睡眠/体温/运动数据 =====
+
+* 地址：api/Band/babyTempLog
+* 传参：
+
+^参数名称^含义^
+|day|记录的日期，日期格式统一为2016-01-01|
+|sleep|睡眠，此三种参数可单传也可全传,可使用json字符串存储如深度浅度、清醒次数、睡眠质量等当天性的参数|
+|temp|体温，同上|
+|movement|运动，同上|
+
+* 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "uid": "106",
+        "day": "2016-01-05",
+        "sleep": "{'json':'json_string'}",
+        "temp": "json_string",
+        "movement": "{'json':'json_string'}"
+    }
+}
+===== 获取宝宝身高/体重/头围数据 =====
+
+
+* 地址：api/Band/babyBodyStatus(返回的列表按时间顺序倒序排列,每页10条)
+
+* 传参：
+
+^参数名称^含义^
+|type|可选值，如果传值则只有三个值，获取身高用height,体重用weight,头围用head|
+
+* 成功返回值(传type = height时)：
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "logs": [
+            {
+                "id": "9",
+                "day": "2016-01-05",
+                "height": "46.0",
+                "min_height": "11.0",
+                "max_height": "23.0",
+                "month": "1"
+            },
+            {
+                "id": "10",
+                "day": "2016-01-04",
+                "height": "46.0",
+                "min_height": "11.0",
+                "max_height": "23.0",
+                "month": "1"
+            },
+            {
+                "id": "11",
+                "day": "2016-01-03",
+                "height": "46.0",
+                "min_height": "11.0",
+                "max_height": "23.0",
+                "month": "1"
+            }
+        ]
+    }
+}
+
+* 成功返回值(不传type时)：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "logs": [
+            {
+                "id": "9",
+                "uid": "106",
+                "day": "2016-01-21",
+                "height": "39.7",
+                "weight": "15.1",
+                "head": "12.7",
+                "create_time": "1453379528",
+                "month": "1",
+                "min_height": "11.0",
+                "max_height": "23.0",
+                "min_weight": "5.0",
+                "max_weight": "6.0",
+                "min_head": "19.0",
+                "max_head": "27.0",
+                "avg_height": "17.0",
+                "avg_weight": "5.5",
+                "avg_head": "23.0"
+            },
+            {
+                "id": "9",
+                "uid": "106",
+                "day": "2016-01-20",
+                "height": "39.7",
+                "weight": "15.1",
+                "head": "12.7",
+                "create_time": "1453379539",
+                "month": "1",
+                "min_height": "11.0",
+                "max_height": "23.0",
+                "min_weight": "5.0",
+                "max_weight": "6.0",
+                "min_head": "19.0",
+                "max_head": "27.0",
+                "avg_height": "17.0",
+                "avg_weight": "5.5",
+                "avg_head": "23.0"
+            },
+            {
+                "id": "9",
+                "uid": "106",
+                "day": "2016-01-03",
+                "height": "46.0",
+                "weight": "0.0",
+                "head": "0.0",
+                "create_time": "1451973564",
+                "month": "1",
+                "min_height": "11.0",
+                "max_height": "23.0",
+                "min_weight": "5.0",
+                "max_weight": "6.0",
+                "min_head": "19.0",
+                "max_head": "27.0",
+                "avg_height": "17.0",
+                "avg_weight": "5.5",
+                "avg_head": "23.0"
+            },
+            {
+                "id": "9",
+                "uid": "106",
+                "day": "2015-12-05",
+                "height": "46.0",
+                "weight": "5.0",
+                "head": "25.0",
+                "create_time": "1451973039",
+                "month": "1",
+                "min_height": "11.0",
+                "max_height": "23.0",
+                "min_weight": "5.0",
+                "max_weight": "6.0",
+                "min_head": "19.0",
+                "max_head": "27.0",
+                "avg_height": "17.0",
+                "avg_weight": "5.5",
+                "avg_head": "23.0"
+            },
+            {
+                "id": "10",
+                "uid": "106",
+                "day": "2015-11-04",
+                "height": "46.0",
+                "weight": "3.0",
+                "head": "30.0",
+                "create_time": "1451973467",
+                "month": "2",
+                "min_height": "19.3",
+                "max_height": "25.4",
+                "min_weight": "4.0",
+                "max_weight": "9.9",
+                "min_head": "13.0",
+                "max_head": "27.0",
+                "avg_height": "22.4",
+                "avg_weight": "7.0",
+                "avg_head": "20.0"
+            }
+        ],
+        "news": [
+            {
+                "id": "68",
+                "title": "哪些因素影响胎儿的MJnDx",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "21",
+                "category_name": "育儿知识"
+            },
+            {
+                "id": "66",
+                "title": "哪些因素影响胎儿的TirCx",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "9",
+                "category_name": "育儿知识"
+            },
+            {
+                "id": "63",
+                "title": "哪些因素影响胎儿的EAKPp",
+                "cover": "/Uploads/Picture/2015-12-26/567e574ca73c2.png",
+                "view": "7",
+                "category_name": "育儿知识"
+            }
+        ]
+    }
+}
+===== 记录宝宝成长数据记录 =====
+
+* 地址：api/Band/babyBodyLog
+
+* 传参：
+
+^参数名称^含义^
+|day|记录的日期，日期格式统一为2016-01-01|
+|height|身高，此三种参数可单传也可全传|
+|weight|体重，此三种参数可单传也可全传|
+|head|头围，此三种参数可单传也可全传|
+
+* 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "uid": "106",
+        "day": "2016-01-05",
+        "height": "46.0",
+        "weight": "5.0",
+        "head": "25.0"
+    }
+}
+
+* 修改当天记录返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "uid": "106",
+        "day": "2016-01-05",
+        "height": "46.1",
+        "weight": "5.0",
+        "head": "25.0"
+    }
+}
+===== 获取喂养及接种记录 =====
+
+* 地址：api/Band/getFeedVacLogs
+* 传参：
+
+^参数名称^含义^
+|type|只有两个值(获取喂养记录传1,获取接种记录传2|
+
+* 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "id": "1",
+            "name": "接2种",
+            "num": "2",
+            "day": "2016-01-05"
+        }
+    ]
+}
+
+===== 新UI-获取喂养记录 =====
+
+* 地址：api/Band/getFeedLogs
+* 传参：（需要登录）
+
+* 成功返回值：
+
+
+^参数名称^含义^
+|day|日期|
+|week|周几|
+|type|根据此type判断显示哪种图标，有四种图标，分别对应不同喂养记录的种类；例，可定死为奶瓶母乳为3，奶粉为4，哺乳为5，辅食为6；与原来的接种记录(type = 1)不冲突|
+|time|显示的时间|
+
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "notice_message": "",
+    "data": [
+        {
+            "day": "2016-07-27",
+            "week": "3",
+            "list": [
+                {
+                    "id": "35",
+                    "name": "奶粉",
+                    "num": "xxx",
+                    "day": "2016-07-27 17:05:00",
+                    "desc": "zzz",
+                    "type": "2",
+                    "time": "17:05"
+                }
+            ]
+        },
+        {
+            "day": "2016-02-22",
+            "week": "1",
+            "list": [
+                {
+                    "id": "37",
+                    "name": "辅食",
+                    "num": "sss才几个",
+                    "day": "2016-02-22 17:15:14",
+                    "desc": "ddd是的回家好好vhgghvbbvVVVVVVVVVvvvv刚刚社会实践哈哈哈巴萨刚刚好v呵呵还好",
+                    "type": "4",
+                    "time": "17:15"
+                },
+                {
+                    "id": "34",
+                    "name": "奶粉",
+                    "num": "60ms",
+                    "day": "2016-02-22 15:55:00",
+                    "desc": "这",
+                    "type": "2",
+                    "time": "15:55"
+                },
+                {
+                    "id": "33",
+                    "name": "奶瓶母乳",
+                    "num": "尝试",
+                    "day": "2016-02-22 15:38:50",
+                    "desc": "不吐",
+                    "type": "1",
+                    "time": "15:38"
+                },
+                {
+                    "id": "36",
+                    "name": "cc66",
+                    "num": "633",
+                    "day": "2016-02-22 00:00:00",
+                    "desc": "",
+                    "type": "1",
+                    "time": "00:00"
+                }
+            ]
+        },
+        {
+            "day": "2016-01-15",
+            "week": "5",
+            "list": [
+                {
+                    "id": "9",
+                    "name": "嗯啦",
+                    "num": "2",
+                    "day": "2016-01-15 00:00:00",
+                    "desc": "",
+                    "type": "1",
+                    "time": "00:00"
+                }
+            ]
+        },
+        {
+            "day": "2016-01-12",
+            "week": "2",
+            "list": [
+                {
+                    "id": "4",
+                    "name": "喂养第二次",
+                    "num": "1",
+                    "day": "2016-01-12 00:00:00",
+                    "desc": "",
+                    "type": "2",
+                    "time": "00:00"
+                },
+                {
+                    "id": "3",
+                    "name": "w",
+                    "num": "8",
+                    "day": "2016-01-12 00:00:00",
+                    "desc": "",
+                    "type": "2",
+                    "time": "00:00"
+                },
+                {
+                    "id": "2",
+                    "name": "w",
+                    "num": "8",
+                    "day": "2016-01-12 00:00:00",
+                    "desc": "",
+                    "type": "1",
+                    "time": "00:00"
+                }
+            ]
+        },
+        {
+            "day": "2016-01-05",
+            "week": "2",
+            "list": [
+                {
+                    "id": "1",
+                    "name": "接2种",
+                    "num": "2",
+                    "day": "2016-01-05 00:00:00",
+                    "desc": "",
+                    "type": "1",
+                    "time": "00:00"
+                }
+            ]
+        }
+    ]
+}
+===== 喂养或接种记录行为 =====
+
+  * 备注： 新UI 的喂养记录并没有改变；将num（次数）当字符串存储内容
+* 地址：api/Band/feedVacLog
+* 传参：
+
+^参数名称^含义^
+|type|只有两个值(获取喂养记录传1,获取接种记录传2|
+|day|记录的日期，日期格式统一为2016-01-01|
+|name|名称|
+|num|次数|
+
+* 新UI：
+
+^参数名称^含义^
+|type|四个值，不同种类可以用1/2/3/4区分|
+|day|记录的日期，日期格式统一为2016-01-01 00:00|
+|name|名称|
+|num|存储次数或时长字符串形式|
+|desc|描述|
+
+* 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "id": "1",
+        "uid": "106",
+        "name": "接种",
+        "num": "1",
+        "day": "2016-01-05",
+        "type": "1"
+    }
+}
+
+
+===== 删除我的喂养记录 =====
+
+
+* 地址：api/Band/feedDel
+
+* 传参：需要登录
+
+^参数名称^含义^
+|id|记录id|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "notice_message": "",
+    "data": {
+        "message": "成功删除记录"
+    }
+}
+
+===== 手环标准 =====
+
+
+* 地址：api/band/standard
+
+* 传参：需要登录，需要设置生日
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "notice_message": "",
+    "data": {
+        "quilt": [
+            {
+                "interval": "30",
+                "temp": "5"
+            },
+            {
+                "interval": "20",
+                "temp": "3"
+            },
+            {
+                "interval": "10",
+                "temp": "2"
+            }
+        ],
+        "faver": [
+            {
+                "interval": "30",
+                "temp": "10"
+            },
+            {
+                "interval": "20",
+                "temp": "7"
+            },
+            {
+                "interval": "10",
+                "temp": "5"
+            }
+        ],
+        "sleep": [
+            {
+                "month": "1",
+                "sleep_min": "8",
+                "sleep_max": "12",
+                "min_notice": "不足标准的自定义提示1",
+                "max_notice": "超过标准的自定义提示1"
+            }
+        ]
+    }
+}
+====== 宝宝辅食 ======
+
+===== 宝宝辅食首页(web页面) =====
+
+* 地址：/baby/food/index/
+
+
+
+====== 疫苗相关 ======
+===== 疫苗记录 =====
+
+* 地址：api/Baby/vac
+* 传参：(需要登录)
+
+  * 成功返回值：
+
+^参数名称^含义^
+|month|月份|
+|title|疫苗名称|
+|desc|疫苗简要描述|
+|times|第几次|
+|must|是否为必打|
+|user_vac_ed|用户是否打过此疫苗|
+
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "month": "0",
+            "month_desc1": "2016年02月15日",
+            "month_desc2": "0月龄",
+            "list": [
+                {
+                    "id": "1",
+                    "month": "0",
+                    "title": "卡介苗",
+                    "desc": "预防结核病",
+                    "times": "1",
+                    "must": "1",
+                    "times_desc": "第一次",
+                    "user_vac_ed": "1"
+                }
+            ]
+        },
+        {
+            "month": "1",
+            "month_desc1": "2016年03月16日",
+            "month_desc2": "1月龄",
+            "list": [
+                {
+                    "id": "2",
+                    "month": "1",
+                    "title": "乙肝疫苗",
+                    "desc": "预防乙型肝炎",
+                    "times": "1",
+                    "must": "1",
+                    "times_desc": "第一次",
+                    "user_vac_ed": "1"
+                },
+                {
+                    "id": "3",
+                    "month": "1",
+                    "title": "乙肝疫苗",
+                    "desc": "预防乙型肝炎",
+                    "times": "2",
+                    "must": "1",
+                    "times_desc": "第二次",
+                    "user_vac_ed": "0"
+                }
+            ]
+        },
+        {
+            "month": "2",
+            "month_desc1": "2016年04月15日",
+            "month_desc2": "2月龄",
+            "list": [
+                {
+                    "id": "4",
+                    "month": "2",
+                    "title": "病",
+                    "desc": "病描述",
+                    "times": "1",
+                    "must": "1",
+                    "times_desc": "第一次",
+                    "user_vac_ed": "0"
+                },
+                {
+                    "id": "5",
+                    "month": "2",
+                    "title": "病",
+                    "desc": "病描述",
+                    "times": "1",
+                    "must": "0",
+                    "times_desc": "第一次",
+                    "user_vac_ed": "0"
+                }
+            ]
+        }
+    ]
+}
+
+
+
+
+===== 记录疫苗记录 =====
+
+* 地址：api/Baby/vacLog
+
+* 传参：(需要登录)
+
+^参数名称^含义^
+|ids|疫苗的ID，可半传，也可多传，格式如：23（单），  "24，25，26"（多，以逗号分隔）---已经打了的再传参会取消|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+        "message": "记录成功"
+    }
+}
+
+===== 设置疫苗通知时间 =====
+
+
+* 地址：api/Baby/setNoticeTime
+
+* 传参：(需要登录)
+
+^参数名称^含义^
+|notice_day|数值，默认为当天(0),前一天传1，前两天传2；只存储天数，时间部分客户端自行存储在本地进行通知;服务端会在通用接口返回用户(设置过生日)指定天数内符合条件的疫苗提醒 |
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "notice_message": "",
+    "data": {
+        "message": "设置成功"
+    }
+}
+
+===== 获取用户疫苗通知时间 =====
+
+
+* 地址：api/Baby/getNoticeTime
+
+* 传参：(需要登录)
+
+  * 成功返回值(返回一个天数)：
+
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "notice_message": "",
+    "data": {
+        "notice_day": "1"
+    }
+}
+====== 通用接口 ======
+
+
+===== 搜索(各栏目通用) =====
+
+* 地址：api/index/search
+* 传参：
+
+^参数名称^含义^
+|category_id|必传，栏目ID,搜索哪个栏目就传哪个栏目的ID|
+|keyword|搜索的字符串，包含医院名称，或者传空，将数据缓存到客户端本地|
+
+  * 成功返回值：
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "id": "51",
+            "title": "成都中医附属医院4"
+        },
+        {
+            "id": "46",
+            "title": "成都中医附属医院4"
+        },
+        {
+            "id": "82",
+            "title": "成都中医附属医院3"
+        },
+        {
+            "id": "83",
+            "title": "成都中医附属医院2"
+        },
+        {
+            "id": "96",
+            "title": "成都中医附属医院1"
+        }
+    ]
+}
+
+===== 得到热门搜索关键词(各栏目通用) =====
+
+* 地址：api/index/getHotSearch
+* 传参：
+
+^参数名称^含义^
+|category_id|必传，栏目ID,搜索哪个栏目就传哪个栏目的ID|
+
+  * 成功返回值：
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": [
+        {
+            "keyword": "协和医院"
+        },
+        {
+            "keyword": "大洋洲"
+        },
+        {
+            "keyword": "南京五洲妇幼医院"
+        }
+    ]
+}
+
+
+===== 上传图片 =====
+
+* 地址：api/index/uploadPicture
+
+* 传参：
+
+^参数名称^含义^
+|$_FILES|上传图片文件的整个表单|
+
+  * 备注，返回值后请记录下图片id值，以便发布文章时上传图片后传入ID数组
+
+  * 成功返回值：
+{
+    "code": 0,
+    "message": "数据请求成功",
+    "data": {
+         ["name"] => string(17) "5635cb36774da.png"
+  ["type"] => string(5) "local"
+  ["size"] => int(54705)
+  ["key"] => string(4) "file"
+  ["ext"] => string(3) "png"
+  ["md5"] => string(32) "b08210ecc8442db6680e39eb705cd516"
+  ["sha1"] => string(40) "33ac01d069c670786868406aba2d9c036db4a634"
+  ["savename"] => string(17) "56848bfa50924.png"
+  ["savepath"] => string(11) "2015-12-31/"
+  ["rootPath"] => string(18) "./Uploads/Picture/"
+  ["path"] => string(45) "/Uploads/Picture/2015-12-31/56848bfa50924.png"
+  ["id"] => int(1357)
+  ["status"] => int(1)
+  ["info"] => string(15) "上传成功！"
+  ["data"] => string(0) ""
+    }
+}

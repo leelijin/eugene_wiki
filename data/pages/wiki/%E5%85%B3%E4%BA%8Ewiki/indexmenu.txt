@@ -1,0 +1,676 @@
+====== IndexMenu Plugin ======
+
+---- plugin ----
+description: Show a customizable and sortable index for a namespace
+author     : Samuele Tognini, Gerrit Uitslag
+email      : samuele@samuele.netsons.org
+type       : syntax,action
+lastupdate : 2015-08-26
+compatible : rincewind, angua, adora belle, Weatherwax, Binky, Ponder Stibbons, Hrun, Detritus
+depends    :
+conflicts  : indexmenu2
+similar    : alphaindex, indexmenu2, navi
+tags       : navigation, menu, listing, namespace, ajax, index
+
+sourcerepo : https://github.com/samuelet/indexmenu
+bugtracker : https://github.com/samuelet/indexmenu/issues
+downloadurl: https://github.com/samuelet/indexmenu/archive/master.zip
+donationurl: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=102873
+----
+
+This [[plugin]] allows you to insert a fully customizable index or a list of pages starting from a specified namespace.
+It should be useful in DokuWiki sites where pages are organized by [[:namespaces]].
+Main features are:
+  * Fully customizable with a lot of [[.:indexmenu#syntax|flexible options]], but easy to use and configure for standard needs.
+  * Built-in support of Navigation features like highlighting the current location or dynamically displaying the tree of the current namespace.
+  * Easily themeable with prebuilt [[.:indexmenu#JavaScript themes]].
+  * Assign [[.:indexmenu#Namespaces title and link (headpages)]] to namespaces.
+  * Sortable by date, title and custom metadata information.
+  * AJAX support to speed up sites with many pages.
+  * Customizable [[.:indexmenu#The context menu|context mouse menu]] for usual namespace/page actions.
+  * TOC pages preview.
+  * [[.:indexmenu#page_index|Replace]] the DokuWiki page index.
+  * Hide namespaces/pages according to [[ACLs]] and plugin [[.indexmenu#skip_index|settings]].
+
+Themed indexmenu based on the Javascript index builder:\\
+{{http://samuele.netsons.org/dokuwiki/media/indexmenu1.jpg}}\\
+Indexmenu based on Dokuwikis index builder:\\
+{{http://samuele.netsons.org/dokuwiki/media/indexmenu2.jpg}}
+
+  * You can test it at the playground page of the [[http://samuele.netsons.org/dokuwiki/doku.php?id=dokuwiki:plugins:indexmenu|indexmenu web site]].
+  * Thanks to Geir Landrö and his JavaScript [[http://www.destroydrop.com/javascripts/tree/|dTree]] menu.
+  * Thanks also to Roland Hellebart and his Tree plugin for the dTree idea.
+  * **Many many thanks to indexmenu users**, the most useful work is done by them (look at the [[.:indexmenu:discussion]] page).
+  * Feel free to [[.:indexmenu#development|improve]] it.
+
+
+===== Donation =====
+
+The indexmenu plugin is not sponsored by anyone but I develop and support it for free during my spare time.
+If want to offer me a friendly beer (({{http://www.enjoytoz.it/images/uploads/Auld_Dubliner/tennents.jpg?60}})), you can consider to make a [[http://samuele.netsons.org/dokuwiki/doku.php?id=dokuwiki:plugins:indexmenu#donation|donation]].
+
+====Examples:====  
+|Root namespace. Expands all |''%%{{indexmenu>:}}%%'' |
+|Current namespace. Show only current level, don't expand any nodes. |''%%{{indexmenu>.#1}}%%'' |
+|Parent namespace. Show parent namespace ("uplink") and current current level, don't expand any nodes. |''%%{{indexmenu>..:#1}}%%'' |
+|''wiki'' namespace, expand containing namespaces, not subnamespaces.\\ Using the themed Javascript indexmenu. |''%%{{indexmenu>:wiki#1|js}}%%'' |
+
+
+====== Syntax ======
+
+Basic syntax usage:
+
+^ Main                                                         ^ Options                                                       ^
+| **%%{{%%indexmenu>ns[#n]** <sub>[ns1[#n] ns2[#n] ...]</sub>  | **%%|%%** //<sub>[js[#theme]] [tsort] ...</sub> //**%%}}%%**  |
+Arguments inside ''[]'' parenthesis are optional. The ''#'' char is always required with related options.
+
+:!: All the syntax options can be easily accessed with the indexmenu picker in the [[:edit window]] [[:toolbar]].
+
+
+===== Full syntax =====
+
+Settings **before the "|"** separator:
+^Main ^Action ^Note|
+^ //''ns''//     | //**Main namespace**// name. Index starts from here. Syntax complies with DokuWiki [[:namespaces#creating namespaces|namespaces]] paths.| "**.**" refers to the namespace of the page containing the indexmenu syntax and **not** to the current DokuWiki namespace context ((the namespace of the page displayed by a user who is navigating your site)) (see the **//context//** option for this feature). "**..**" or an empty value shows the root site namespace.|
+^ //''#n''//             | **n** is a number that specifies how many namespace levels to display open under the //**main namespace**//.| If it's not defined then the whole tree, till the deeper node, will be open. If ''//0//'' or ''//1//'' it'll display only nodes under the main namespace. For example: "#2" will display "root:myns1:myns2" but will keep myns2 closed thus hiding "root:myns1:myns2:myns3". Optional.|
+^ //''ns1[#n] %%...%% nsn[#n]''// | A list //**of optional namespaces**// inside the //**main namespace**//. Every namespace will be opened or closed at the specified //**n**// level. Syntax complies with DokuWiki [[:namespaces#creating namespaces|namespaces]].| If **n** is not defined then all namespaces are open, if ''//0//'' they are closed. "**.**" refers to the namespace of the page containing the indexmenu syntax and **not** to the current DokuWiki namespace context ((the namespace of the page displayed by a user who is navigating your site)) (see the **//context//** option for this feature). "**..**" or an empty value shows the root site namespace. Optional.|
+
+Optional settings **after the "|"** separator:
+^Option ^Action ^Note|
+^ ''js'' \\ undo: ''nojs''          | JavaScript render method: the index is an expandable tree menu. Without the ''js'' option DokuWikis index renderer is used | Without //**n**//, all nodes are open, with it, nodes are open till //**n**// level.|
+^ //''#theme''// \\ undo: ''#default''          | Theme name for indexmenu icons | A theme is a set of icons inside ''//images//'' directory as described in [[.:indexmenu#Theme tutorial]]. Admins can download and share themes in admin panel. It works only in //**js**// e.g. //**js#tango**// |
+| Next options are available with or without //**js**// option. |||
+^ ''navbar'' \\ undo: ''nonavbar''         | The tree opens itself automatically at the current page namespace. Useful in a navigation sidebar.| Without //**js**// option, the indexmenu page is never cached (just like the default DokuWiki index page) and the DokuWiki loading could be slower depending on the amount of child nodes displayed. |
+^ ''context''  \\ undo: ''nocontext''   | [[:namespaces#creating namespaces|Relative]] //**main namespace**// and //**optional namespaces**// will refer to the current DokuWiki namespace context ((the namespace of the page displayed by a user who is navigating your site)) instead of to the namespace of the page containing the indexmenu syntax. Useful in a navigation sidebar.| The indexmenu page is now never cached so the DokuWiki loading could be slower depending on the amount of child nodes displayed (In //**js**// mode, when a lot of nodes are usually displayed, the //''max''// option is recommended). It automatically enable the //**nocookie**// option.|
+^ ''tsort''   \\ undo: ''notsort'' | Sort (only) pages by title. | Useful when [[config:useheading]] is on. By default namespaces are **not** sorted, you need the **//nsort//** option for this.|
+^ ''dsort''   \\ undo: ''nodsort''  | Sort (only) pages by date creation (first the oldest). | By default namespaces are **not** sorted, you need the **//nsort//** option for this.|
+^ ''msort[#meta]''   \\ undo: ''nomsort''  | Sort (only) pages by a custom [[:devel:metadata]] information. Without the ''#meta'' parameter, i.e. ''msort'', it looks for the custom sorting number specified with the ''%%{{indexmenu_n>N}}%%'' syntax  (see the below [[.indexmenu#metadata tag syntax]]).\\ With ''#meta'' parameter you can refer to the [[:devel:metadata#data structure|meta data structure]] (Array values are managed through the ":" separator, for example: ''msort#date:modified''). |By default, pages without metadata tag are sorted by page name (the default DokuWiki way), but you can override this behaviour adding also the tsort or dsort option in the indexmenu syntax. By default namespaces are **not** sorted, you need the **//nsort//** option for this.|
+^ ''hsort''   \\ undo: ''nohsort'' | Sort the headpages as defined by config setting [[config:startpage]] to the top |msort overrules hsort |
+^ ''rsort''   \\ undo: ''norsort'' | Reverse the sorting of pages. |By default namespaces are **not** sorted, you need the **//nsort//** option for this. |
+^ ''nsort''   \\ undo: ''nonsort'' | Sort also namespaces according to page sort options. | To use in //addition// to the above sort options. tsort, dsort, msort, hsort apply only for namespaces when using [[#namespaces_title_and_link_headpages|headpages]]. rsort is applicable always together with nsort.  |
+^ ''nons''   \\ undo: ''ns''  | Exclude namespaces nodes from index. It shows only the pages. | Without **//js//**, the closing **//n//** namespace option prevents to display nodes below the **//n//** namespace level.|
+^ ''nopg''  \\ undo: ''pg''  | Exclude pages nodes from index. It shows only the namespaces. | All namespace nodes will link to the start pages (as defined by [[config:startpage]] setting) |
+^ ''skipfile[+|=]/regexp/'' | Skip files matching the regexp. | ''skipfile**+**/../'' skips files defined with this regexp additional to [[#skip_files_in_index|global skip]] config. ''skipfile**=**/../'' replace the global skip config with regexp from this syntax. See the global config explanation for some regexp [[#skip_namespaces_in_index|examples]].|
+^ ''skipns[+|=]/regexp/'' | Skip namespaces matching the regexp. | Just like skipfile, but [[#skip_namespaces_in_index|namespaces]].|
+| Next options are //only// available with //**js**// option. |||
+^ ''max#n//[#m]//'' \\ undo: ''nomax''  | If initially closed, the node at //**n**// level will retrieve all its child nodes through the AJAX mechanism when opened for the first time. Optionally, the nodes after the //**n**// level can be retrieved with AJAX every //**m**// sublevels instead of in one go.| It affects the server loading and speeds up the loading of pages in DokuWiki with an high amount of pages. It works only in //**js**//. Cookie are automatically disabled, just like with //**nocookie**//. |
+^ ''maxjs#//n//''  \\ undo: ''nomaxjs''   | It sets how many js tree levels to render when page loads. Remaining nodes are rendered (slightly slower) only when they are open by users, by  //**optional namespaces**// option, by cookies or by //**navbar**// option. | Default //**n**// is 1 so that it will speed up the page loading, above all with an high amount of pages. It affects only the user-client CPU speed, not the webserver load. It works only in //**js**// |
+^ ''id#[random|ns|//number//]''   \\ undo: ''id#random''     | [[wp>HTTP_cookie|Cookie]] Identifier for a js indexmenu where the previously opened/closed nodes by a user are stored. | Useful when a page is uncached and you like the tree state is stored in cookie. (See //**nocookie**// for disabling cookies.)  Default the option ''//id#random//'' is active, also when the option is not specified in the syntax. You can apply self a number as unique identifier for your indexmenu  ( e.g. ''//id#20//'' ) or let generate a number unique for requested namespace with ''//id#ns//''. Read the [[.:indexmenu#Js does not remember its previous state]] section. **ATTENTION:** ID must be unique for every indexmenu in your DokuWiki site or you'll get strange js behaviors. Tree state storage with cookie only in //**js**// |
+^ ''nocookie''  \\ undo: ''cookie'' | Disable [[wp>HTTP_cookie|cookies]]. By default js indexmenu remember selected,open and closed nodes by user during navigation. With this option it doesn't remember them and the tree is blocked to its start status. | Tree state storage with cookie only in //**js**//|
+^ ''noscroll''   \\ undo: ''scroll''    | Disable the JavaScript scrolling feature when it don't fits the container width. It could solve visualization problems. | It works only in //**js**//|
+^ ''notoc''  \\ undo: ''toc''        | Disable the TOC-preview feature. | ToC preview only available in //**js**//|
+^ ''nomenu''  \\ undo: ''menu''       | Disable the contextmenu feature. | Context menu only available in //**js**//|
+
+
+===== Examples =====
+
+A sample of an indexmenu JS index that could be used inside a navigation sidebar. Its initial status is blocked by the nocookie option, so, when the page is reloaded, it doesn't remember the open and closed nodes by the user.:
+<code>
+{{indexmenu>..#1|js navbar nocookie}}
+</code>
+
+JS navigation index with "thread" theme where nodes after the third level are retrieved with Ajax every 2 sublevels. Pages are sorted by title and [[.indexmenu#Metadata tag syntax|custom sort]] number:
+<code>
+{{indexmenu>..#1|js#thread navbar max#3#2 tsort msort}}
+</code>
+
+Standard DokuWiki index showing only pages inside wiki:plugins and lower namespaces (max two levels):
+<code>
+{{indexmenu>:wiki:plugins#2|nons}}
+</code>
+
+Js tree showing pages and namespaces both sorted by reverse title. For example,if "archive" contains stuff ("news","oldnews",etc) that you need to quickly organize by time, you could create numbered [[.:indexmenu#Namespaces title and link (headpages)|headpages]] for every namespace (i.e renaming "oldnews" in "news 2006", "news" in "news 2010" and so on) and sort them from new to older:
+<code>
+{{indexmenu>:archive#1|js tsort nsort rsort}}
+</code>
+
+Standard index showing the tree of the current context ((the namespace of the page displayed by a user who is navigating your site)) opened at the second level .
+<code>
+{{indexmenu>playground#2|context}}
+</code>
+
+Show all current namespace pages .
+<code>
+{{indexmenu>.:#1|context}}
+</code>
+
+JS tree showing all (and only) the namespaces of the "private" namespace sorted by date creation. "private" is relative and refers to the private namespace under the page containing the indexmenu syntax.
+<code>
+{{indexmenu>private|js nopg dsort}}
+</code>
+
+
+==== Metadata tag syntax ====
+
+By default nodes on the same tree level are sorted by name (or by title/date if you use the tsort/dsort syntax), but you can also specify a custom sort number for every page inserting a metadata tag in the pages with this syntax:
+<code>
+{{indexmenu_n>N}}
+</code>
+
+Where ''N'' is a number.
+Then you need to use the "msort" option in your indexmenu tree syntax.
+If you have the ''show_sort'' option enabled in the Configuration Manager, a notice is displayed to admins (only) on every page with this metadata tag (the text defaults to "Indexmenu sort number: N").
+
+**Examples:**
+
+You can change the order of this tree containing a mix of standard and [[config:useheading]] pages:
+
+<file>
+-Root
+  |_don
+  |_Mirror sessions         (headline title of the ":mirror" page)
+  |_pachuco
+  |_At the radar station    (headline title of the ":radar" page)
+  |_van
+  |_vliet
+</file>
+
+in this way:
+<code>
+{{indexmenu>..#1|msort}}
+</code>
+<file>
+-Root
+  |_vliet                   {{indexmenu_n>1}}
+  |_van                     {{indexmenu_n>2}}
+  |_don                     {{indexmenu_n>3}}
+  |_Mirror sessions         (headline title of the ":mirror" page)
+  |_pachuco
+  |_At the radar station    (headline title of the ":radar" page)
+</file>
+
+Pages without sort number, like the last three pages, are sorted by page name as default, but you can force a different sort:
+<code>
+{{indexmenu>..#1|tsort msort}}
+</code>
+<file>
+-Root
+  |_vliet                   {{indexmenu_n>1}}
+  |_van                     {{indexmenu_n>2}}
+  |_don                     {{indexmenu_n>3}}
+  |_At the radar station    (headline title of the ":radar" page)
+  |_Mirror sessions         (headline title of the ":mirror" page)
+  |_pachuco
+</file>
+
+
+====== Configuration options======
+
+Indexmenu is fully configurable from [[plugin:config|Configuration Manager]]. Options are explained in the below sections.
+
+==== Default options=====
+Default options let you define settings that are applied to all the indexmenu indexes included in pages. To undo any syntax option, use the inverse version of the option. Normally that option is the same but with or without ''no..''. See the table above for all undo options.
+
+==== Only admins ====
+
+It prevents no-admin users from inserting indexmenu trees, removing every indexmenu syntax in the page. It affects only the edit mode, so that standard users are still able to view indexmenu tree in a page edited by admins.
+
+This is useful to deny to insert indexmenu trees to your users, but pay attention that if you let them to edit a page containing an indexmenu tree inserted by the admin, this tree will be removed as soon as a standard user saves the page.
+
+
+==== ACL Cache ====
+
+Optimize the cache of indexmenu according to ACLs and prevents to display unauthorized nodes.
+
+The choice of the method affects only the visualization of nodes on the indexmenu tree, not the page authorizations. The **Groups** option is the default setting.
+  * **None**: Standard. It is the faster method and it does not create further cache files, but the nodes with denied permission could be showed to unauthorized users or vice versa. Recommended when you don't deny pages access by ACL or you don't care how the tree is displayed or you use the %%~~NOCACHE~~%% syntax in the indexmenu page.
+  * **User**: Per-User login. Slower method and it creates a lot of cache files (depending on the amount of your DokuWiki site users, so for sites with few users it's not a problem), but it always hides correctly denied pages. Recommended when you have page ACLs that depend on users login.
+  * **Groups**: Per-groups membership. Good compromise between the previous methods, but in case that you deny pages read ACL to a single user login, he could anyway displays that nodes in the tree. Recommended when your whole site ACLs depend on groups membership.
+
+If wrongly set, this option could display to a group of users (ie. the anonymous user) the cached tree of another group (ie: the admin user), thus displaying randomly different trees containing less or more (un)authorized nodes.
+
+There are also important issues in [[.:indexmenu#about ACLs]] and [[.:indexmenu#about_empty_namespaces]] that affects trees limited by ACLs.
+
+
+==== Namespaces title and link (headpages) ====
+
+== Titles for page headings ==
+
+First of all, if you want that the whole tree displays the heading title of pages instead of their name, you need to set the config setting [[config:useheading]] on in the general configuration of the wiki. Indexmenu will show page titles when useheading is 'always' or 'navigation'.
+
+== Title for namespaces headings ==
+
+Next, if you want that the namespace nodes display a heading title instead of the namespace name, you need to select the page from which these are retrieved with the config option ''headpage''.
+
+Every namespace will retrieve its title from the heading title of that page, called headpage, and will be linked directly to it. No longer you can open the node by clicking the header (in the js version you can still use the plus before namespace).
+
+You can choose a name for the page from which retrieve the title or use a self defined value:
+
+^Value  ^Page  ^Example ^
+|**any value** | The page inside the namespace | public(ns):myvalue(page) |
+|**:inside:** | a page with the same name of namespace, beneath the namespace | public(ns):public(page) |                                                                               
+|**:same:** | a page with the same name of namespace, at the same level of the namespace | public(page) <=> public(ns) |
+|**:start:** | the global [[config:startpage|start]] page name inside the namespace| public(ns):start(page) |
+
+You can specify more than one option using "," as separator. For every namespace, every value will be checked till the first existent headpage is found.
+
+== Hide headpages in tree ==
+
+To get a better visualization you could use the ''hide_headpage'' option, that hides headpages, such as defined by config ''headpage'', in the rendered indexmenu tree.
+
+
+==== Page index ====
+
+When this option is not empty, the DokuWiki default [[:index]] page is replaced with a custom page, which you can fill yourself. For example you can add the indexmenu tree of your site.
+
+Set this option with a DokuWiki page ID (i.e: ''tools:index''), then create the page (i.e: ''tools:index'') and put inside it an indexmenu syntax like this:
+<code>
+{{indexmenu>..|navbar}}
+</code>
+or
+<code>
+{{indexmenu>..|js navbar nocookie}}
+</code>
+You may also want to hide this page in any indexmenu trees with the [[.:indexmenu#skip files in index]] option.
+
+
+==== Empty message ====
+
+You can show a custom message in place of the menu tree if it can not be rendered (i.e namespace doesn't exist)
+
+The alias **%%{{ns}}%%** is a shortcut for the requested namespace.
+
+Message supports the wiki syntax, so it's fully customizable. Don't use HTML code.
+
+
+==== Skip Namespaces in Index ====
+
+The configuration setting ''skip_index'' let you globally hide namespaces (and their pages) in your indexmenu trees.
+
+Just fill this option with the ids of namespaces to skip using [[http://www.php.net/manual/en/reference.pcre.pattern.syntax.php|Regular Expression]].\\ 
+:!: Till V4.5, a namespaces full path has to be declared as a file system path (i.e.: "mydir/mysubdir") instead of DokuWiki IDs.
+
+There are also some issues [[.:indexmenu#About empty namespaces]] that should be read. 
+
+**Simple examples:**\\
+Skip any namespace whose ID contains the word ''copyright'' or ''privatens:users''. Attention: ''allprivatens:usersmich'' will be also matched
+<code>
+/(copyright|privatens:users)/
+</code>
+Skip the namespace whose ID is exactly ''myusers:spaces''. Here the characters ''^'' and ''$'' marks the start and the end of the matched string.
+<code>
+/^myusers:spaces$/
+</code>
+
+
+==== Skip Files in index====
+
+This configuration option ''skip_file'' let you to globally hide one or more pages in your indexmenu trees.
+Just fill this option with the ids of pages to skip using [[http://www.php.net/manual/en/reference.pcre.pattern.syntax.php|Regular Expression]].\\ 
+:!: Till v4.5, pages are checked as DokuWiki text files (i.e.: start.txt). A page full path have to be declared as a file system path (i.e.: "mydir/start.txt") instead of DokuWiki IDs.
+
+There are also some issues [[.:indexmenu#About empty namespaces]] that should be read.
+
+
+==== Show sort ====
+
+If you sorted a page with the [[.:indexmenu#metadata tag syntax]], a short blob message at the top of page will display its sort number.
+
+The message is displayed **only** to wiki admins when they view the page.
+
+
+====== How to install ======
+
+Search and install it in the [[plugin:Extension]] manager or download and unpack it into ''lib/plugins'' folder.
+
+Alternative download link: http://samuele.netsons.org/dokuwiki/media/indexmenu.zip
+
+[[http://samuele.netsons.org/dokuwiki/doku.php?id=dokuwiki:plugins:indexmenu#old_releases|Old releases]]
+
+
+===== Changelog =====
+
+|:!: You could need to purge your browser and server cache after upgrading it, following these [[.:indexmenu#The tree is not displayed|instructions]]. The full changelog can be viewed at my [[http://samuele.netsons.org/dokuwiki/doku.php?id=dokuwiki:plugins:indexmenu#changelog|indexmenu]] page. |
+
+^Many thanks to [[user>Klap-in|Klap-in]], all the work for the 5.0 release was done by him. ^
+
+
+==== Github changelog ====
+
+{{rss>https://github.com/samuelet/indexmenu/commits/master.atom 5 date}}
+
+
+==== Release changelog ====
+
+  * **2014-08-01**
+      * Default options can be configured in Config Manager for whole wiki
+      * Supports nolatin pagenames better
+      * remove more empty nodes (only with indexmenu indexer, which is used when one of sort options added)
+      * contextmenu can be translated as well
+
+  * **2013-04-24 Version 5.0**:
+            * Reformat of all code to Dokuwiki code style
+            * Rewrite all javascript to jQuery instead of old js api (includes improvements from [[tindexmenu]] plugin)
+            * Added a new toolbar wizard
+            * Used Dokuwikis javascript include mechanism
+            * add ''hsort'' for sorting [[config:startpage]] pages to top of listing
+            * Rewrite the ajax stuff into action plugin (not theme handling stuff)
+            * Change configuration via menu js files to one file.
+            * add option ''nomenu''
+            * Improved support for [[config:useheading]] option. Page titles are //only shown// when useheading is 'always' or 'navigation'. - by [[user>lupo49]]
+            * Added syntax option to add ''skipfile+/regexp/'' and ''skipns+/regexp/''. Using ''+'' add regexp parallel to global config, using ''='' replaces the global config.
+            * Adding curid span like DokuWiki performs on internal links.
+            * Fixed: When only had indexmenu syntax in sidebar, in js rendered index the backup index wasn't hidden.
+            * Fixed: Ajax completion supports Korean characters too. - by [[user>Samuele]]
+
+  * **2009-08-29 Version 4.6**:
+            * :!: //New Feature//: Namespace declaration complies with DokuWiki [[:namespaces#creating namespaces|namespaces]]. **Important before upgrading from previous versions**: according to the new DokuWiki syntax, a simple //main namespace// without relative declaration prefix (i.e: "playground") doesn't refer anymore to the subnamespace in the root namespace but in the **current** namespace. To refer to the root namespace, you need to prepend the ":" declaration to it.
+            * //New Feature//: Added the //context// option. It resolves relative requested namespaces starting from the current user location instead of the page containing the indexmenu syntax.
+            * :!: //New Feature//: Changed skip_file and skip_index syntax to use DokuWiki ID instead of system paths. Thanks to Dmitry Katsubo.
+            * //New Feature//: Metatada titles are not rendered when recursively building the indexmenu tree. This will speed up the page loading when cache expires, but could not display the heading title for nodes without metadata information.
+            * //New Feature//: Added the nojs button in the edit toolbar and toolbar CSS classes.
+            * //New Feature//: The right JS context menu is closed by any document click. Thanks to Urban.
+            * //Bug//: Fixed a bug which prevents page caching when it contains only indexmenu syntax.
+            * //Bug//: Disable JS indexmenu cookies in preview mode.
+            * //Bug//: Fixed an ACL issue.
+            * //Bug//: Fixed UTF8 TOC preview bug.
+
+
+===== Development =====
+
+For development separated branches of the code are created to test features and bug fixes. See the list of current branches: https://github.com/samuelet/indexmenu/branches
+
+Before installing a development version be sure to have first manually deleted the old indexmenu directory. Also be sure that, as last step, server/client cache is purged following 4 and 5 of the [[.:indexmenu#the tree is not displayed]] section.
+
+===== Translations =====
+
+At this moment some languages are supported , but I'll be glad if you want translate indexmenu in your own language. Please refer to translation tool at http://translate.dokuwiki.org/ to translate the strings of the indexmenu plugin. Thanks!
+
+
+====== JavaScript themes ======
+
+With the option ''js'' you enable the JavaScript tree menu, for which you can chosen some themes.
+When the ''js'' option is used without //**#theme**// option, the JavaScript indexmenu will use the default theme.
+
+Inside the Admin panel on the Indexmenu Utilities page you can manage the available themes on your installation and install themes from the public indexmenu repository. To download themes directly into your DokuWiki server, you need that the indexmenu images directory is writable by the web user.
+ 
+Instead of installing you can also simply download a theme into your PC with the ''download'' link, and then manually install it.
+
+The JavaScript tree menu is based on [[http://www.destroydrop.com/javascripts/tree/|dTree]] code.
+
+==== Theme tutorial ====
+
+You can create custom themes for every index rendered with the [[http://www.destroydrop.com/javascripts/tree/|dTree]] menu.
+
+Simply create a subdirectory, for example ''mytheme'', inside ''indexmenu/images'' and put inside it your icons following the default theme scheme:
+^ Icon               ^ Type                                    ^ Example: theme 'default'                                                               ^
+| base.gif           | Root Folder                             | {{https://raw.github.com/samuelet/indexmenu/master/images/default/base.gif}}           |
+| folderopen.gif     | Open folder without URL link            | {{https://raw.github.com/samuelet/indexmenu/master/images/default/folderopen.gif}}     |
+| folder.gif         | Closed folder without URL link          | {{https://raw.github.com/samuelet/indexmenu/master/images/default/folder.gif}}         |
+| folderhopen.gif    | Open folder with URL link (headpage)    | {{https://raw.github.com/samuelet/indexmenu/master/images/default/folderhopen.gif}}    |
+| folderh.gif        | Closed folder with URL link (headpage)  | {{https://raw.github.com/samuelet/indexmenu/master/images/default/folderh.gif}}        |
+| page.gif           | Page                                    | {{https://raw.github.com/samuelet/indexmenu/master/images/default/page.gif}}           |
+| plus.gif           |                                         | {{https://raw.github.com/samuelet/indexmenu/master/images/default/plus.gif}}           |
+| minus.gif          |                                         | {{https://raw.github.com/samuelet/indexmenu/master/images/default/minus.gif}}          |
+| nolines_plus.gif   |                                         | {{https://raw.github.com/samuelet/indexmenu/master/images/default/nolines_plus.gif}}   |
+| nolines_minus.gif  |                                         | {{https://raw.github.com/samuelet/indexmenu/master/images/default/nolines_minus.gif}}  |
+| minusbottom.gif    |                                         | {{https://raw.github.com/samuelet/indexmenu/master/images/default/minusbottom.gif}}    |
+| plusbottom.gif     |                                         | {{https://raw.github.com/samuelet/indexmenu/master/images/default/plusbottom.gif}}     |
+| join.gif           |                                         | {{https://raw.github.com/samuelet/indexmenu/master/images/default/join.gif}}           |
+| joinbottom.gif     |                                         | {{https://raw.github.com/samuelet/indexmenu/master/images/default/joinbottom.gif}}     |
+| line.gif           |                                         | {{https://raw.github.com/samuelet/indexmenu/master/images/default/line.gif}}           |
+| empty.gif          | blank image to fill gap between lines   | {{https://raw.github.com/samuelet/indexmenu/master/images/default/empty.gif}}          |
+
+Use your theme with **''js#mytheme''** syntax.
+
+You can also customize a theme style by creating its [[.:indexmenu#Custom theme CSS style|own css style]].
+
+The default icons file format is GIF, but PNG and JPG are also supported. To use them in place of GIF, you have to name your theme directory with the appropriate image extension. For example: ''mytheme**.png**/base.png''. Default image size is 18x18px. Other sizes are possible, but requires additional css.
+
+
+===== The context menu =====
+
+An action menu is displayed when using the context mouse menu click (the right one in many cases). On Opera you can use the CTRL+left click to display it. When in editing mode, by default an "Insert as DWlink" item menu is added to the menu in order to insert the node DokuWiki link in your editing box. A different context menu is loaded depending on anonymous, authenticated or admin users.
+
+In the April 2013 release of the plugin the contextmenu definition is bundled in ''scripts/contextmenu.js''. 
+Be aware this file is overwritten on update of the plugin. Therefore an additional file ''scripts/contextmenu.local.js'' is provided, you need to change this file to modify the appearance of the contextmenu.
+
+Since the April 2013 plugin release you can add the **''nomenu''** option to indexmenu syntax to disable the contextmenu.
+
+Modification of menu in performed in ''scripts/contextmenu.local.js'':\\
+(You can rename the example file from ''scripts/contextmenu.local.js.example'')
+
+  * Overriding menu entry \\ <code javascript>
+indexmenu_contextmenu['all']['pg']['view'][0] = ['Custom Title'];
+</code>
+  * Adding menu entry \\ <code javascript>
+indexmenu_contextmenu['all']['pg']['view'].splice(
+    3, 
+    0, 
+    ['Input new page', '"javascript: IndexmenuContextmenu.reqpage(\'"+index.config.urlbase+"\',\'"+index.config.sepchar+"\',\'"+node.dokuid+"\');"']
+ );
+</code>
+  * Removing menu entry:
+    * Override with empty array: ''[]''
+    * Or use ''.splice(entryIndexNo, 1);'' with ''entryIndexNo'' as the entry position
+
+Some details about ''Array.splice(entryIndexNo, howManyToRemove, entryDescriptionArray)'' ([[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice|documentation]]):
+  * ''entryIndexNo'' - position of entry, start counting at zero
+  * ''howManyToRemove'' - number of entries to be removed. Set to zero to only add entries.
+  * ''entryDescriptionArray'' - array with description of a menu entry
+
+**How to write utf8 chars, like èåäö, in the context menu file?**\\
+A solution is to encode them yourself: Find your char at http://unicode.coeurlumiere.com, replace the last zero of the left code by the character in the upper row and prepend the result with ''\u'' : i.e. ''\u00E3'' for 'ã'
+
+------
+In the releases //before April// 2013, you could fully customize those menus by editing these files in the 'jsmenu/' directory:
+
+^File ^Loaded by^
+|"menu.js" |anonymous user|
+|"usrmenu.js" |authenticated user|
+|"admmenu.js" |admin user((see [[config:superuser]]))|
+
+And to prevent to load the context menu, simply remove the indexmenu_contextmenu variable declared in the above menu files.
+
+
+====== CSS Style ======
+
+You can edit the [[https://github.com/samuelet/indexmenu/blob/master/style.css|style.css]] in order to globally customizing the tree menus style.
+Some styles are:
+^Tag                  ^Comment                                        ^Mode  ^
+|a.nodeFdUrl          |Namespace with URL link (headpage)             |js    |
+|a.node               |Namespace without URL link                     |js    |
+|a.nodeUrl            |Page                                           |js    |
+|a.nodeSel            |Previous selected page or headpage highlight   |js    |
+|a.navSel             |Current page highlight                         |js    |
+|a.indexmenu_idx_head |link style of a namespace with URL (headpage)  |nojs  |
+|a.indexmenu_idx      |link style of a namespace without URL          |nojs  |
+|.indexmenu_arrow     |The scrolling arrow area                       |js    |
+|.indexmenu_toc       |The toc-preview area                           |js    |
+
+
+===== Custom theme CSS style =====
+
+If you want to apply a different style from the global one to a js theme, you need to create a ''style.css'' file like this inside the theme directory you want customize and use its name as subclass. 
+
+FIXME check if this example is still up-to-date
+<code css>
+/*Custom style for the thread theme*/
+
+.dtree.thread{
+  font-family: Comic Sans MS;
+}
+
+.dtree.thread a.navSel {
+  background-color: #000;
+  color: #fff
+}
+</code>
+
+Note: in about June 2014 the css of some ''.dtree'' related stylesheet lines is changed. This can break your styling. Please use the latest version of indexmenu, and review your styles. See [[https://github.com/samuelet/indexmenu/commit/d8d19c6bf2179113cda7f2e567f1c424d6282950|CSS changeset]].
+
+
+====== FAQ and Notes ======
+
+====  The tree is not working as expected ====
+
+  * If you installed for the first time the indexmenu plugin or upgraded it from a previous release, it could be merely a cache issue. Example of symptoms are: tree is not displayed (or a static DokuWiki index is displayed in its place), context menu is not working, any new release feature reported in the [[.indexmenu#changelog]] is working.\\ Try to follow instructions to purge cache described in the [[.indexmenu#The tree is not displayed]] section and retry to display it.
+  * When an updated indexmenu plugin fails in a //2013-05-10 "Weatherwax" release// and later:\\ Please check whether all plugins and your theme don't use the old javascript functions. Since the Weatherwax release, these deprecated functions are missing (some plugins still require an update) and will break the javascript rendering.\\ Check for errors:\\ - in console of browser e.g. as part of the Developer toolbar\\ - by disabling all plugins and enabling one by one
+  * If you think that indexmenu are still not fitting your needs, be sure to using a correct [[.indexmenu#syntax]], and read carefully the [[plugin:indexmenu#configuration]] instructions. There are a lot of options for this plugin, maybe you missed the good one.
+  * You are sure that the syntax is correct. Perhaps you missed something in this [[.indexmenu#FAQ and Notes]] section.
+  * Still no solution? Check if someone reported your issue at the [[https://github.com/samuelet/indexmenu/issues|Issue tracker]].
+  * Okay, now I believe that indexmenu is really not working as needed. Please report a detailed bug at the [[https://github.com/samuelet/indexmenu/issues|Issue tracker]], where you mentioned your syntax and configuration options and I'll try to find a solution in my spare time. 
+
+
+==== The tree is not displayed ====
+
+Follows these instructions:
+  - To have installed an indexmenu release compatible with your DokuWiki version as described in [[indexmenu#how to install]].
+  - To have the last indexmenu version installed. For example check that its date is the same of [[.:indexmenu#changelog]] last release through the info button in plugin manager.
+  - To have used a correct [[.:indexmenu#syntax]].
+  - To have purged your browser cache. Use ''Ctrl + R'' or ''Ctrl + F5'' 
+  - To have purged server cache following the [[:caching#purging_the_cache]] instructions.:!: This is an important step.
+  - To have purged CSS and JavaScript as cached by DokuWiki. Go to the Configuration Manager and just resave, to refresh this caching.
+  - When you try the javascript version of the indexmenu and it fails, please disable all the self-installed plugins check if now works. Nextly, you enable the plugins one-by-one to find the bad one.
+If problem still persists, please, report the bug with details of your configuration in [[.:indexmenu#reporting_feature_requests_and_bugs]] section.
+
+
+==== DokuWiki is getting slow ====
+
+If your site contains a large amount of pages, and you're using indexmenu as a navigation sidebar, you could notice random slowdowns in the page loading.
+
+This happens when cache is purged and the whole indexmenu tree has to be rebuilt.
+
+To avoid this problem you may use the [[plugin:indexmenu#syntax|max]] option, which rebuilds only a single tree portion (sublevel) and enable AJAX for further user-requested sublevels.
+
+
+==== Indexmenu ID conflict ====
+
+I have in my sidebar the following code 
+<code>
+{{indexmenu>..#1| js navbar id#random }}
+</code>
+
+and I get after saving this message: ''Indexmenu ID conflict''. What's wrong?
+
+
+> A conflict happens when there are two indexmenu tree with the same ID in a web page. 
+>
+> When you just edited the sidebar page, your sidebar & your content page are the same, so its content is displayed twice. When it contains a indexmenu, this index is also shown twice. This is no problem because normally you don't visit the sidebar as normal wiki page.
+>
+> When you have a sidebar defined a sidebar, but it is used as normal page too e.g. an index page, it is recommended to create a separate page for the index page. A separate page prevents displaying same index twice so they can not conflict anymore. The index page may have the same syntax options as the sidebar, but when you use id with a self defined id#identifier, your identifier must be different.
+
+
+==== Can I sort the tree nodes (filename or page heading or creation time)? ====
+
+Yes, You can sort pages with the tsort, dsort or msort [[.:indexmenu#syntax]] options. To sort namespaces you need to add the nsort option to previouses.
+
+==== How can I activate the indexmenu as sidebar for every page? ====
+  - Enable the sidebar function in your template. See [[faq:sidebar|FAQ sidebar]] for configuration and installing. 
+  - Add the indexmenu to the page used as sidebar.
+
+Indexmenu provides only the index, for configuration of e.g. visibility of the sidebar itself you have to look in the features of the different sidebar solutions.
+
+
+==== The tree is not updated ====
+
+The tree is always immediately updated. So you have not to worry to use %%~~NOCACHE~~%% instruction, it's not useful and slows down the page loading.
+
+To purge cache either wait for the automatic [[config:cachetime|purge cache time]] expiration or force it through a [[:devel:caching#purging_the_cache|purge=true]] request on the page that contains the indexmenu tree.
+
+
+==== JS does not remember its previous state ====
+
+Every //**js**// indexmenu has an identifier (randomly generated by default) used by cookies to remember the current tree state (the selected, open and closed nodes). When the page cache expires or is purged, this information is reset because a new cookie (and consequently a new identifier) is generated.
+
+This is not a problem because cache purge is not frequent, but if indexmenu is called inside an uncached page or directly inside PHP code, every time an user loads the page, indexmenu behaviour is to not remember its previous state just like when ''nocookie'' is defined.
+
+In this case, the solution is to force a permanent identifier through the //**[[.:indexmenu#syntax|id#identifier]]**// option.
+The identifier can be any number or the string "ns". The last option is used in rare case, because it will generate an ID based on the chosen main namespace. It's important to have unique ids in your site because two menus with the same identifier will interfere with each other when the user opens or closes nodes. 
+
+==== I don't like the tree sliding arrow ====
+
+Create your own arrow in GIF format with an image editor, then override the default one in ''dokuwiki/lib/plugins/indexmenu/images/scrollleft.gif''.
+Change the height and width of the .indexmenu_arrow property in the [[.:indexmenu#Css Style]] according to the size of your image.
+
+You could need a browser cache purging.
+
+
+==== About ACLs ====
+
+|:!: First of all, you could need to correctly set the [[.:indexmenu#Acl cache]] option in order to avoid displaying of denied pages.|
+
+Indexmenu tree behaviour depends also on the [[config:sneaky_index]] option in this way:
+
+  * **Enabled**: if namespace is denied, it stops its recursive search on that namespace branch even if there are authorized pages or namespaces below it.
+
+  * **Disabled**: Indexmenu doesn't stop its recursive search and it could show denied namespaces (**NOT** pages).
+
+In both cases, unauthorized pages are never showed. There are also some issues [[.:indexmenu#About empty namespaces]] that should be read.\\ 
+This namespace behaviour in presence of ACLs can not be changed until it's not changed in the DokuWiki core itself.
+
+Example:
+
+<code>
++-Mysite         (ns) (allowed)
+ +-private       (ns) (denied)
+   +-ppublic     (ns) (allowed)
+     -ppstart    (page) (allowed)
+   -pstart       (page) (denied)
+ +-public        (ns) (allowed)
+   -linux        (page) (allowed)
+ +-public2       (ns) (allowed)
+   -secret       (page) (denied)
+ -start          (page) (allowed)
+ -start2         (page) (denied)
+</code>
+
+**Enabled** will display:
+<code>
++-Mysite         (dir)
+ +-public        (dir)
+   -linux        (page)
+ +-public2       (dir **displayed only in case of any sort option**)
+   -X           (empty/unauthorized icon **displayed only in case of any sort option**)
+ -start          (page)
+</code>
+
+**Disabled** will display:
+<code>
++-Mysite         (dir)
+ +-private       (dir)
+   +-ppublic     (dir)
+     -ppstart    (page)
+ +-public        (ns)
+   -linux        (page)
+ +-public2       (dir **displayed only in case of any sort option**)
+   -X           (empty/unauthorized icon **displayed only in case of any sort option**)
+ -start          (page)
+</code>
+
+
+==== About empty namespaces ====
+
+Empty namespace can occur when:
+
+   * All its pages were deleted. DokuWiki never does really remove empty namespaces as it stores them as file system directories.
+   * All its pages and namespaces are skipped by [[.:indexmenu#skip namespaces in index]] or [[.:indexmenu#skip files in index]] options.
+   * All its pages and namespaces are denied to users by [[ACLs]] settings.
+   * It has got only a child page, this page is its headpage and hide_headpage option is enabled.
+
+When the ''max#nr'' option or level of folded nodes are configured and the node has to retrieve its children through the Ajax request, there can appear empty nodes because indexmenu hasn't looked forward and doesn't know yet that the node was empty.
+
+**Why do you need a sort option to correctly hide empty namespaces?**\\
+When any of the sort options ''tsort'', ''dsort'', ''msort'' ''nsort'' or ''hsort'' is used indexmenu replaces the faster, but less featured, core DokuWiki search with the slower, but more featured, indexmenu search that filters more empty nodes.
+
+**Why will sneaky_index hide forbidden namespaces**\\
+Enabling the ''[[config:sneaky_index]]'' also checks for access to forbidden namespaces, instead of only checking access to pages. This means that it hides deeper allowed pages or namespaces as well. These nodes aren't reachable via the index anymore.. See also [[#About ACLs]].
+
+
+==== I'm using "useheading" but the tree displays namespace and page names rather than headings ====
+
+The text used for the nodes in the tree is retrieved from DokuWiki's [[:metadata]] store.  DokuWiki uses a background process triggered by a web-bug to updating this metadata.((See [[:indexer]].))  If you added wiki pages/namespaces via the filesystem (rather than creating them in DokuWiki,) and that page/namespace has never been viewed, the metadata will not have been generated.
+
+
+====== Reporting feature requests and bugs======
+
+Please refer to https://github.com/samuelet/indexmenu/issues to share your feature requests and bug reports.
+
+See also for additional info:
+  * [[.:indexmenu#FAQ and notes]]
+  * and [[plugin:indexmenu:Discussion]] page
+
+
+====== Discussion ======
+
+Please, use the [[.:indexmenu:discussion]] page for feature requests and general discussion.\\ Old discussions are archived in the [[.:indexmenu:olddiscussion]] page.

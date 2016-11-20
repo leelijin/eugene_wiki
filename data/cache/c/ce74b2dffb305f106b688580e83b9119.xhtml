@@ -1,0 +1,1291 @@
+
+<h1 class="sectionedit1" id="indexmenu_plugin">IndexMenu Plugin</h1>
+<div class="level1">
+
+<p>
+—- plugin —-
+description: Show a customizable and sortable index for a namespace
+author     : Samuele Tognini, Gerrit Uitslag
+email      : samuele@samuele.netsons.org
+type       : syntax,action
+lastupdate : 2015-08-26
+compatible : rincewind, angua, adora belle, Weatherwax, Binky, Ponder Stibbons, Hrun, Detritus
+depends    :
+conflicts  : indexmenu2
+similar    : alphaindex, indexmenu2, navi
+tags       : navigation, menu, listing, namespace, ajax, index
+</p>
+
+<p>
+sourcerepo : <a href="https://github.com/samuelet/indexmenu" class="urlextern" target="_blank" title="https://github.com/samuelet/indexmenu"  rel="nofollow">https://github.com/samuelet/indexmenu</a>
+bugtracker : <a href="https://github.com/samuelet/indexmenu/issues" class="urlextern" target="_blank" title="https://github.com/samuelet/indexmenu/issues"  rel="nofollow">https://github.com/samuelet/indexmenu/issues</a>
+downloadurl: <a href="https://github.com/samuelet/indexmenu/archive/master.zip" class="urlextern" target="_blank" title="https://github.com/samuelet/indexmenu/archive/master.zip"  rel="nofollow">https://github.com/samuelet/indexmenu/archive/master.zip</a>
+donationurl: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=102873" class="urlextern" target="_blank" title="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=102873"  rel="nofollow">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=102873</a>
+</p>
+<hr />
+
+<p>
+This <a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:plugin" class="wikilink2" title="wiki:关于wiki:plugin" rel="nofollow">plugin</a> allows you to insert a fully customizable index or a list of pages starting from a specified namespace.
+It should be useful in DokuWiki sites where pages are organized by <a href="/doku.php?id=namespaces" class="wikilink2" title="namespaces" rel="nofollow">namespaces</a>.
+Main features are:
+</p>
+<ul>
+<li class="level1"><div class="li"> Fully customizable with a lot of <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#syntax" class="wikilink1" title="wiki:关于wiki:indexmenu">flexible options</a></span>, but easy to use and configure for standard needs.</div>
+</li>
+<li class="level1"><div class="li"> Built-in support of Navigation features like highlighting the current location or dynamically displaying the tree of the current namespace.</div>
+</li>
+<li class="level1"><div class="li"> Easily themeable with prebuilt <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#javascript_themes" class="wikilink1" title="wiki:关于wiki:indexmenu">JavaScript themes</a></span>.</div>
+</li>
+<li class="level1"><div class="li"> Assign <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#namespaces_title_and_link_headpages" class="wikilink1" title="wiki:关于wiki:indexmenu">Namespaces title and link (headpages)</a></span> to namespaces.</div>
+</li>
+<li class="level1"><div class="li"> Sortable by date, title and custom metadata information.</div>
+</li>
+<li class="level1"><div class="li"> AJAX support to speed up sites with many pages.</div>
+</li>
+<li class="level1"><div class="li"> Customizable <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#the_context_menu" class="wikilink1" title="wiki:关于wiki:indexmenu">context mouse menu</a></span> for usual namespace/page actions.</div>
+</li>
+<li class="level1"><div class="li"> <abbr title="Table of Contents">TOC</abbr> pages preview.</div>
+</li>
+<li class="level1"><div class="li"> <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#page_index" class="wikilink1" title="wiki:关于wiki:indexmenu">Replace</a></span> the DokuWiki page index.</div>
+</li>
+<li class="level1"><div class="li"> Hide namespaces/pages according to <a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:acls" class="wikilink2" title="wiki:关于wiki:acls" rel="nofollow">ACLs</a> and plugin <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#skip_index" class="wikilink1" title="wiki:关于wiki:indexmenu">settings</a></span>.</div>
+</li>
+</ul>
+
+<p>
+Themed indexmenu based on the Javascript index builder:<br/>
+
+<a href="/lib/exe/fetch.php?tok=632348&amp;media=http%3A%2F%2Fsamuele.netsons.org%2Fdokuwiki%2Fmedia%2Findexmenu1.jpg" class="media" title="http://samuele.netsons.org/dokuwiki/media/indexmenu1.jpg"><img src="/lib/exe/fetch.php?tok=632348&amp;media=http%3A%2F%2Fsamuele.netsons.org%2Fdokuwiki%2Fmedia%2Findexmenu1.jpg" class="media" title="indexmenu1.jpg" alt="indexmenu1.jpg" /></a><br/>
+
+Indexmenu based on Dokuwikis index builder:<br/>
+
+<a href="/lib/exe/fetch.php?tok=d9bb8f&amp;media=http%3A%2F%2Fsamuele.netsons.org%2Fdokuwiki%2Fmedia%2Findexmenu2.jpg" class="media" title="http://samuele.netsons.org/dokuwiki/media/indexmenu2.jpg"><img src="/lib/exe/fetch.php?tok=d9bb8f&amp;media=http%3A%2F%2Fsamuele.netsons.org%2Fdokuwiki%2Fmedia%2Findexmenu2.jpg" class="media" title="indexmenu2.jpg" alt="indexmenu2.jpg" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> You can test it at the playground page of the <a href="http://samuele.netsons.org/dokuwiki/doku.php?id=dokuwiki:plugins:indexmenu" class="urlextern" target="_blank" title="http://samuele.netsons.org/dokuwiki/doku.php?id=dokuwiki:plugins:indexmenu"  rel="nofollow">indexmenu web site</a>.</div>
+</li>
+<li class="level1"><div class="li"> Thanks to Geir Landrö and his JavaScript <a href="http://www.destroydrop.com/javascripts/tree/" class="urlextern" target="_blank" title="http://www.destroydrop.com/javascripts/tree/"  rel="nofollow">dTree</a> menu.</div>
+</li>
+<li class="level1"><div class="li"> Thanks also to Roland Hellebart and his Tree plugin for the dTree idea.</div>
+</li>
+<li class="level1"><div class="li"> <strong>Many many thanks to indexmenu users</strong>, the most useful work is done by them (look at the <a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu:discussion" class="wikilink2" title="wiki:关于wiki:indexmenu:discussion" rel="nofollow">discussion</a> page).</div>
+</li>
+<li class="level1"><div class="li"> Feel free to <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#development" class="wikilink1" title="wiki:关于wiki:indexmenu">improve</a></span> it.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT1 SECTION "IndexMenu Plugin" [1-2560] -->
+<h2 class="sectionedit2" id="donation">Donation</h2>
+<div class="level2">
+
+<p>
+The indexmenu plugin is not sponsored by anyone but I develop and support it for free during my spare time.
+If want to offer me a friendly beer <sup><a href="#fn__1" id="fnt__1" class="fn_top">1)</a></sup>, you can consider to make a <a href="http://samuele.netsons.org/dokuwiki/doku.php?id=dokuwiki:plugins:indexmenu#donation" class="urlextern" target="_blank" title="http://samuele.netsons.org/dokuwiki/doku.php?id=dokuwiki:plugins:indexmenu#donation"  rel="nofollow">donation</a>.
+</p>
+
+</div>
+<!-- EDIT2 SECTION "Donation" [2561-2929] -->
+<h3 class="sectionedit3" id="examples">Examples:</h3>
+<div class="level3">
+<div class="table sectionedit4"><table class="inline">
+	<tr class="row0">
+		<td class="col0">Root namespace. Expands all </td><td class="col1"><code>{{indexmenu&gt;:}}</code> </td>
+	</tr>
+	<tr class="row1">
+		<td class="col0">Current namespace. Show only current level, don&#039;t expand any nodes. </td><td class="col1"><code>{{indexmenu&gt;.#1}}</code> </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0">Parent namespace. Show parent namespace (“uplink”) and current current level, don&#039;t expand any nodes. </td><td class="col1"><code>{{indexmenu&gt;..:#1}}</code> </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"><code>wiki</code> namespace, expand containing namespaces, not subnamespaces.<br/>
+Using the themed Javascript indexmenu. </td><td class="col1"><code>{{indexmenu&gt;:wiki#1|js}}</code> </td>
+	</tr>
+</table></div>
+<!-- EDIT4 TABLE [2950-3384] -->
+</div>
+<!-- EDIT3 SECTION "Examples:" [2930-3386] -->
+<h1 class="sectionedit5" id="syntax">Syntax</h1>
+<div class="level1">
+
+<p>
+Basic syntax usage:
+</p>
+<div class="table sectionedit6"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 leftalign"> Main                                                         </th><th class="col1 leftalign"> Options                                                       </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 leftalign"> <strong>{{indexmenu&gt;ns[#n]</strong> <sub>[ns1[#n] ns2[#n] …]</sub>  </td><td class="col1 leftalign"> <strong>|</strong> <em><sub>[js[#theme]] [tsort] …</sub> </em><strong>}}</strong>  </td>
+	</tr>
+</table></div>
+<!-- EDIT6 TABLE [3430-3687] -->
+<p>
+Arguments inside <code>[]</code> parenthesis are optional. The <code>#</code> char is always required with related options.
+</p>
+
+<p>
+<img src="/lib/images/smileys/icon_exclaim.gif" class="icon" alt=":!:" /> All the syntax options can be easily accessed with the indexmenu picker in the <a href="/doku.php?id=edit_window" class="wikilink2" title="edit_window" rel="nofollow">edit window</a> <a href="/doku.php?id=toolbar" class="wikilink2" title="toolbar" rel="nofollow">toolbar</a>.
+</p>
+
+</div>
+<!-- EDIT5 SECTION "Syntax" [3387-3910] -->
+<h2 class="sectionedit7" id="full_syntax">Full syntax</h2>
+<div class="level2">
+
+<p>
+Settings <strong>before the “|”</strong> separator:
+</p>
+<div class="table sectionedit8"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0">Main </th><th class="col1">Action </th><th class="col2">Note</th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<th class="col0 leftalign"> <em><code>ns</code></em>     </th><td class="col1"> <em><strong>Main namespace</strong></em> name. Index starts from here. Syntax complies with DokuWiki <a href="/doku.php?id=namespaces#creating_namespaces" class="wikilink2" title="namespaces" rel="nofollow">namespaces</a> paths.</td><td class="col2"> “<strong>.</strong>” refers to the namespace of the page containing the indexmenu syntax and <strong>not</strong> to the current DokuWiki namespace context <sup><a href="#fn__2" id="fnt__2" class="fn_top">2)</a></sup> (see the <strong><em>context</em></strong> option for this feature). “<strong>..</strong>” or an empty value shows the root site namespace.</td>
+	</tr>
+	<tr class="row2">
+		<th class="col0 leftalign"> <em><code>#n</code></em>             </th><td class="col1"> <strong>n</strong> is a number that specifies how many namespace levels to display open under the <em><strong>main namespace</strong></em>.</td><td class="col2"> If it&#039;s not defined then the whole tree, till the deeper node, will be open. If <code><em>0</em></code> or <code><em>1</em></code> it&#039;ll display only nodes under the main namespace. For example: “#2” will display “root:myns1:myns2” but will keep myns2 closed thus hiding “root:myns1:myns2:myns3”. Optional.</td>
+	</tr>
+	<tr class="row3">
+		<th class="col0"> <em><code>ns1[#n] ... nsn[#n]</code></em> </th><td class="col1"> A list <em><strong>of optional namespaces</strong></em> inside the <em><strong>main namespace</strong></em>. Every namespace will be opened or closed at the specified <em><strong>n</strong></em> level. Syntax complies with DokuWiki <a href="/doku.php?id=namespaces#creating_namespaces" class="wikilink2" title="namespaces" rel="nofollow">namespaces</a>.</td><td class="col2"> If <strong>n</strong> is not defined then all namespaces are open, if <code><em>0</em></code> they are closed. “<strong>.</strong>” refers to the namespace of the page containing the indexmenu syntax and <strong>not</strong> to the current DokuWiki namespace context <sup><a href="#fn__3" id="fnt__3" class="fn_top">3)</a></sup> (see the <strong><em>context</em></strong> option for this feature). “<strong>..</strong>” or an empty value shows the root site namespace. Optional.</td>
+	</tr>
+</table></div>
+<!-- EDIT8 TABLE [3975-5562] -->
+<p>
+Optional settings <strong>after the “|”</strong> separator:
+</p>
+<div class="table sectionedit9"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0">Option </th><th class="col1">Action </th><th class="col2">Note</th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<th class="col0 leftalign"> <code>js</code> <br/>
+undo: <code>nojs</code>          </th><td class="col1"> JavaScript render method: the index is an expandable tree menu. Without the <code>js</code> option DokuWikis index renderer is used </td><td class="col2"> Without <em><strong>n</strong></em>, all nodes are open, with it, nodes are open till <em><strong>n</strong></em> level.</td>
+	</tr>
+	<tr class="row2">
+		<th class="col0 leftalign"> <em><code>#theme</code></em> <br/>
+undo: <code>#default</code>          </th><td class="col1"> Theme name for indexmenu icons </td><td class="col2"> A theme is a set of icons inside <code><em>images</em></code> directory as described in <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#theme_tutorial" class="wikilink1" title="wiki:关于wiki:indexmenu">Theme tutorial</a></span>. Admins can download and share themes in admin panel. It works only in <em><strong>js</strong></em> e.g. <em><strong>js#tango</strong></em> </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0" colspan="3"> Next options are available with or without <em><strong>js</strong></em> option. </td>
+	</tr>
+	<tr class="row4">
+		<th class="col0 leftalign"> <code>navbar</code> <br/>
+undo: <code>nonavbar</code>         </th><td class="col1"> The tree opens itself automatically at the current page namespace. Useful in a navigation sidebar.</td><td class="col2"> Without <em><strong>js</strong></em> option, the indexmenu page is never cached (just like the default DokuWiki index page) and the DokuWiki loading could be slower depending on the amount of child nodes displayed. </td>
+	</tr>
+	<tr class="row5">
+		<th class="col0 leftalign"> <code>context</code>  <br/>
+undo: <code>nocontext</code>   </th><td class="col1"> <a href="/doku.php?id=namespaces#creating_namespaces" class="wikilink2" title="namespaces" rel="nofollow">Relative</a> <em><strong>main namespace</strong></em> and <em><strong>optional namespaces</strong></em> will refer to the current DokuWiki namespace context <sup><a href="#fn__4" id="fnt__4" class="fn_top">4)</a></sup> instead of to the namespace of the page containing the indexmenu syntax. Useful in a navigation sidebar.</td><td class="col2"> The indexmenu page is now never cached so the DokuWiki loading could be slower depending on the amount of child nodes displayed (In <em><strong>js</strong></em> mode, when a lot of nodes are usually displayed, the <em><code>max</code></em> option is recommended). It automatically enable the <em><strong>nocookie</strong></em> option.</td>
+	</tr>
+	<tr class="row6">
+		<th class="col0"> <code>tsort</code>   <br/>
+undo: <code>notsort</code> </th><td class="col1"> Sort (only) pages by title. </td><td class="col2"> Useful when <a href="/doku.php?id=config:useheading" class="wikilink2" title="config:useheading" rel="nofollow">useheading</a> is on. By default namespaces are <strong>not</strong> sorted, you need the <strong><em>nsort</em></strong> option for this.</td>
+	</tr>
+	<tr class="row7">
+		<th class="col0 leftalign"> <code>dsort</code>   <br/>
+undo: <code>nodsort</code>  </th><td class="col1"> Sort (only) pages by date creation (first the oldest). </td><td class="col2"> By default namespaces are <strong>not</strong> sorted, you need the <strong><em>nsort</em></strong> option for this.</td>
+	</tr>
+	<tr class="row8">
+		<th class="col0 leftalign"> <code>msort[#meta]</code>   <br/>
+undo: <code>nomsort</code>  </th><td class="col1"> Sort (only) pages by a custom <a href="/doku.php?id=devel:metadata" class="wikilink2" title="devel:metadata" rel="nofollow">metadata</a> information. Without the <code>#meta</code> parameter, i.e. <code>msort</code>, it looks for the custom sorting number specified with the <code>{{indexmenu_n&gt;N}}</code> syntax  (see the below <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#metadata_tag_syntax" class="wikilink1" title="wiki:关于wiki:indexmenu">metadata tag syntax</a></span>).<br/>
+With <code>#meta</code> parameter you can refer to the <a href="/doku.php?id=devel:metadata#data_structure" class="wikilink2" title="devel:metadata" rel="nofollow">meta data structure</a> (Array values are managed through the “:” separator, for example: <code>msort#date:modified</code>). </td><td class="col2">By default, pages without metadata tag are sorted by page name (the default DokuWiki way), but you can override this behaviour adding also the tsort or dsort option in the indexmenu syntax. By default namespaces are <strong>not</strong> sorted, you need the <strong><em>nsort</em></strong> option for this.</td>
+	</tr>
+	<tr class="row9">
+		<th class="col0"> <code>hsort</code>   <br/>
+undo: <code>nohsort</code> </th><td class="col1"> Sort the headpages as defined by config setting <a href="/doku.php?id=config:startpage" class="wikilink2" title="config:startpage" rel="nofollow">startpage</a> to the top </td><td class="col2">msort overrules hsort </td>
+	</tr>
+	<tr class="row10">
+		<th class="col0"> <code>rsort</code>   <br/>
+undo: <code>norsort</code> </th><td class="col1"> Reverse the sorting of pages. </td><td class="col2">By default namespaces are <strong>not</strong> sorted, you need the <strong><em>nsort</em></strong> option for this. </td>
+	</tr>
+	<tr class="row11">
+		<th class="col0"> <code>nsort</code>   <br/>
+undo: <code>nonsort</code> </th><td class="col1"> Sort also namespaces according to page sort options. </td><td class="col2 leftalign"> To use in <em>addition</em> to the above sort options. tsort, dsort, msort, hsort apply only for namespaces when using <a href="#namespaces_title_and_link_headpages" title="wiki:关于wiki:indexmenu ↵" class="wikilink1">headpages</a>. rsort is applicable always together with nsort.  </td>
+	</tr>
+	<tr class="row12">
+		<th class="col0 leftalign"> <code>nons</code>   <br/>
+undo: <code>ns</code>  </th><td class="col1"> Exclude namespaces nodes from index. It shows only the pages. </td><td class="col2"> Without <strong><em>js</em></strong>, the closing <strong><em>n</em></strong> namespace option prevents to display nodes below the <strong><em>n</em></strong> namespace level.</td>
+	</tr>
+	<tr class="row13">
+		<th class="col0 leftalign"> <code>nopg</code>  <br/>
+undo: <code>pg</code>  </th><td class="col1"> Exclude pages nodes from index. It shows only the namespaces. </td><td class="col2"> All namespace nodes will link to the start pages (as defined by <a href="/doku.php?id=config:startpage" class="wikilink2" title="config:startpage" rel="nofollow">startpage</a> setting) </td>
+	</tr>
+	<tr class="row14">
+		<th class="col0"> <code>skipfile[+|=]/regexp/</code> </th><td class="col1"> Skip files matching the regexp. </td><td class="col2"> <code>skipfile<strong>+</strong>/../</code> skips files defined with this regexp additional to <a href="#skip_files_in_index" title="wiki:关于wiki:indexmenu ↵" class="wikilink1">global skip</a> config. <code>skipfile<strong>=</strong>/../</code> replace the global skip config with regexp from this syntax. See the global config explanation for some regexp <a href="#skip_namespaces_in_index" title="wiki:关于wiki:indexmenu ↵" class="wikilink1">examples</a>.</td>
+	</tr>
+	<tr class="row15">
+		<th class="col0"> <code>skipns[+|=]/regexp/</code> </th><td class="col1"> Skip namespaces matching the regexp. </td><td class="col2"> Just like skipfile, but <a href="#skip_namespaces_in_index" title="wiki:关于wiki:indexmenu ↵" class="wikilink1">namespaces</a>.</td>
+	</tr>
+	<tr class="row16">
+		<td class="col0" colspan="3"> Next options are <em>only</em> available with <em><strong>js</strong></em> option. </td>
+	</tr>
+	<tr class="row17">
+		<th class="col0 leftalign"> <code>max#n<em>[#m]</em></code> <br/>
+undo: <code>nomax</code>  </th><td class="col1"> If initially closed, the node at <em><strong>n</strong></em> level will retrieve all its child nodes through the AJAX mechanism when opened for the first time. Optionally, the nodes after the <em><strong>n</strong></em> level can be retrieved with AJAX every <em><strong>m</strong></em> sublevels instead of in one go.</td><td class="col2"> It affects the server loading and speeds up the loading of pages in DokuWiki with an high amount of pages. It works only in <em><strong>js</strong></em>. Cookie are automatically disabled, just like with <em><strong>nocookie</strong></em>. </td>
+	</tr>
+	<tr class="row18">
+		<th class="col0 leftalign"> <code>maxjs#<em>n</em></code>  <br/>
+undo: <code>nomaxjs</code>   </th><td class="col1"> It sets how many js tree levels to render when page loads. Remaining nodes are rendered (slightly slower) only when they are open by users, by  <em><strong>optional namespaces</strong></em> option, by cookies or by <em><strong>navbar</strong></em> option. </td><td class="col2"> Default <em><strong>n</strong></em> is 1 so that it will speed up the page loading, above all with an high amount of pages. It affects only the user-client CPU speed, not the webserver load. It works only in <em><strong>js</strong></em> </td>
+	</tr>
+	<tr class="row19">
+		<th class="col0 leftalign"> <code>id#[random|ns|<em>number</em>]</code>   <br/>
+undo: <code>id#random</code>     </th><td class="col1"> <a href="https://en.wikipedia.org/wiki/HTTP_cookie" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/HTTP_cookie">Cookie</a> Identifier for a js indexmenu where the previously opened/closed nodes by a user are stored. </td><td class="col2"> Useful when a page is uncached and you like the tree state is stored in cookie. (See <em><strong>nocookie</strong></em> for disabling cookies.)  Default the option <code><em>id#random</em></code> is active, also when the option is not specified in the syntax. You can apply self a number as unique identifier for your indexmenu  ( e.g. <code><em>id#20</em></code> ) or let generate a number unique for requested namespace with <code><em>id#ns</em></code>. Read the <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#js_does_not_remember_its_previous_state" class="wikilink1" title="wiki:关于wiki:indexmenu">Js does not remember its previous state</a></span> section. <strong>ATTENTION:</strong> ID must be unique for every indexmenu in your DokuWiki site or you&#039;ll get strange js behaviors. Tree state storage with cookie only in <em><strong>js</strong></em> </td>
+	</tr>
+	<tr class="row20">
+		<th class="col0"> <code>nocookie</code>  <br/>
+undo: <code>cookie</code> </th><td class="col1"> Disable <a href="https://en.wikipedia.org/wiki/HTTP_cookie" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>. By default js indexmenu remember selected,open and closed nodes by user during navigation. With this option it doesn&#039;t remember them and the tree is blocked to its start status. </td><td class="col2"> Tree state storage with cookie only in <em><strong>js</strong></em></td>
+	</tr>
+	<tr class="row21">
+		<th class="col0 leftalign"> <code>noscroll</code>   <br/>
+undo: <code>scroll</code>    </th><td class="col1"> Disable the JavaScript scrolling feature when it don&#039;t fits the container width. It could solve visualization problems. </td><td class="col2"> It works only in <em><strong>js</strong></em></td>
+	</tr>
+	<tr class="row22">
+		<th class="col0 leftalign"> <code>notoc</code>  <br/>
+undo: <code>toc</code>        </th><td class="col1"> Disable the <abbr title="Table of Contents">TOC</abbr>-preview feature. </td><td class="col2"> ToC preview only available in <em><strong>js</strong></em></td>
+	</tr>
+	<tr class="row23">
+		<th class="col0 leftalign"> <code>nomenu</code>  <br/>
+undo: <code>menu</code>       </th><td class="col1"> Disable the contextmenu feature. </td><td class="col2"> Context menu only available in <em><strong>js</strong></em></td>
+	</tr>
+</table></div>
+<!-- EDIT9 TABLE [5611-12509] -->
+</div>
+<!-- EDIT7 SECTION "Full syntax" [3911-12511] -->
+<h2 class="sectionedit10" id="examples1">Examples</h2>
+<div class="level2">
+
+<p>
+A sample of an indexmenu JS index that could be used inside a navigation sidebar. Its initial status is blocked by the nocookie option, so, when the page is reloaded, it doesn&#039;t remember the open and closed nodes by the user.:
+</p>
+<pre class="code">{{indexmenu&gt;..#1|js navbar nocookie}}</pre>
+
+<p>
+JS navigation index with “thread” theme where nodes after the third level are retrieved with Ajax every 2 sublevels. Pages are sorted by title and <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#metadata_tag_syntax" class="wikilink1" title="wiki:关于wiki:indexmenu">custom sort</a></span> number:
+</p>
+<pre class="code">{{indexmenu&gt;..#1|js#thread navbar max#3#2 tsort msort}}</pre>
+
+<p>
+Standard DokuWiki index showing only pages inside wiki:plugins and lower namespaces (max two levels):
+</p>
+<pre class="code">{{indexmenu&gt;:wiki:plugins#2|nons}}</pre>
+
+<p>
+Js tree showing pages and namespaces both sorted by reverse title. For example,if “archive” contains stuff (“news”,“oldnews”,etc) that you need to quickly organize by time, you could create numbered <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#namespaces_title_and_link_headpages" class="wikilink1" title="wiki:关于wiki:indexmenu">headpages</a></span> for every namespace (i.e renaming “oldnews” in “news 2006”, “news” in “news 2010” and so on) and sort them from new to older:
+</p>
+<pre class="code">{{indexmenu&gt;:archive#1|js tsort nsort rsort}}</pre>
+
+<p>
+Standard index showing the tree of the current context <sup><a href="#fn__5" id="fnt__5" class="fn_top">5)</a></sup> opened at the second level .
+</p>
+<pre class="code">{{indexmenu&gt;playground#2|context}}</pre>
+
+<p>
+Show all current namespace pages .
+</p>
+<pre class="code">{{indexmenu&gt;.:#1|context}}</pre>
+
+<p>
+JS tree showing all (and only) the namespaces of the “private” namespace sorted by date creation. “private” is relative and refers to the private namespace under the page containing the indexmenu syntax.
+</p>
+<pre class="code">{{indexmenu&gt;private|js nopg dsort}}</pre>
+
+</div>
+<!-- EDIT10 SECTION "Examples" [12512-14240] -->
+<h3 class="sectionedit11" id="metadata_tag_syntax">Metadata tag syntax</h3>
+<div class="level3">
+
+<p>
+By default nodes on the same tree level are sorted by name (or by title/date if you use the tsort/dsort syntax), but you can also specify a custom sort number for every page inserting a metadata tag in the pages with this syntax:
+</p>
+<pre class="code">{{indexmenu_n&gt;N}}</pre>
+
+<p>
+Where <code>N</code> is a number.
+Then you need to use the “msort” option in your indexmenu tree syntax.
+If you have the <code>show_sort</code> option enabled in the Configuration Manager, a notice is displayed to admins (only) on every page with this metadata tag (the text defaults to “Indexmenu sort number: N”).
+</p>
+
+<p>
+<strong>Examples:</strong>
+</p>
+
+<p>
+You can change the order of this tree containing a mix of standard and <a href="/doku.php?id=config:useheading" class="wikilink2" title="config:useheading" rel="nofollow">useheading</a> pages:
+</p>
+<pre class="file">-Root
+  |_don
+  |_Mirror sessions         (headline title of the &quot;:mirror&quot; page)
+  |_pachuco
+  |_At the radar station    (headline title of the &quot;:radar&quot; page)
+  |_van
+  |_vliet</pre>
+
+<p>
+in this way:
+</p>
+<pre class="code">{{indexmenu&gt;..#1|msort}}</pre>
+<pre class="file">-Root
+  |_vliet                   {{indexmenu_n&gt;1}}
+  |_van                     {{indexmenu_n&gt;2}}
+  |_don                     {{indexmenu_n&gt;3}}
+  |_Mirror sessions         (headline title of the &quot;:mirror&quot; page)
+  |_pachuco
+  |_At the radar station    (headline title of the &quot;:radar&quot; page)</pre>
+
+<p>
+Pages without sort number, like the last three pages, are sorted by page name as default, but you can force a different sort:
+</p>
+<pre class="code">{{indexmenu&gt;..#1|tsort msort}}</pre>
+<pre class="file">-Root
+  |_vliet                   {{indexmenu_n&gt;1}}
+  |_van                     {{indexmenu_n&gt;2}}
+  |_don                     {{indexmenu_n&gt;3}}
+  |_At the radar station    (headline title of the &quot;:radar&quot; page)
+  |_Mirror sessions         (headline title of the &quot;:mirror&quot; page)
+  |_pachuco</pre>
+
+</div>
+<!-- EDIT11 SECTION "Metadata tag syntax" [14241-15979] -->
+<h1 class="sectionedit12" id="configuration_options">Configuration options</h1>
+<div class="level1">
+
+<p>
+Indexmenu is fully configurable from <a href="/doku.php?id=plugin:config" class="wikilink2" title="plugin:config" rel="nofollow">Configuration Manager</a>. Options are explained in the below sections.
+</p>
+
+</div>
+<!-- EDIT12 SECTION "Configuration options" [15980-16139] -->
+<h3 class="sectionedit13" id="default_options">Default options</h3>
+<div class="level3">
+
+<p>
+Default options let you define settings that are applied to all the indexmenu indexes included in pages. To undo any syntax option, use the inverse version of the option. Normally that option is the same but with or without <code>no..</code>. See the table above for all undo options.
+</p>
+
+</div>
+<!-- EDIT13 SECTION "Default options" [16140-16442] -->
+<h3 class="sectionedit14" id="only_admins">Only admins</h3>
+<div class="level3">
+
+<p>
+It prevents no-admin users from inserting indexmenu trees, removing every indexmenu syntax in the page. It affects only the edit mode, so that standard users are still able to view indexmenu tree in a page edited by admins.
+</p>
+
+<p>
+This is useful to deny to insert indexmenu trees to your users, but pay attention that if you let them to edit a page containing an indexmenu tree inserted by the admin, this tree will be removed as soon as a standard user saves the page.
+</p>
+
+</div>
+<!-- EDIT14 SECTION "Only admins" [16443-16931] -->
+<h3 class="sectionedit15" id="acl_cache">ACL Cache</h3>
+<div class="level3">
+
+<p>
+Optimize the cache of indexmenu according to ACLs and prevents to display unauthorized nodes.
+</p>
+
+<p>
+The choice of the method affects only the visualization of nodes on the indexmenu tree, not the page authorizations. The <strong>Groups</strong> option is the default setting.
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>None</strong>: Standard. It is the faster method and it does not create further cache files, but the nodes with denied permission could be showed to unauthorized users or vice versa. Recommended when you don&#039;t deny pages access by <abbr title="Access Control List">ACL</abbr> or you don&#039;t care how the tree is displayed or you use the ~~NOCACHE~~ syntax in the indexmenu page.</div>
+</li>
+<li class="level1"><div class="li"> <strong>User</strong>: Per-User login. Slower method and it creates a lot of cache files (depending on the amount of your DokuWiki site users, so for sites with few users it&#039;s not a problem), but it always hides correctly denied pages. Recommended when you have page ACLs that depend on users login.</div>
+</li>
+<li class="level1"><div class="li"> <strong>Groups</strong>: Per-groups membership. Good compromise between the previous methods, but in case that you deny pages read <abbr title="Access Control List">ACL</abbr> to a single user login, he could anyway displays that nodes in the tree. Recommended when your whole site ACLs depend on groups membership.</div>
+</li>
+</ul>
+
+<p>
+If wrongly set, this option could display to a group of users (ie. the anonymous user) the cached tree of another group (ie: the admin user), thus displaying randomly different trees containing less or more (un)authorized nodes.
+</p>
+
+<p>
+There are also important issues in <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#about_acls" class="wikilink1" title="wiki:关于wiki:indexmenu">about ACLs</a></span> and <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#about_empty_namespaces" class="wikilink1" title="wiki:关于wiki:indexmenu">about_empty_namespaces</a></span> that affects trees limited by ACLs.
+</p>
+
+</div>
+<!-- EDIT15 SECTION "ACL Cache" [16932-18480] -->
+<h3 class="sectionedit16" id="namespaces_title_and_link_headpages">Namespaces title and link (headpages)</h3>
+<div class="level3">
+
+</div>
+
+<h5 id="titles_for_page_headings">Titles for page headings</h5>
+<div class="level5">
+
+<p>
+First of all, if you want that the whole tree displays the heading title of pages instead of their name, you need to set the config setting <a href="/doku.php?id=config:useheading" class="wikilink2" title="config:useheading" rel="nofollow">useheading</a> on in the general configuration of the wiki. Indexmenu will show page titles when useheading is &#039;always&#039; or &#039;navigation&#039;.
+</p>
+
+</div>
+
+<h5 id="title_for_namespaces_headings">Title for namespaces headings</h5>
+<div class="level5">
+
+<p>
+Next, if you want that the namespace nodes display a heading title instead of the namespace name, you need to select the page from which these are retrieved with the config option <code>headpage</code>.
+</p>
+
+<p>
+Every namespace will retrieve its title from the heading title of that page, called headpage, and will be linked directly to it. No longer you can open the node by clicking the header (in the js version you can still use the plus before namespace).
+</p>
+
+<p>
+You can choose a name for the page from which retrieve the title or use a self defined value:
+</p>
+<div class="table sectionedit17"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 leftalign">Value  </th><th class="col1 leftalign">Page  </th><th class="col2">Example </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"><strong>any value</strong> </td><td class="col1"> The page inside the namespace </td><td class="col2"> public(ns):myvalue(page) </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"><strong>:inside:</strong> </td><td class="col1"> a page with the same name of namespace, beneath the namespace </td><td class="col2"> public(ns):public(page) </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"><strong>:same:</strong> </td><td class="col1"> a page with the same name of namespace, at the same level of the namespace </td><td class="col2"> public(page) ⇔ public(ns) </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"><strong>:start:</strong> </td><td class="col1"> the global <a href="/doku.php?id=config:startpage" class="wikilink2" title="config:startpage" rel="nofollow">start</a> page name inside the namespace</td><td class="col2"> public(ns):start(page) </td>
+	</tr>
+</table></div>
+<!-- EDIT17 TABLE [19424-19941] -->
+<p>
+You can specify more than one option using “,” as separator. For every namespace, every value will be checked till the first existent headpage is found.
+</p>
+
+</div>
+
+<h5 id="hide_headpages_in_tree">Hide headpages in tree</h5>
+<div class="level5">
+
+<p>
+To get a better visualization you could use the <code>hide_headpage</code> option, that hides headpages, such as defined by config <code>headpage</code>, in the rendered indexmenu tree.
+</p>
+
+</div>
+<!-- EDIT16 SECTION "Namespaces title and link (headpages)" [18481-20296] -->
+<h3 class="sectionedit18" id="page_index">Page index</h3>
+<div class="level3">
+
+<p>
+When this option is not empty, the DokuWiki default <a href="/doku.php?id=index" class="wikilink2" title="index" rel="nofollow">index</a> page is replaced with a custom page, which you can fill yourself. For example you can add the indexmenu tree of your site.
+</p>
+
+<p>
+Set this option with a DokuWiki page ID (i.e: <code>tools:index</code>), then create the page (i.e: <code>tools:index</code>) and put inside it an indexmenu syntax like this:
+</p>
+<pre class="code">{{indexmenu&gt;..|navbar}}</pre>
+
+<p>
+or
+</p>
+<pre class="code">{{indexmenu&gt;..|js navbar nocookie}}</pre>
+
+<p>
+You may also want to hide this page in any indexmenu trees with the <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#skip_files_in_index" class="wikilink1" title="wiki:关于wiki:indexmenu">skip files in index</a></span> option.
+</p>
+
+</div>
+<!-- EDIT18 SECTION "Page index" [20297-20869] -->
+<h3 class="sectionedit19" id="empty_message">Empty message</h3>
+<div class="level3">
+
+<p>
+You can show a custom message in place of the menu tree if it can not be rendered (i.e namespace doesn&#039;t exist)
+</p>
+
+<p>
+The alias <strong>{{ns}}</strong> is a shortcut for the requested namespace.
+</p>
+
+<p>
+Message supports the wiki syntax, so it&#039;s fully customizable. Don&#039;t use <abbr title="HyperText Markup Language">HTML</abbr> code.
+</p>
+
+</div>
+<!-- EDIT19 SECTION "Empty message" [20870-21161] -->
+<h3 class="sectionedit20" id="skip_namespaces_in_index">Skip Namespaces in Index</h3>
+<div class="level3">
+
+<p>
+The configuration setting <code>skip_index</code> let you globally hide namespaces (and their pages) in your indexmenu trees.
+</p>
+
+<p>
+Just fill this option with the ids of namespaces to skip using <a href="http://www.php.net/manual/en/reference.pcre.pattern.syntax.php" class="urlextern" target="_blank" title="http://www.php.net/manual/en/reference.pcre.pattern.syntax.php"  rel="nofollow">Regular Expression</a>.<br/>
+
+<img src="/lib/images/smileys/icon_exclaim.gif" class="icon" alt=":!:" /> Till V4.5, a namespaces full path has to be declared as a file system path (i.e.: “mydir/mysubdir”) instead of DokuWiki IDs.
+</p>
+
+<p>
+There are also some issues <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#about_empty_namespaces" class="wikilink1" title="wiki:关于wiki:indexmenu">About empty namespaces</a></span> that should be read. 
+</p>
+
+<p>
+<strong>Simple examples:</strong><br/>
+
+Skip any namespace whose ID contains the word <code>copyright</code> or <code>privatens:users</code>. Attention: <code>allprivatens:usersmich</code> will be also matched
+</p>
+<pre class="code">/(copyright|privatens:users)/</pre>
+
+<p>
+Skip the namespace whose ID is exactly <code>myusers:spaces</code>. Here the characters <code>^</code> and <code>$</code> marks the start and the end of the matched string.
+</p>
+<pre class="code">/^myusers:spaces$/</pre>
+
+</div>
+<!-- EDIT20 SECTION "Skip Namespaces in Index" [21162-22080] -->
+<h3 class="sectionedit21" id="skip_files_in_index">Skip Files in index</h3>
+<div class="level3">
+
+<p>
+This configuration option <code>skip_file</code> let you to globally hide one or more pages in your indexmenu trees.
+Just fill this option with the ids of pages to skip using <a href="http://www.php.net/manual/en/reference.pcre.pattern.syntax.php" class="urlextern" target="_blank" title="http://www.php.net/manual/en/reference.pcre.pattern.syntax.php"  rel="nofollow">Regular Expression</a>.<br/>
+
+<img src="/lib/images/smileys/icon_exclaim.gif" class="icon" alt=":!:" /> Till v4.5, pages are checked as DokuWiki text files (i.e.: start.txt). A page full path have to be declared as a file system path (i.e.: “mydir/start.txt”) instead of DokuWiki IDs.
+</p>
+
+<p>
+There are also some issues <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#about_empty_namespaces" class="wikilink1" title="wiki:关于wiki:indexmenu">About empty namespaces</a></span> that should be read.
+</p>
+
+</div>
+<!-- EDIT21 SECTION "Skip Files in index" [22081-22641] -->
+<h3 class="sectionedit22" id="show_sort">Show sort</h3>
+<div class="level3">
+
+<p>
+If you sorted a page with the <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#metadata_tag_syntax" class="wikilink1" title="wiki:关于wiki:indexmenu">metadata tag syntax</a></span>, a short blob message at the top of page will display its sort number.
+</p>
+
+<p>
+The message is displayed <strong>only</strong> to wiki admins when they view the page.
+</p>
+
+</div>
+<!-- EDIT22 SECTION "Show sort" [22642-22876] -->
+<h1 class="sectionedit23" id="how_to_install">How to install</h1>
+<div class="level1">
+
+<p>
+Search and install it in the <a href="/doku.php?id=plugin:extension" class="wikilink2" title="plugin:extension" rel="nofollow">Extension</a> manager or download and unpack it into <code>lib/plugins</code> folder.
+</p>
+
+<p>
+Alternative download link: <a href="http://samuele.netsons.org/dokuwiki/media/indexmenu.zip" class="urlextern" target="_blank" title="http://samuele.netsons.org/dokuwiki/media/indexmenu.zip"  rel="nofollow">http://samuele.netsons.org/dokuwiki/media/indexmenu.zip</a>
+</p>
+
+<p>
+<a href="http://samuele.netsons.org/dokuwiki/doku.php?id=dokuwiki:plugins:indexmenu#old_releases" class="urlextern" target="_blank" title="http://samuele.netsons.org/dokuwiki/doku.php?id=dokuwiki:plugins:indexmenu#old_releases"  rel="nofollow">Old releases</a>
+</p>
+
+</div>
+<!-- EDIT23 SECTION "How to install" [22877-23211] -->
+<h2 class="sectionedit24" id="changelog">Changelog</h2>
+<div class="level2">
+<div class="table sectionedit25"><table class="inline">
+	<tr class="row0">
+		<td class="col0"><img src="/lib/images/smileys/icon_exclaim.gif" class="icon" alt=":!:" /> You could need to purge your browser and server cache after upgrading it, following these <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#the_tree_is_not_displayed" class="wikilink1" title="wiki:关于wiki:indexmenu">instructions</a></span>. The full changelog can be viewed at my <a href="http://samuele.netsons.org/dokuwiki/doku.php?id=dokuwiki:plugins:indexmenu#changelog" class="urlextern" target="_blank" title="http://samuele.netsons.org/dokuwiki/doku.php?id=dokuwiki:plugins:indexmenu#changelog"  rel="nofollow">indexmenu</a> page. </td>
+	</tr>
+</table></div>
+<!-- EDIT25 TABLE [23235-23531] --><div class="table sectionedit26"><table class="inline">
+	<tr class="row0">
+		<th class="col0">Many thanks to <a href="/doku.php?id=user:klap-in" class="interwiki iw_user wikilink2" title="/doku.php?id=user:klap-in" rel="nofollow">Klap-in</a>, all the work for the 5.0 release was done by him. </th>
+	</tr>
+</table></div>
+<!-- EDIT26 TABLE [23533-23626] -->
+</div>
+<!-- EDIT24 SECTION "Changelog" [23212-23628] -->
+<h3 class="sectionedit27" id="github_changelog">Github changelog</h3>
+<div class="level3">
+<ul class="rss"><li><div class="li"><em>获取该 RSS 信息时产生错误：</em><a href="https://github.com/samuelet/indexmenu/commits/master.atom" class="urlextern" target="_blank" title="https://github.com/samuelet/indexmenu/commits/master.atom"  rel="nofollow">https://github.com/samuelet/indexmenu/commits/master.atom</a></div></li></ul>
+</div>
+<!-- EDIT27 SECTION "Github changelog" [23629-23731] -->
+<h3 class="sectionedit28" id="release_changelog">Release changelog</h3>
+<div class="level3">
+<ul>
+<li class="level1 node"><div class="li"> <strong>2014-08-01</strong></div>
+<ul>
+<li class="level3"><div class="li"> Default options can be configured in Config Manager for whole wiki</div>
+</li>
+<li class="level3"><div class="li"> Supports nolatin pagenames better</div>
+</li>
+<li class="level3"><div class="li"> remove more empty nodes (only with indexmenu indexer, which is used when one of sort options added)</div>
+</li>
+<li class="level3"><div class="li"> contextmenu can be translated as well</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong>2013-04-24 Version 5.0</strong>:</div>
+<ul>
+<li class="level6"><div class="li"> Reformat of all code to Dokuwiki code style</div>
+</li>
+<li class="level6"><div class="li"> Rewrite all javascript to jQuery instead of old js api (includes improvements from <a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:tindexmenu" class="wikilink2" title="wiki:关于wiki:tindexmenu" rel="nofollow">tindexmenu</a> plugin)</div>
+</li>
+<li class="level6"><div class="li"> Added a new toolbar wizard</div>
+</li>
+<li class="level6"><div class="li"> Used Dokuwikis javascript include mechanism</div>
+</li>
+<li class="level6"><div class="li"> add <code>hsort</code> for sorting <a href="/doku.php?id=config:startpage" class="wikilink2" title="config:startpage" rel="nofollow">startpage</a> pages to top of listing</div>
+</li>
+<li class="level6"><div class="li"> Rewrite the ajax stuff into action plugin (not theme handling stuff)</div>
+</li>
+<li class="level6"><div class="li"> Change configuration via menu js files to one file.</div>
+</li>
+<li class="level6"><div class="li"> add option <code>nomenu</code></div>
+</li>
+<li class="level6"><div class="li"> Improved support for <a href="/doku.php?id=config:useheading" class="wikilink2" title="config:useheading" rel="nofollow">useheading</a> option. Page titles are <em>only shown</em> when useheading is &#039;always&#039; or &#039;navigation&#039;. - by <a href="/doku.php?id=user:lupo49" class="interwiki iw_user wikilink2" title="/doku.php?id=user:lupo49" rel="nofollow">lupo49</a></div>
+</li>
+<li class="level6"><div class="li"> Added syntax option to add <code>skipfile+/regexp/</code> and <code>skipns+/regexp/</code>. Using <code>+</code> add regexp parallel to global config, using <code>=</code> replaces the global config.</div>
+</li>
+<li class="level6"><div class="li"> Adding curid span like DokuWiki performs on internal links.</div>
+</li>
+<li class="level6"><div class="li"> Fixed: When only had indexmenu syntax in sidebar, in js rendered index the backup index wasn&#039;t hidden.</div>
+</li>
+<li class="level6"><div class="li"> Fixed: Ajax completion supports Korean characters too. - by <a href="/doku.php?id=user:samuele" class="interwiki iw_user wikilink2" title="/doku.php?id=user:samuele" rel="nofollow">Samuele</a></div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong>2009-08-29 Version 4.6</strong>:</div>
+<ul>
+<li class="level6"><div class="li"> <img src="/lib/images/smileys/icon_exclaim.gif" class="icon" alt=":!:" /> <em>New Feature</em>: Namespace declaration complies with DokuWiki <a href="/doku.php?id=namespaces#creating_namespaces" class="wikilink2" title="namespaces" rel="nofollow">namespaces</a>. <strong>Important before upgrading from previous versions</strong>: according to the new DokuWiki syntax, a simple <em>main namespace</em> without relative declaration prefix (i.e: “playground”) doesn&#039;t refer anymore to the subnamespace in the root namespace but in the <strong>current</strong> namespace. To refer to the root namespace, you need to prepend the “:” declaration to it.</div>
+</li>
+<li class="level6"><div class="li"> <em>New Feature</em>: Added the <em>context</em> option. It resolves relative requested namespaces starting from the current user location instead of the page containing the indexmenu syntax.</div>
+</li>
+<li class="level6"><div class="li"> <img src="/lib/images/smileys/icon_exclaim.gif" class="icon" alt=":!:" /> <em>New Feature</em>: Changed skip_file and skip_index syntax to use DokuWiki ID instead of system paths. Thanks to Dmitry Katsubo.</div>
+</li>
+<li class="level6"><div class="li"> <em>New Feature</em>: Metatada titles are not rendered when recursively building the indexmenu tree. This will speed up the page loading when cache expires, but could not display the heading title for nodes without metadata information.</div>
+</li>
+<li class="level6"><div class="li"> <em>New Feature</em>: Added the nojs button in the edit toolbar and toolbar <abbr title="Cascading Style Sheets">CSS</abbr> classes.</div>
+</li>
+<li class="level6"><div class="li"> <em>New Feature</em>: The right JS context menu is closed by any document click. Thanks to Urban.</div>
+</li>
+<li class="level6"><div class="li"> <em>Bug</em>: Fixed a bug which prevents page caching when it contains only indexmenu syntax.</div>
+</li>
+<li class="level6"><div class="li"> <em>Bug</em>: Disable JS indexmenu cookies in preview mode.</div>
+</li>
+<li class="level6"><div class="li"> <em>Bug</em>: Fixed an <abbr title="Access Control List">ACL</abbr> issue.</div>
+</li>
+<li class="level6"><div class="li"> <em>Bug</em>: Fixed UTF8 <abbr title="Table of Contents">TOC</abbr> preview bug.</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT28 SECTION "Release changelog" [23732-26827] -->
+<h2 class="sectionedit29" id="development">Development</h2>
+<div class="level2">
+
+<p>
+For development separated branches of the code are created to test features and bug fixes. See the list of current branches: <a href="https://github.com/samuelet/indexmenu/branches" class="urlextern" target="_blank" title="https://github.com/samuelet/indexmenu/branches"  rel="nofollow">https://github.com/samuelet/indexmenu/branches</a>
+</p>
+
+<p>
+Before installing a development version be sure to have first manually deleted the old indexmenu directory. Also be sure that, as last step, server/client cache is purged following 4 and 5 of the <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#the_tree_is_not_displayed" class="wikilink1" title="wiki:关于wiki:indexmenu">the tree is not displayed</a></span> section.
+</p>
+
+</div>
+<!-- EDIT29 SECTION "Development" [26828-27273] -->
+<h2 class="sectionedit30" id="translations">Translations</h2>
+<div class="level2">
+
+<p>
+At this moment some languages are supported , but I&#039;ll be glad if you want translate indexmenu in your own language. Please refer to translation tool at <a href="http://translate.dokuwiki.org/" class="urlextern" target="_blank" title="http://translate.dokuwiki.org/"  rel="nofollow">http://translate.dokuwiki.org/</a> to translate the strings of the indexmenu plugin. Thanks!
+</p>
+
+</div>
+<!-- EDIT30 SECTION "Translations" [27274-27543] -->
+<h1 class="sectionedit31" id="javascript_themes">JavaScript themes</h1>
+<div class="level1">
+
+<p>
+With the option <code>js</code> you enable the JavaScript tree menu, for which you can chosen some themes.
+When the <code>js</code> option is used without <em><strong>#theme</strong></em> option, the JavaScript indexmenu will use the default theme.
+</p>
+
+<p>
+Inside the Admin panel on the Indexmenu Utilities page you can manage the available themes on your installation and install themes from the public indexmenu repository. To download themes directly into your DokuWiki server, you need that the indexmenu images directory is writable by the web user.
+</p>
+
+<p>
+Instead of installing you can also simply download a theme into your PC with the <code>download</code> link, and then manually install it.
+</p>
+
+<p>
+The JavaScript tree menu is based on <a href="http://www.destroydrop.com/javascripts/tree/" class="urlextern" target="_blank" title="http://www.destroydrop.com/javascripts/tree/"  rel="nofollow">dTree</a> code.
+</p>
+
+</div>
+<!-- EDIT31 SECTION "JavaScript themes" [27544-28320] -->
+<h3 class="sectionedit32" id="theme_tutorial">Theme tutorial</h3>
+<div class="level3">
+
+<p>
+You can create custom themes for every index rendered with the <a href="http://www.destroydrop.com/javascripts/tree/" class="urlextern" target="_blank" title="http://www.destroydrop.com/javascripts/tree/"  rel="nofollow">dTree</a> menu.
+</p>
+
+<p>
+Simply create a subdirectory, for example <code>mytheme</code>, inside <code>indexmenu/images</code> and put inside it your icons following the default theme scheme:
+</p>
+<div class="table sectionedit33"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 leftalign"> Icon               </th><th class="col1 leftalign"> Type                                    </th><th class="col2 leftalign"> Example: theme &#039;default&#039;                                                               </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 leftalign"> base.gif           </td><td class="col1 leftalign"> Root Folder                             </td><td class="col2 leftalign"> <a href="/lib/exe/fetch.php?tok=c2db82&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fbase.gif" class="media" title="https://raw.github.com/samuelet/indexmenu/master/images/default/base.gif"><img src="/lib/exe/fetch.php?tok=c2db82&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fbase.gif" class="media" alt="" /></a>           </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 leftalign"> folderopen.gif     </td><td class="col1 leftalign"> Open folder without <abbr title="Uniform Resource Locator">URL</abbr> link            </td><td class="col2 leftalign"> <a href="/lib/exe/fetch.php?tok=15cfb2&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Ffolderopen.gif" class="media" title="https://raw.github.com/samuelet/indexmenu/master/images/default/folderopen.gif"><img src="/lib/exe/fetch.php?tok=15cfb2&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Ffolderopen.gif" class="media" alt="" /></a>     </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign"> folder.gif         </td><td class="col1 leftalign"> Closed folder without <abbr title="Uniform Resource Locator">URL</abbr> link          </td><td class="col2 leftalign"> <a href="/lib/exe/fetch.php?tok=1724b5&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Ffolder.gif" class="media" title="https://raw.github.com/samuelet/indexmenu/master/images/default/folder.gif"><img src="/lib/exe/fetch.php?tok=1724b5&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Ffolder.gif" class="media" alt="" /></a>         </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0 leftalign"> folderhopen.gif    </td><td class="col1 leftalign"> Open folder with <abbr title="Uniform Resource Locator">URL</abbr> link (headpage)    </td><td class="col2 leftalign"> <a href="/lib/exe/fetch.php?tok=c0f735&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Ffolderhopen.gif" class="media" title="https://raw.github.com/samuelet/indexmenu/master/images/default/folderhopen.gif"><img src="/lib/exe/fetch.php?tok=c0f735&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Ffolderhopen.gif" class="media" alt="" /></a>    </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0 leftalign"> folderh.gif        </td><td class="col1 leftalign"> Closed folder with <abbr title="Uniform Resource Locator">URL</abbr> link (headpage)  </td><td class="col2 leftalign"> <a href="/lib/exe/fetch.php?tok=db44f1&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Ffolderh.gif" class="media" title="https://raw.github.com/samuelet/indexmenu/master/images/default/folderh.gif"><img src="/lib/exe/fetch.php?tok=db44f1&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Ffolderh.gif" class="media" alt="" /></a>        </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0 leftalign"> page.gif           </td><td class="col1 leftalign"> Page                                    </td><td class="col2 leftalign"> <a href="/lib/exe/fetch.php?tok=c9e8c1&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fpage.gif" class="media" title="https://raw.github.com/samuelet/indexmenu/master/images/default/page.gif"><img src="/lib/exe/fetch.php?tok=c9e8c1&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fpage.gif" class="media" alt="" /></a>           </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0 leftalign"> plus.gif           </td><td class="col1 leftalign">                                         </td><td class="col2 leftalign"> <a href="/lib/exe/fetch.php?tok=25f03c&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fplus.gif" class="media" title="https://raw.github.com/samuelet/indexmenu/master/images/default/plus.gif"><img src="/lib/exe/fetch.php?tok=25f03c&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fplus.gif" class="media" alt="" /></a>           </td>
+	</tr>
+	<tr class="row8">
+		<td class="col0 leftalign"> minus.gif          </td><td class="col1 leftalign">                                         </td><td class="col2 leftalign"> <a href="/lib/exe/fetch.php?tok=3d7c07&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fminus.gif" class="media" title="https://raw.github.com/samuelet/indexmenu/master/images/default/minus.gif"><img src="/lib/exe/fetch.php?tok=3d7c07&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fminus.gif" class="media" alt="" /></a>          </td>
+	</tr>
+	<tr class="row9">
+		<td class="col0 leftalign"> nolines_plus.gif   </td><td class="col1 leftalign">                                         </td><td class="col2 leftalign"> <a href="/lib/exe/fetch.php?tok=669e0f&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fnolines_plus.gif" class="media" title="https://raw.github.com/samuelet/indexmenu/master/images/default/nolines_plus.gif"><img src="/lib/exe/fetch.php?tok=669e0f&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fnolines_plus.gif" class="media" alt="" /></a>   </td>
+	</tr>
+	<tr class="row10">
+		<td class="col0 leftalign"> nolines_minus.gif  </td><td class="col1 leftalign">                                         </td><td class="col2 leftalign"> <a href="/lib/exe/fetch.php?tok=3f00b6&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fnolines_minus.gif" class="media" title="https://raw.github.com/samuelet/indexmenu/master/images/default/nolines_minus.gif"><img src="/lib/exe/fetch.php?tok=3f00b6&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fnolines_minus.gif" class="media" alt="" /></a>  </td>
+	</tr>
+	<tr class="row11">
+		<td class="col0 leftalign"> minusbottom.gif    </td><td class="col1 leftalign">                                         </td><td class="col2 leftalign"> <a href="/lib/exe/fetch.php?tok=369da2&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fminusbottom.gif" class="media" title="https://raw.github.com/samuelet/indexmenu/master/images/default/minusbottom.gif"><img src="/lib/exe/fetch.php?tok=369da2&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fminusbottom.gif" class="media" alt="" /></a>    </td>
+	</tr>
+	<tr class="row12">
+		<td class="col0 leftalign"> plusbottom.gif     </td><td class="col1 leftalign">                                         </td><td class="col2 leftalign"> <a href="/lib/exe/fetch.php?tok=69ed2f&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fplusbottom.gif" class="media" title="https://raw.github.com/samuelet/indexmenu/master/images/default/plusbottom.gif"><img src="/lib/exe/fetch.php?tok=69ed2f&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fplusbottom.gif" class="media" alt="" /></a>     </td>
+	</tr>
+	<tr class="row13">
+		<td class="col0 leftalign"> join.gif           </td><td class="col1 leftalign">                                         </td><td class="col2 leftalign"> <a href="/lib/exe/fetch.php?tok=322c63&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fjoin.gif" class="media" title="https://raw.github.com/samuelet/indexmenu/master/images/default/join.gif"><img src="/lib/exe/fetch.php?tok=322c63&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fjoin.gif" class="media" alt="" /></a>           </td>
+	</tr>
+	<tr class="row14">
+		<td class="col0 leftalign"> joinbottom.gif     </td><td class="col1 leftalign">                                         </td><td class="col2 leftalign"> <a href="/lib/exe/fetch.php?tok=210240&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fjoinbottom.gif" class="media" title="https://raw.github.com/samuelet/indexmenu/master/images/default/joinbottom.gif"><img src="/lib/exe/fetch.php?tok=210240&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fjoinbottom.gif" class="media" alt="" /></a>     </td>
+	</tr>
+	<tr class="row15">
+		<td class="col0 leftalign"> line.gif           </td><td class="col1 leftalign">                                         </td><td class="col2 leftalign"> <a href="/lib/exe/fetch.php?tok=2493bd&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fline.gif" class="media" title="https://raw.github.com/samuelet/indexmenu/master/images/default/line.gif"><img src="/lib/exe/fetch.php?tok=2493bd&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fline.gif" class="media" alt="" /></a>           </td>
+	</tr>
+	<tr class="row16">
+		<td class="col0 leftalign"> empty.gif          </td><td class="col1 leftalign"> blank image to fill gap between lines   </td><td class="col2 leftalign"> <a href="/lib/exe/fetch.php?tok=dd4944&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fempty.gif" class="media" title="https://raw.github.com/samuelet/indexmenu/master/images/default/empty.gif"><img src="/lib/exe/fetch.php?tok=dd4944&amp;media=https%3A%2F%2Fraw.github.com%2Fsamuelet%2Findexmenu%2Fmaster%2Fimages%2Fdefault%2Fempty.gif" class="media" alt="" /></a>          </td>
+	</tr>
+</table></div>
+<!-- EDIT33 TABLE [28620-31237] -->
+<p>
+Use your theme with <strong><code>js#mytheme</code></strong> syntax.
+</p>
+
+<p>
+You can also customize a theme style by creating its <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#custom_theme_css_style" class="wikilink1" title="wiki:关于wiki:indexmenu">own css style</a></span>.
+</p>
+
+<p>
+The default icons file format is GIF, but PNG and JPG are also supported. To use them in place of GIF, you have to name your theme directory with the appropriate image extension. For example: <code>mytheme<strong>.png</strong>/base.png</code>. Default image size is 18x18px. Other sizes are possible, but requires additional css.
+</p>
+
+</div>
+<!-- EDIT32 SECTION "Theme tutorial" [28321-31704] -->
+<h2 class="sectionedit34" id="the_context_menu">The context menu</h2>
+<div class="level2">
+
+<p>
+An action menu is displayed when using the context mouse menu click (the right one in many cases). On Opera you can use the CTRL+left click to display it. When in editing mode, by default an “Insert as DWlink” item menu is added to the menu in order to insert the node DokuWiki link in your editing box. A different context menu is loaded depending on anonymous, authenticated or admin users.
+</p>
+
+<p>
+In the April 2013 release of the plugin the contextmenu definition is bundled in <code>scripts/contextmenu.js</code>. 
+Be aware this file is overwritten on update of the plugin. Therefore an additional file <code>scripts/contextmenu.local.js</code> is provided, you need to change this file to modify the appearance of the contextmenu.
+</p>
+
+<p>
+Since the April 2013 plugin release you can add the <strong><code>nomenu</code></strong> option to indexmenu syntax to disable the contextmenu.
+</p>
+
+<p>
+Modification of menu in performed in <code>scripts/contextmenu.local.js</code>:<br/>
+
+(You can rename the example file from <code>scripts/contextmenu.local.js.example</code>)
+</p>
+<ul>
+<li class="level1"><div class="li"> Overriding menu entry <br/>
+<pre class="code javascript">indexmenu_contextmenu<span class="br0">&#91;</span><span class="st0">'all'</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st0">'pg'</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st0">'view'</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span> <span class="sy0">=</span> <span class="br0">&#91;</span><span class="st0">'Custom Title'</span><span class="br0">&#93;</span><span class="sy0">;</span></pre>
+</div>
+</li>
+<li class="level1"><div class="li"> Adding menu entry <br/>
+<pre class="code javascript">indexmenu_contextmenu<span class="br0">&#91;</span><span class="st0">'all'</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st0">'pg'</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st0">'view'</span><span class="br0">&#93;</span>.<span class="me1">splice</span><span class="br0">&#40;</span>
+    <span class="nu0">3</span><span class="sy0">,</span> 
+    <span class="nu0">0</span><span class="sy0">,</span> 
+    <span class="br0">&#91;</span><span class="st0">'Input new page'</span><span class="sy0">,</span> <span class="st0">'&quot;javascript: IndexmenuContextmenu.reqpage(<span class="es0">\'</span>&quot;+index.config.urlbase+&quot;<span class="es0">\'</span>,<span class="es0">\'</span>&quot;+index.config.sepchar+&quot;<span class="es0">\'</span>,<span class="es0">\'</span>&quot;+node.dokuid+&quot;<span class="es0">\'</span>);&quot;'</span><span class="br0">&#93;</span>
+ <span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+</li>
+<li class="level1 node"><div class="li"> Removing menu entry:</div>
+<ul>
+<li class="level2"><div class="li"> Override with empty array: <code>[]</code></div>
+</li>
+<li class="level2"><div class="li"> Or use <code>.splice(entryIndexNo, 1);</code> with <code>entryIndexNo</code> as the entry position</div>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+Some details about <code>Array.splice(entryIndexNo, howManyToRemove, entryDescriptionArray)</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice" class="urlextern" target="_blank" title="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice"  rel="nofollow">documentation</a>):
+</p>
+<ul>
+<li class="level1"><div class="li"> <code>entryIndexNo</code> - position of entry, start counting at zero</div>
+</li>
+<li class="level1"><div class="li"> <code>howManyToRemove</code> - number of entries to be removed. Set to zero to only add entries.</div>
+</li>
+<li class="level1"><div class="li"> <code>entryDescriptionArray</code> - array with description of a menu entry</div>
+</li>
+</ul>
+
+<p>
+<strong>How to write utf8 chars, like èåäö, in the context menu file?</strong><br/>
+
+A solution is to encode them yourself: Find your char at <a href="http://unicode.coeurlumiere.com" class="urlextern" target="_blank" title="http://unicode.coeurlumiere.com"  rel="nofollow">http://unicode.coeurlumiere.com</a>, replace the last zero of the left code by the character in the upper row and prepend the result with <code>\u</code> : i.e. <code>\u00E3</code> for &#039;ã&#039;
+</p>
+<hr />
+
+<p>
+In the releases <em>before April</em> 2013, you could fully customize those menus by editing these files in the &#039;jsmenu/&#039; directory:
+</p>
+<div class="table sectionedit35"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0">File </th><th class="col1">Loaded by</th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0">“menu.js” </td><td class="col1">anonymous user</td>
+	</tr>
+	<tr class="row2">
+		<td class="col0">“usrmenu.js” </td><td class="col1">authenticated user</td>
+	</tr>
+	<tr class="row3">
+		<td class="col0">“admmenu.js” </td><td class="col1">admin user<sup><a href="#fn__6" id="fnt__6" class="fn_top">6)</a></sup></td>
+	</tr>
+</table></div>
+<!-- EDIT35 TABLE [34138-34273] -->
+<p>
+And to prevent to load the context menu, simply remove the indexmenu_contextmenu variable declared in the above menu files.
+</p>
+
+</div>
+<!-- EDIT34 SECTION "The context menu" [31705-34400] -->
+<h1 class="sectionedit36" id="css_style">CSS Style</h1>
+<div class="level1">
+
+<p>
+You can edit the <a href="https://github.com/samuelet/indexmenu/blob/master/style.css" class="urlextern" target="_blank" title="https://github.com/samuelet/indexmenu/blob/master/style.css"  rel="nofollow">style.css</a> in order to globally customizing the tree menus style.
+Some styles are:
+</p>
+<div class="table sectionedit37"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 leftalign">Tag                  </th><th class="col1 leftalign">Comment                                        </th><th class="col2 leftalign">Mode  </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 leftalign">a.nodeFdUrl          </td><td class="col1 leftalign">Namespace with <abbr title="Uniform Resource Locator">URL</abbr> link (headpage)             </td><td class="col2 leftalign">js    </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 leftalign">a.node               </td><td class="col1 leftalign">Namespace without <abbr title="Uniform Resource Locator">URL</abbr> link                     </td><td class="col2 leftalign">js    </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign">a.nodeUrl            </td><td class="col1 leftalign">Page                                           </td><td class="col2 leftalign">js    </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0 leftalign">a.nodeSel            </td><td class="col1 leftalign">Previous selected page or headpage highlight   </td><td class="col2 leftalign">js    </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0 leftalign">a.navSel             </td><td class="col1 leftalign">Current page highlight                         </td><td class="col2 leftalign">js    </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0">a.indexmenu_idx_head </td><td class="col1 leftalign">link style of a namespace with <abbr title="Uniform Resource Locator">URL</abbr> (headpage)  </td><td class="col2 leftalign">nojs  </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0 leftalign">a.indexmenu_idx      </td><td class="col1 leftalign">link style of a namespace without <abbr title="Uniform Resource Locator">URL</abbr>          </td><td class="col2 leftalign">nojs  </td>
+	</tr>
+	<tr class="row8">
+		<td class="col0 leftalign">.indexmenu_arrow     </td><td class="col1 leftalign">The scrolling arrow area                       </td><td class="col2 leftalign">js    </td>
+	</tr>
+	<tr class="row9">
+		<td class="col0 leftalign">.indexmenu_toc       </td><td class="col1 leftalign">The toc-preview area                           </td><td class="col2 leftalign">js    </td>
+	</tr>
+</table></div>
+<!-- EDIT37 TABLE [34589-35378] -->
+</div>
+<!-- EDIT36 SECTION "CSS Style" [34401-35380] -->
+<h2 class="sectionedit38" id="custom_theme_css_style">Custom theme CSS style</h2>
+<div class="level2">
+
+<p>
+If you want to apply a different style from the global one to a js theme, you need to create a <code>style.css</code> file like this inside the theme directory you want customize and use its name as subclass. 
+</p>
+
+<p>
+<img src="/lib/images/smileys/fixme.gif" class="icon" alt="FIXME" /> check if this example is still up-to-date
+</p>
+<pre class="code css"><span class="coMULTI">/*Custom style for the thread theme*/</span>
+&nbsp;
+<span class="re1">.dtree</span>.thread<span class="br0">&#123;</span>
+  <span class="kw1">font-family</span><span class="sy0">:</span> Comic Sans MS<span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="re1">.dtree</span><span class="re1">.thread</span> a<span class="re1">.navSel</span> <span class="br0">&#123;</span>
+  <span class="kw1">background-color</span><span class="sy0">:</span> <span class="re0">#000</span><span class="sy0">;</span>
+  <span class="kw1">color</span><span class="sy0">:</span> <span class="re0">#fff</span>
+<span class="br0">&#125;</span></pre>
+
+<p>
+Note: in about June 2014 the css of some <code>.dtree</code> related stylesheet lines is changed. This can break your styling. Please use the latest version of indexmenu, and review your styles. See <a href="https://github.com/samuelet/indexmenu/commit/d8d19c6bf2179113cda7f2e567f1c424d6282950" class="urlextern" target="_blank" title="https://github.com/samuelet/indexmenu/commit/d8d19c6bf2179113cda7f2e567f1c424d6282950"  rel="nofollow">CSS changeset</a>.
+</p>
+
+</div>
+<!-- EDIT38 SECTION "Custom theme CSS style" [35381-36137] -->
+<h1 class="sectionedit39" id="faq_and_notes">FAQ and Notes</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT39 SECTION "FAQ and Notes" [36138-36166] -->
+<h3 class="sectionedit40" id="the_tree_is_not_working_as_expected">The tree is not working as expected</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> If you installed for the first time the indexmenu plugin or upgraded it from a previous release, it could be merely a cache issue. Example of symptoms are: tree is not displayed (or a static DokuWiki index is displayed in its place), context menu is not working, any new release feature reported in the <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#changelog" class="wikilink1" title="wiki:关于wiki:indexmenu">changelog</a></span> is working.<br/>
+Try to follow instructions to purge cache described in the <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#the_tree_is_not_displayed" class="wikilink1" title="wiki:关于wiki:indexmenu">The tree is not displayed</a></span> section and retry to display it.</div>
+</li>
+<li class="level1"><div class="li"> When an updated indexmenu plugin fails in a <em>2013-05-10 “Weatherwax” release</em> and later:<br/>
+Please check whether all plugins and your theme don&#039;t use the old javascript functions. Since the Weatherwax release, these deprecated functions are missing (some plugins still require an update) and will break the javascript rendering.<br/>
+Check for errors:<br/>
+- in console of browser e.g. as part of the Developer toolbar<br/>
+- by disabling all plugins and enabling one by one</div>
+</li>
+<li class="level1"><div class="li"> If you think that indexmenu are still not fitting your needs, be sure to using a correct <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#syntax" class="wikilink1" title="wiki:关于wiki:indexmenu">syntax</a></span>, and read carefully the <a href="/doku.php?id=plugin:indexmenu#configuration" class="wikilink2" title="plugin:indexmenu" rel="nofollow">configuration</a> instructions. There are a lot of options for this plugin, maybe you missed the good one.</div>
+</li>
+<li class="level1"><div class="li"> You are sure that the syntax is correct. Perhaps you missed something in this <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#faq_and_notes" class="wikilink1" title="wiki:关于wiki:indexmenu">FAQ and Notes</a></span> section.</div>
+</li>
+<li class="level1"><div class="li"> Still no solution? Check if someone reported your issue at the <a href="https://github.com/samuelet/indexmenu/issues" class="urlextern" target="_blank" title="https://github.com/samuelet/indexmenu/issues"  rel="nofollow">Issue tracker</a>.</div>
+</li>
+<li class="level1"><div class="li"> Okay, now I believe that indexmenu is really not working as needed. Please report a detailed bug at the <a href="https://github.com/samuelet/indexmenu/issues" class="urlextern" target="_blank" title="https://github.com/samuelet/indexmenu/issues"  rel="nofollow">Issue tracker</a>, where you mentioned your syntax and configuration options and I&#039;ll try to find a solution in my spare time. </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT40 SECTION "The tree is not working as expected" [36167-37961] -->
+<h3 class="sectionedit41" id="the_tree_is_not_displayed">The tree is not displayed</h3>
+<div class="level3">
+
+<p>
+Follows these instructions:
+</p>
+<ol>
+<li class="level1"><div class="li"> To have installed an indexmenu release compatible with your DokuWiki version as described in <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#how_to_install" class="wikilink1" title="wiki:关于wiki:indexmenu">how to install</a></span>.</div>
+</li>
+<li class="level1"><div class="li"> To have the last indexmenu version installed. For example check that its date is the same of <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#changelog" class="wikilink1" title="wiki:关于wiki:indexmenu">changelog</a></span> last release through the info button in plugin manager.</div>
+</li>
+<li class="level1"><div class="li"> To have used a correct <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#syntax" class="wikilink1" title="wiki:关于wiki:indexmenu">syntax</a></span>.</div>
+</li>
+<li class="level1"><div class="li"> To have purged your browser cache. Use <code>Ctrl + R</code> or <code>Ctrl + F5</code> </div>
+</li>
+<li class="level1"><div class="li"> To have purged server cache following the <a href="/doku.php?id=caching#purging_the_cache" class="wikilink2" title="caching" rel="nofollow">purging_the_cache</a> instructions.<img src="/lib/images/smileys/icon_exclaim.gif" class="icon" alt=":!:" /> This is an important step.</div>
+</li>
+<li class="level1"><div class="li"> To have purged <abbr title="Cascading Style Sheets">CSS</abbr> and JavaScript as cached by DokuWiki. Go to the Configuration Manager and just resave, to refresh this caching.</div>
+</li>
+<li class="level1"><div class="li"> When you try the javascript version of the indexmenu and it fails, please disable all the self-installed plugins check if now works. Nextly, you enable the plugins one-by-one to find the bad one.</div>
+</li>
+</ol>
+
+<p>
+If problem still persists, please, report the bug with details of your configuration in <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#reporting_feature_requests_and_bugs" class="wikilink1" title="wiki:关于wiki:indexmenu">reporting_feature_requests_and_bugs</a></span> section.
+</p>
+
+</div>
+<!-- EDIT41 SECTION "The tree is not displayed" [37962-39064] -->
+<h3 class="sectionedit42" id="dokuwiki_is_getting_slow">DokuWiki is getting slow</h3>
+<div class="level3">
+
+<p>
+If your site contains a large amount of pages, and you&#039;re using indexmenu as a navigation sidebar, you could notice random slowdowns in the page loading.
+</p>
+
+<p>
+This happens when cache is purged and the whole indexmenu tree has to be rebuilt.
+</p>
+
+<p>
+To avoid this problem you may use the <a href="/doku.php?id=plugin:indexmenu#syntax" class="wikilink2" title="plugin:indexmenu" rel="nofollow">max</a> option, which rebuilds only a single tree portion (sublevel) and enable AJAX for further user-requested sublevels.
+</p>
+
+</div>
+<!-- EDIT42 SECTION "DokuWiki is getting slow" [39065-39525] -->
+<h3 class="sectionedit43" id="indexmenu_id_conflict">Indexmenu ID conflict</h3>
+<div class="level3">
+
+<p>
+I have in my sidebar the following code 
+</p>
+<pre class="code">{{indexmenu&gt;..#1| js navbar id#random }}</pre>
+
+<p>
+and I get after saving this message: <code>Indexmenu ID conflict</code>. What&#039;s wrong?
+</p>
+<blockquote><div class="no">
+ A conflict happens when there are two indexmenu tree with the same ID in a web page. <br/>
+<br/>
+ When you just edited the sidebar page, your sidebar &amp; your content page are the same, so its content is displayed twice. When it contains a indexmenu, this index is also shown twice. This is no problem because normally you don&#039;t visit the sidebar as normal wiki page.<br/>
+<br/>
+ When you have a sidebar defined a sidebar, but it is used as normal page too e.g. an index page, it is recommended to create a separate page for the index page. A separate page prevents displaying same index twice so they can not conflict anymore. The index page may have the same syntax options as the sidebar, but when you use id with a self defined id#identifier, your identifier must be different.</div></blockquote>
+
+</div>
+<!-- EDIT43 SECTION "Indexmenu ID conflict" [39526-40504] -->
+<h3 class="sectionedit44" id="can_i_sort_the_tree_nodes_filename_or_page_heading_or_creation_time">Can I sort the tree nodes (filename or page heading or creation time)?</h3>
+<div class="level3">
+
+<p>
+Yes, You can sort pages with the tsort, dsort or msort <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#syntax" class="wikilink1" title="wiki:关于wiki:indexmenu">syntax</a></span> options. To sort namespaces you need to add the nsort option to previouses.
+</p>
+
+</div>
+<!-- EDIT44 SECTION "Can I sort the tree nodes (filename or page heading or creation time)?" [40505-40741] -->
+<h3 class="sectionedit45" id="how_can_i_activate_the_indexmenu_as_sidebar_for_every_page">How can I activate the indexmenu as sidebar for every page?</h3>
+<div class="level3">
+<ol>
+<li class="level1"><div class="li"> Enable the sidebar function in your template. See <a href="/doku.php?id=faq:sidebar" class="wikilink2" title="faq:sidebar" rel="nofollow">FAQ sidebar</a> for configuration and installing. </div>
+</li>
+<li class="level1"><div class="li"> Add the indexmenu to the page used as sidebar.</div>
+</li>
+</ol>
+
+<p>
+Indexmenu provides only the index, for configuration of e.g. visibility of the sidebar itself you have to look in the features of the different sidebar solutions.
+</p>
+
+</div>
+<!-- EDIT45 SECTION "How can I activate the indexmenu as sidebar for every page?" [40742-41145] -->
+<h3 class="sectionedit46" id="the_tree_is_not_updated">The tree is not updated</h3>
+<div class="level3">
+
+<p>
+The tree is always immediately updated. So you have not to worry to use ~~NOCACHE~~ instruction, it&#039;s not useful and slows down the page loading.
+</p>
+
+<p>
+To purge cache either wait for the automatic <a href="/doku.php?id=config:cachetime" class="wikilink2" title="config:cachetime" rel="nofollow">purge cache time</a> expiration or force it through a <a href="/doku.php?id=devel:caching#purging_the_cache" class="wikilink2" title="devel:caching" rel="nofollow">purge=true</a> request on the page that contains the indexmenu tree.
+</p>
+
+</div>
+<!-- EDIT46 SECTION "The tree is not updated" [41146-41551] -->
+<h3 class="sectionedit47" id="js_does_not_remember_its_previous_state">JS does not remember its previous state</h3>
+<div class="level3">
+
+<p>
+Every <em><strong>js</strong></em> indexmenu has an identifier (randomly generated by default) used by cookies to remember the current tree state (the selected, open and closed nodes). When the page cache expires or is purged, this information is reset because a new cookie (and consequently a new identifier) is generated.
+</p>
+
+<p>
+This is not a problem because cache purge is not frequent, but if indexmenu is called inside an uncached page or directly inside PHP code, every time an user loads the page, indexmenu behaviour is to not remember its previous state just like when <code>nocookie</code> is defined.
+</p>
+
+<p>
+In this case, the solution is to force a permanent identifier through the <em><strong><span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#syntax" class="wikilink1" title="wiki:关于wiki:indexmenu">id#identifier</a></span></strong></em> option.
+The identifier can be any number or the string “ns”. The last option is used in rare case, because it will generate an ID based on the chosen main namespace. It&#039;s important to have unique ids in your site because two menus with the same identifier will interfere with each other when the user opens or closes nodes. 
+</p>
+
+</div>
+<!-- EDIT47 SECTION "JS does not remember its previous state" [41552-42627] -->
+<h3 class="sectionedit48" id="i_don_t_like_the_tree_sliding_arrow">I don&#039;t like the tree sliding arrow</h3>
+<div class="level3">
+
+<p>
+Create your own arrow in GIF format with an image editor, then override the default one in <code>dokuwiki/lib/plugins/indexmenu/images/scrollleft.gif</code>.
+Change the height and width of the .indexmenu_arrow property in the <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#css_style" class="wikilink1" title="wiki:关于wiki:indexmenu">Css Style</a></span> according to the size of your image.
+</p>
+
+<p>
+You could need a browser cache purging.
+</p>
+
+</div>
+<!-- EDIT48 SECTION "I don't like the tree sliding arrow" [42628-42997] -->
+<h3 class="sectionedit49" id="about_acls">About ACLs</h3>
+<div class="level3">
+<div class="table sectionedit50"><table class="inline">
+	<tr class="row0">
+		<td class="col0"><img src="/lib/images/smileys/icon_exclaim.gif" class="icon" alt=":!:" /> First of all, you could need to correctly set the <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#acl_cache" class="wikilink1" title="wiki:关于wiki:indexmenu">Acl cache</a></span> option in order to avoid displaying of denied pages.</td>
+	</tr>
+</table></div>
+<!-- EDIT50 TABLE [43020-43154] -->
+<p>
+Indexmenu tree behaviour depends also on the <a href="/doku.php?id=config:sneaky_index" class="wikilink2" title="config:sneaky_index" rel="nofollow">sneaky_index</a> option in this way:
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>Enabled</strong>: if namespace is denied, it stops its recursive search on that namespace branch even if there are authorized pages or namespaces below it.</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <strong>Disabled</strong>: Indexmenu doesn&#039;t stop its recursive search and it could show denied namespaces (<strong>NOT</strong> pages).</div>
+</li>
+</ul>
+
+<p>
+In both cases, unauthorized pages are never showed. There are also some issues <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#about_empty_namespaces" class="wikilink1" title="wiki:关于wiki:indexmenu">About empty namespaces</a></span> that should be read.<br/>
+
+This namespace behaviour in presence of ACLs can not be changed until it&#039;s not changed in the DokuWiki core itself.
+</p>
+
+<p>
+Example:
+</p>
+<pre class="code">+-Mysite         (ns) (allowed)
+ +-private       (ns) (denied)
+   +-ppublic     (ns) (allowed)
+     -ppstart    (page) (allowed)
+   -pstart       (page) (denied)
+ +-public        (ns) (allowed)
+   -linux        (page) (allowed)
+ +-public2       (ns) (allowed)
+   -secret       (page) (denied)
+ -start          (page) (allowed)
+ -start2         (page) (denied)</pre>
+
+<p>
+<strong>Enabled</strong> will display:
+</p>
+<pre class="code">+-Mysite         (dir)
+ +-public        (dir)
+   -linux        (page)
+ +-public2       (dir **displayed only in case of any sort option**)
+   -X           (empty/unauthorized icon **displayed only in case of any sort option**)
+ -start          (page)</pre>
+
+<p>
+<strong>Disabled</strong> will display:
+</p>
+<pre class="code">+-Mysite         (dir)
+ +-private       (dir)
+   +-ppublic     (dir)
+     -ppstart    (page)
+ +-public        (ns)
+   -linux        (page)
+ +-public2       (dir **displayed only in case of any sort option**)
+   -X           (empty/unauthorized icon **displayed only in case of any sort option**)
+ -start          (page)</pre>
+
+</div>
+<!-- EDIT49 SECTION "About ACLs" [42998-44819] -->
+<h3 class="sectionedit51" id="about_empty_namespaces">About empty namespaces</h3>
+<div class="level3">
+
+<p>
+Empty namespace can occur when:
+</p>
+<ul>
+<li class="level1"><div class="li"> All its pages were deleted. DokuWiki never does really remove empty namespaces as it stores them as file system directories.</div>
+</li>
+<li class="level1"><div class="li"> All its pages and namespaces are skipped by <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#skip_namespaces_in_index" class="wikilink1" title="wiki:关于wiki:indexmenu">skip namespaces in index</a></span> or <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#skip_files_in_index" class="wikilink1" title="wiki:关于wiki:indexmenu">skip files in index</a></span> options.</div>
+</li>
+<li class="level1"><div class="li"> All its pages and namespaces are denied to users by <a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:acls" class="wikilink2" title="wiki:关于wiki:acls" rel="nofollow">ACLs</a> settings.</div>
+</li>
+<li class="level1"><div class="li"> It has got only a child page, this page is its headpage and hide_headpage option is enabled.</div>
+</li>
+</ul>
+
+<p>
+When the <code>max#nr</code> option or level of folded nodes are configured and the node has to retrieve its children through the Ajax request, there can appear empty nodes because indexmenu hasn&#039;t looked forward and doesn&#039;t know yet that the node was empty.
+</p>
+
+<p>
+<strong>Why do you need a sort option to correctly hide empty namespaces?</strong><br/>
+
+When any of the sort options <code>tsort</code>, <code>dsort</code>, <code>msort</code> <code>nsort</code> or <code>hsort</code> is used indexmenu replaces the faster, but less featured, core DokuWiki search with the slower, but more featured, indexmenu search that filters more empty nodes.
+</p>
+
+<p>
+<strong>Why will sneaky_index hide forbidden namespaces</strong><br/>
+
+Enabling the <code><a href="/doku.php?id=config:sneaky_index" class="wikilink2" title="config:sneaky_index" rel="nofollow">sneaky_index</a></code> also checks for access to forbidden namespaces, instead of only checking access to pages. This means that it hides deeper allowed pages or namespaces as well. These nodes aren&#039;t reachable via the index anymore.. See also <a href="#about_acls" title="wiki:关于wiki:indexmenu ↵" class="wikilink1">About ACLs</a>.
+</p>
+
+</div>
+<!-- EDIT51 SECTION "About empty namespaces" [44820-46235] -->
+<h3 class="sectionedit52" id="i_m_using_useheading_but_the_tree_displays_namespace_and_page_names_rather_than_headings">I&#039;m using &quot;useheading&quot; but the tree displays namespace and page names rather than headings</h3>
+<div class="level3">
+
+<p>
+The text used for the nodes in the tree is retrieved from DokuWiki&#039;s <a href="/doku.php?id=metadata" class="wikilink2" title="metadata" rel="nofollow">metadata</a> store.  DokuWiki uses a background process triggered by a web-bug to updating this metadata.<sup><a href="#fn__7" id="fnt__7" class="fn_top">7)</a></sup>  If you added wiki pages/namespaces via the filesystem (rather than creating them in DokuWiki,) and that page/namespace has never been viewed, the metadata will not have been generated.
+</p>
+
+</div>
+<!-- EDIT52 SECTION "I'm using useheading but the tree displays namespace and page names rather than headings" [46236-46722] -->
+<h1 class="sectionedit53" id="reporting_feature_requests_and_bugs">Reporting feature requests and bugs</h1>
+<div class="level1">
+
+<p>
+Please refer to <a href="https://github.com/samuelet/indexmenu/issues" class="urlextern" target="_blank" title="https://github.com/samuelet/indexmenu/issues"  rel="nofollow">https://github.com/samuelet/indexmenu/issues</a> to share your feature requests and bug reports.
+</p>
+
+<p>
+See also for additional info:
+</p>
+<ul>
+<li class="level1"><div class="li"> <span class="curid"><a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu#faq_and_notes" class="wikilink1" title="wiki:关于wiki:indexmenu">FAQ and notes</a></span></div>
+</li>
+<li class="level1"><div class="li"> and <a href="/doku.php?id=plugin:indexmenu:discussion" class="wikilink2" title="plugin:indexmenu:discussion" rel="nofollow">Discussion</a> page</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT53 SECTION "Reporting feature requests and bugs" [46723-46993] -->
+<h1 class="sectionedit54" id="discussion">Discussion</h1>
+<div class="level1">
+
+<p>
+Please, use the <a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu:discussion" class="wikilink2" title="wiki:关于wiki:indexmenu:discussion" rel="nofollow">discussion</a> page for feature requests and general discussion.<br/>
+Old discussions are archived in the <a href="/doku.php?id=wiki:%E5%85%B3%E4%BA%8Ewiki:indexmenu:olddiscussion" class="wikilink2" title="wiki:关于wiki:indexmenu:olddiscussion" rel="nofollow">olddiscussion</a> page.
+</p>
+
+</div>
+<!-- EDIT54 SECTION "Discussion" [46994-] --><div class="footnotes">
+<div class="fn"><sup><a href="#fnt__1" id="fn__1" class="fn_bot">1)</a></sup> 
+<a href="/lib/exe/fetch.php?tok=67ace0&amp;media=http%3A%2F%2Fwww.enjoytoz.it%2Fimages%2Fuploads%2FAuld_Dubliner%2Ftennents.jpg" class="media" title="http://www.enjoytoz.it/images/uploads/Auld_Dubliner/tennents.jpg"><img src="/lib/exe/fetch.php?w=60&amp;tok=6d61be&amp;media=http%3A%2F%2Fwww.enjoytoz.it%2Fimages%2Fuploads%2FAuld_Dubliner%2Ftennents.jpg" class="media" title="tennents.jpg" alt="tennents.jpg" width="60" /></a></div>
+<div class="fn"><sup><a href="#fnt__2" id="fn__2" class="fn_bot">2)</a></sup> 
+, <sup><a href="#fnt__3" id="fn__3" class="fn_bot">3)</a></sup> 
+, <sup><a href="#fnt__4" id="fn__4" class="fn_bot">4)</a></sup> 
+, <sup><a href="#fnt__5" id="fn__5" class="fn_bot">5)</a></sup> 
+the namespace of the page displayed by a user who is navigating your site</div>
+<div class="fn"><sup><a href="#fnt__6" id="fn__6" class="fn_bot">6)</a></sup> 
+see <a href="/doku.php?id=config:superuser" class="wikilink2" title="config:superuser" rel="nofollow">superuser</a></div>
+<div class="fn"><sup><a href="#fnt__7" id="fn__7" class="fn_bot">7)</a></sup> 
+See <a href="/doku.php?id=indexer" class="wikilink2" title="indexer" rel="nofollow">indexer</a>.</div>
+</div>

@@ -1,0 +1,10 @@
+1479527880	170.240.100.31	C	计划安排:技术类:test	eugene_lijin	创建	
+1479527909	170.240.100.31	D	计划安排:技术类:test	eugene_lijin	移除	
+1479528055	170.240.100.31	C	计划安排:技术类:test	eugene_lijin	创建	
+1479528183	170.240.100.31	E	计划安排:技术类:test	eugene_lijin		
+1479528207	170.240.100.31	E	计划安排:技术类:test	eugene_lijin		
+1479528640	170.240.100.31	E	计划安排:技术类:test	eugene_lijin		
+1479528655	170.240.100.31	E	计划安排:技术类:test	eugene_lijin		
+1479530857	170.240.100.31	E	计划安排:技术类:test	eugene_lijin			-1
+1479531000	170.240.100.31	C	playground:test	eugene_lijin	↷ 页面计划安排:技术类:test被移动至playground:test		26
+1479532004	170.240.100.31	C	wiki:playground:test	eugene_lijin	↷ 页面playground:test被移动至wiki:playground:test		26
