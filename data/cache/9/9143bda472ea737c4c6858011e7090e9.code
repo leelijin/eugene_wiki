@@ -1,5 +1,0 @@
-indexmenu_contextmenu<span class="br0">&#91;</span><span class="st0">'all'</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st0">'pg'</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st0">'view'</span><span class="br0">&#93;</span>.<span class="me1">splice</span><span class="br0">&#40;</span>
-    <span class="nu0">3</span><span class="sy0">,</span> 
-    <span class="nu0">0</span><span class="sy0">,</span> 
-    <span class="br0">&#91;</span><span class="st0">'Input new page'</span><span class="sy0">,</span> <span class="st0">'&quot;javascript: IndexmenuContextmenu.reqpage(<span class="es0">\'</span>&quot;+index.config.urlbase+&quot;<span class="es0">\'</span>,<span class="es0">\'</span>&quot;+index.config.sepchar+&quot;<span class="es0">\'</span>,<span class="es0">\'</span>&quot;+node.dokuid+&quot;<span class="es0">\'</span>);&quot;'</span><span class="br0">&#93;</span>
- <span class="br0">&#41;</span><span class="sy0">;</span>
