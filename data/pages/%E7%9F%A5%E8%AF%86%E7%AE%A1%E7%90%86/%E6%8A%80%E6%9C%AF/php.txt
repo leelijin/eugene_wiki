@@ -1,1 +1,79 @@
 ====== PHP ======
+
+
+网页编程基础知识 - HTML： 历史、回复和标准；常用标签和属性；DOM/BOM - CSS ：语法、继承规则；选择器；常用样式属性、框模型；布局、定位（W3School CSS教程）CSS禅意花园 - JS ：语法基础、语言基础库、JS教程 - 网页调试工具（Google和Firebug）
+
+2级 - HTML5 基础 - CSS3 基础，浏览器兼容性 - JavaScript Jquery、JavaScript高级编程
+
+PHP语言编程 - 关键词和语法（Language Syntax） - 数据类型（Arrays, Slices and Maps） - 流程控制（if/else，for/range） - 环境基本安装（XAMPP/Nginx） - 第三方库、框架（Smarty模板引擎、MVC框架） - PHP调试(Xdebug调试) - 代码规范（代码可读性强，遵循代码规范） - 熟悉Web安全相关知识（XSS、会话劫持、SQL注入） - 熟悉设计模式（工厂模式、单例模式等）
+
+ 2级： - PHP性能优化 - 代码简洁 - 熟悉各种设计模式 - 代码重构方面的实践 - 单元测试（phpunit）
+
+ 3级： - 系统开发 - 大数据 - 分布式 ## Mysql - Mysql基本命令 - Mysql字符集的理解 - Mysql中存储引擎InnoDB和MyISAMysql的理解
+
+ 2级： - Mysql内置函数与运算 - Mysql性能优化 - Mysql数据库性能优化之表结构优化 - Mysql数据库性能优化之SQL优化 - Mysql数据库性能优化之索引优化 ## Redis/Memcached ### 中级
+
+- 在大部分中型系统里面一定会涉及到缓存处理，所以一定要了解基本的缓存；
+
+- 知道Memcached和Redis的异同和应用场景，能够独立安装Redis/Memcached，了解Memcahed的一些基本特性和限制，比如最大的value值，知道PHP跟他们的使用结合；
+
+- Redis了解基本工作原理和使用，了解常规的数据类型，知道什么场景应用什么类型，了解Redis的事务等等。
+
+- 原理部分，能够大概了解Memcached的内存结构（slab机制），redis就了解常用数据类型底层实现存储结构（SDS/链表/SkipList/HashTable）等等，顺便了解一下Redis的事务、RDB、AOF等机制更好
+
+高级
+
+- 在第二阶段的基础上面，能够更深入的应用和学习。
+
+- 因为Memcached不是特别复杂，建议可以把源码进行阅读，特别是内存管理部分，方便深入理解；
+
+- Redis部分，可以多做一些复杂的数据结构的应用（zset来做排行榜排序操作/事务处理用来保证原子性在秒杀类场景应用之类的使用操作）；
+
+- 多涉及aof等同步机制的学习应用，设计一个高可用的Redis应用架构和集群；
+
+- 深入的学习一下Redis的源码，把在第二阶段积累的知识都可以应用上，特别可以阅读一下包括核心事件管理、内存管理、内部核心数据结构等充分学习了解一下。
+
+- 如果有兴趣，可以成为一个Redis方面非常专业的使用者。
+
+ 服务端相关知识
+
+初级
+
+- 基本命令、操作、启动、基本服务配置（包括rpm安装文件，各种服务配置等）；会写简单的shell脚本和awk/sed脚本命令等（ls、tar、ps、top等）
+
+- 熟悉常用工具（VIM、crontab、yum and rpm）
+
+- 做到能够安装配置nginx+php，知道基本的nginx核心配置选项，知道server/fastcgi_pass/access_log等基础配置，目标是能够让nginx+php_fpm顺利工作。
+
+- 能安装配置（syslog、rsync、ftp、nfs、ssh、dns、ntp、mail）
+
+中级
+
+- 在第一阶段的基础上面，能够流畅的使用Shell脚本来完成很多自动化的工作；
+
+- awk/sed/perl也操作的不错，能够完成很多文本处理和数据统计等工作；
+
+- 基本能够安装大部分非特殊的Linux程序（包括各种库、包、第三方依赖等等，比如MongoDB/Redis/Sphinx/Luncene/SVN之类的）；
+
+- 了解基本的Linux服务，知道如何查看Linux的性能指标数据，知道基本的Linux下面的问题跟踪等。
+
+高级
+
+- 除了第二阶段的能力，在Linux下面除了常规的操作和性能监控跟踪，还能够使用很多高级复杂的命令完成工作（watch/tcpdump/starce/ldd/ar等)；
+
+- 在shell脚本方面，已经能够编写比较复杂的shell脚本（超过500行）来协助完成很多包括备份、自动化处理、监控等工作的shell；
+
+- 对awk/sed/perl等应用已经如火纯青，能够随意操作控制处理文本统计分析各种复杂格式的数据；
+
+- 对Linux内部机制有一些了解，对内核模块加载，启动错误处理等等有个基本的处理；同时对一些其他相关的东西也了解，比如NFS、磁盘管理等等；
+
+- 反向代理
+
+- 消息系统
+
+- 分布式存储
+
+- 分布式计算
+
+ 非技术类 - 工作流程 - 业务理解 - 时间管理 - 沟通交流 - 行业文化历史
+

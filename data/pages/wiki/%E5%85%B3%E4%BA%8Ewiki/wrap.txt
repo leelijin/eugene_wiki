@@ -1,1 +1,8 @@
+
+<WRAP box>
+//**__WRAP的使用__**//
+<WRAP center round info 60%>
 [[https://www.dokuwiki.org/plugin:wrap]]
+</WRAP>
+
+</WRAP>

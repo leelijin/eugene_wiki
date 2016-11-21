@@ -169,3 +169,34 @@
 1479637076	::1	E	计划安排:技术类:10-12月计划	eugene_lijin	[Table] 		154
 1479691989	127.0.0.1	E	计划安排:技术类:10-12月计划		外部编辑		7
 1479703554	::1	E	计划安排:技术类:10-12月计划	eugene_lijin	[Table] 		57
+1479691989	127.0.0.1	E	wiki:navigation		外部编辑		14
+1479713921	170.240.177.223	E	wiki:navigation	eugene_lijin			-14
+1479691989	127.0.0.1	E	wiki:关于wiki:wrap		外部编辑		0
+1479717183	170.240.177.223	E	wiki:关于wiki:wrap	eugene_lijin			47
+1479717204	170.240.177.223	E	wiki:关于wiki:wrap	eugene_lijin			38
+1479691989	127.0.0.1	E	wiki:playground:playground		外部编辑		0
+1479717248	127.0.0.1	D	wiki:playground:playground	eugene_lijin	移除		-23
+1479691989	127.0.0.1	E	知识管理:知识性:哲学与思想:人生的智慧		外部编辑		250
+1479717940	127.0.0.1	E	知识管理:知识性:哲学与思想:人生的智慧	eugene_lijin			-498
+1479718922	127.0.0.1	R	知识管理:知识性:哲学与思想:人生的智慧	eugene_lijin	已恢复为旧版 (2016/11/21 01:33)	1479691989	248
+1479691989	127.0.0.1	E	项目:其它项目		外部编辑		0
+1479719343	170.240.177.223	D	项目:其它项目	eugene_lijin	移除		-12
+1479719607	170.240.177.223	E	计划安排:技术类:10-12月计划	eugene_lijin	[Table] 		132
+1479721481	127.0.0.1	E	wiki:navigation	eugene_lijin			-11
+1479721518	127.0.0.1	E	wiki:navigation	eugene_lijin			-1
+1479722432	127.0.0.1	E	wiki:navigation	eugene_lijin			6
+1479722504	127.0.0.1	E	wiki:navigation	eugene_lijin			2
+1479722541	127.0.0.1	E	wiki:navigation	eugene_lijin			-2
+1479722656	127.0.0.1	E	wiki:navigation	eugene_lijin			5
+1479722674	127.0.0.1	E	wiki:navigation	eugene_lijin			0
+1479722930	127.0.0.1	E	wiki:navigation	eugene_lijin			39
+1479722950	127.0.0.1	E	wiki:navigation	eugene_lijin			-37
+1479723057	127.0.0.1	E	wiki:navigation	eugene_lijin			-5
+1479691989	127.0.0.1	E	知识管理:技术:php技能图谱		外部编辑		79
+1479723135	127.0.0.1	D	知识管理:技术:php技能图谱	eugene_lijin	移除		-4842
+1479691989	127.0.0.1	E	知识管理:技术:php		外部编辑		1
+1479723142	127.0.0.1	E	知识管理:技术:php	eugene_lijin			4744
+1479723150	127.0.0.1	E	知识管理:技术:php	eugene_lijin			-18
+1479723927	127.0.0.1	E	wiki:navigation	eugene_lijin			12
+1479691989	127.0.0.1	E	阅读:技术		外部编辑		0
+1479724133	127.0.0.1	D	阅读:技术	eugene_lijin	移除		-6

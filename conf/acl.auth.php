@@ -8,5 +8,5 @@
 # Date: Sun, 12 Jun 2016 11:50:44 +0000
 *	@ALL	0
 start	@ALL	1
-wiki:navi	@ALL	0
-项目:其它项目:手环项目	@shouhuan	1
+wiki:navigation	@ALL	1
+wiki:关于wiki:*	@ALL	1

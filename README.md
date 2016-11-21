@@ -1,1 +1,1 @@
-just personal wiki based on dokuwiki
+just personal wiki
