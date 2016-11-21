@@ -65,4 +65,4 @@ if(preg_match('/^\/_media\/(.*)/', $_SERVER['SCRIPT_NAME'], $m)) {
         return false;
     }
 }
-# 404
+
