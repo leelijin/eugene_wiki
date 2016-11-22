@@ -1,5 +1,6 @@
 
-{{indexmenu>知识管理:#2|js navbar dsort max#3#2}}
+----
+{{indexmenu>:知识管理#2|js navbar context dsort msort}}
 ----
 
 {{indexmenu>项目:#1|js navbar dsort}}
