@@ -200,3 +200,9 @@
 1479723927	127.0.0.1	E	wiki:navigation	eugene_lijin			12
 1479691989	127.0.0.1	E	阅读:技术		外部编辑		0
 1479724133	127.0.0.1	D	阅读:技术	eugene_lijin	移除		-6
+1479777620	170.240.177.223	C	知识管理:技术:技术性	eugene_lijin	创建		3260
+1479777639	170.240.177.223	D	知识管理:技术:技术性	eugene_lijin	移除		-3260
+1479785039	127.0.0.1	E	wiki:navigation	eugene_lijin			6
+1479785108	127.0.0.1	E	wiki:navigation	eugene_lijin			20
+1479785128	127.0.0.1	R	wiki:navigation	eugene_lijin	已恢复为旧版 (2016/11/22 03:23)	1479785039	-20
+1479785135	127.0.0.1	E	wiki:navigation	eugene_lijin			-6
