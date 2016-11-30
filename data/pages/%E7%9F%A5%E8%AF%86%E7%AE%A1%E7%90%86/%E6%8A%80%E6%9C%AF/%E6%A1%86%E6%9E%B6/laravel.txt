@@ -1,1 +1,1 @@
-laravel
+[[http://laravelacademy.org/laravel-docs-5_3|laravel学院的中文文档是比较好的，相较于golaravel,laravel-china等站点，点击打开]]
