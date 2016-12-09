@@ -1,0 +1,14 @@
+<WRAP box>
+[[https://lnmp.org/install.html|lnmp环境一键安装]]
+
+<code>
+仅包含 nginx + mysql + php
+addons : xcache/memcached/Redis/opcache
+</code>
+</WRAP>
+<WRAP box>
+一句话安装 composer 
+<code>
+curl -sS https://getcomposer.org/installer | php
+</code>
+</WRAP>

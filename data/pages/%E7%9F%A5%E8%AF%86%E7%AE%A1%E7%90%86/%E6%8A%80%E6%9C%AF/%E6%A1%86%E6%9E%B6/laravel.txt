@@ -1,1 +1,5 @@
-[[http://laravelacademy.org/laravel-docs-5_3|laravel学院的中文文档是比较好的，相较于golaravel,laravel-china等站点，点击打开]]
+[[http://laravelacademy.org/laravel-docs-5_3|laravel学院的中文文档]]
+
+[[https://laravel.com/docs/5.3|laravel官网文档(英文)]]
+
+[[https://laravel-china.org/docs/5.3|laravel-china]]

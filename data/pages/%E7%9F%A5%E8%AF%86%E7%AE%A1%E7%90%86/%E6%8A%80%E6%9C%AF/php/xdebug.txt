@@ -1,0 +1,3 @@
+[[http://anwork.farbox.com/post/yan-jiu-bi-ji/windows-php-env|Windows 下 Nginx + PHP + Xdebug + PHPStorm 调试环境配置]]
+
+xdebug版本

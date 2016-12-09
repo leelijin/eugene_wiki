@@ -18,5 +18,8 @@ http://www.kancloud.cn/manual/thinkphp5/118011
 
 
 </code>
+
+[[http://www.songzhenjiang.cn/post/328.html|thinkphp5.0未定义变量模板中提示错误]]
+
 </WRAP>
 
