@@ -11,3 +11,4 @@
 
 eugene_lijin:$1$gzjfqVob$pdOHbVuPHtQ2JiYISx80D0:LiJin:594314976@qq.com:admin,user
 lijin:$1$7hEzoEDY$2VKJeliHbOIG/jmC38CpG0:lijin:594314976@qq.com:user
+guest:$1$U6Loca4a$3QMN/.km5ee.2STEjPWiS1:guest:594314976@qq.com:user

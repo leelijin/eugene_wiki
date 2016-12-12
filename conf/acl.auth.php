@@ -10,3 +10,4 @@
 start	@ALL	1
 wiki:navigation	@ALL	1
 wiki:关于wiki:*	@ALL	1
+知识管理:技术:*	@user	1
