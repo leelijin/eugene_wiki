@@ -3,7 +3,6 @@
 <WRAP info>
 http://www.kancloud.cn/manual/thinkphp5/118011
 </WRAP>
-<code>
 配置
 路由
 控制器
@@ -14,12 +13,22 @@ http://www.kancloud.cn/manual/thinkphp5/118011
 日志
 验证
 
+<code>
 
+//前置方法(getConfig等)必须public公有
+    protected $beforeActionList = [
+        'getConfig' => ['only' => 'index,receive'],  
+        'judgeOpenid'=>['only'=>'index,like,receive']
+    ];
 
-
+//构造方法不能return
+    public function _initialize() //构造方法不能return
+    {
+        //获取用户数据，链接带用户参数
+        $this->openid = Request::instance()->param('openid/s');
+        $this->fromOpenid = Request::instance()->param('from_openid/s');
+    }
 </code>
-
-[[http://www.songzhenjiang.cn/post/328.html|thinkphp5.0未定义变量模板中提示错误]]
 
 </WRAP>
 
