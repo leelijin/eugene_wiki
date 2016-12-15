@@ -1,1 +1,640 @@
-===== ng wiki =====
+====== NG wiki ======
+===== 统一说明 =====
+  * 所有接口使用post请求方式
+  * 测试域名: http://1609217uc2.iask.in/
+
+
+
+===== 获取启动信息 =====
+
+  * 地址： api/getstartinfo
+  * 传参：无
+
+^ 参数名称      ^ 含义     ^
+| start_ad  | 启动页广告  |
+| announce  | 游戏公告   |
+
+
+  * 返回值：
+
+<code>
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": {
+        "start_ad": {
+            "title": "启动页广告",
+            "cover": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "second": 3,
+            "link": "http://www.baidu.com"
+        },
+        "announce": {
+            "title": "游戏公告",
+            "content": "两类关卡均有时间限制，后台可设置\r\n关卡通过标准：规定时间内100%完成答题\r\n关卡失败标准：超时未完成或者答题错误\r\n星级场每通过一个关卡获得一个星级奖励\r\n金币场每通过一个关卡获得不等金币奖励\r\n失败则需重新挑战，所有题目随机不重复\r\n",
+            "link": "http://www.baidu.com",
+            "create_time": 1481806140
+        }
+    }
+}
+</code>
+
+
+
+===== 获取验证码 =====
+
+  * 地址： api/sms/getVerifyCode
+  * 传参：
+
+^参数名称^含义^
+|mobile|用户手机号码|
+|from|用途，只有两个值，reg为注册，req为找回密码|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "success",
+    "data": {
+        "vid": 644
+    }
+}
+
+
+===== 用户手机号注册 =====
+
+  * 地址：api/user/reg
+  * 传参：
+
+^参数名称^含义^
+|mobile|用户手机号码|
+|password |用户密码|
+|vid  |获取验证码时返回的vid值|
+|verifyCode|验证码（测试期间统一为123456）|
+
+  * 成功返回值：
+
+<code>
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": {
+        "userInfo": {
+            "uid": "121",
+            "mobile": "18782960000",
+            "nickname": "皮皮熊",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "rank": "土豪",
+            "gold": 2000,
+            "star": 100,
+            "strength": 100
+        },
+        "token": "TsnKXtglprH8ybEOehJZLaDikB9d4qS1UWYQjGCo"
+    }
+}
+</code>
+
+
+===== 登录 =====
+  * 地址：api/user/login
+  * 传参：
+
+^参数名称^含义^
+|mobile|用户手机号码|
+|password|用户密码|
+
+  * 成功返回值：
+
+<code>
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": {
+        "userInfo": {
+            "uid": "121",
+            "mobile": "18782960000",
+            "nickname": "皮皮熊",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "rank": "土豪",
+            "gold": 2000,
+            "star": 100,
+            "strength": 100
+        },
+        "token": "TsnKXtglprH8ybEOehJZLaDikB9d4qS1UWYQjGCo"
+    }
+}
+</code>
+
+
+===== 找回密码 =====
+
+  * 地址：api/user/findPassword
+  * 传参：
+
+^参数名称^含义^
+|mobile|用户手机号码|
+|password|用户密码|
+|repassword|第二次用户密码|
+|vid  |获取验证码时返回的vid值|
+|verifyCode|验证码（测试期间统一为123456）|
+
+  * 成功返回值：
+
+{
+    "code": 0,
+    "message": "success",
+    "data": {}
+}
+
+===== 获取用户当前所持有的道具 =====
+  * 地址：api/user/getUserItems
+  * 传参：
+
+
+  * 成功返回值：
+
+
+
+===== 获取星级场列表 =====
+  * 地址：api/level/starlist
+  * 传参：
+
+  * 成功返回值：
+
+^参数名称^含义^
+|current_level|用户当前所在等级|
+|star_level_info.need_strength|关卡所需体力|
+|star_level_info.question_number|关卡题目数量|
+|star_level_info.time_limit|关卡时间限制|
+
+<code>
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": {
+        "current_level": 4,
+        "star_level_info": [
+            {
+                "id": 1,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200
+            },
+            {
+                "id": 2,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200
+            },
+            {
+                "id": 3,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200
+            },
+            {
+                "id": 4,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200
+            },
+            {
+                "id": 5,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200
+            },
+            {
+                "id": 6,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200
+            },
+            {
+                "id": 7,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200
+            },
+            {
+                "id": 8,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200
+            },
+            {
+                "id": 9,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200
+            },
+            {
+                "id": 10,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200
+            }
+        ]
+    }
+}
+</code>
+
+===== 星级场题目详情 =====
+  * 地址：api/level/starDetail
+  * 传参：
+
+^参数名称^含义^
+|star_id|关卡ID|
+|before_question_id|上一道题目ID,默认为1|
+|limit|获取题目数量|
+
+  * 成功返回值：
+
+^参数名称^含义^
+|right_answer|正确选项 0/1/2/3对应A/B/C/D|
+
+<code>
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": [
+        {
+            "id": 1,
+            "question": "请在以下选择一个正确答案",
+            "answer_options": [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D"
+            ],
+            "right_answer": 0
+        },
+        {
+            "id": 2,
+            "question": "请在以下选择一个正确答案",
+            "answer_options": [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D"
+            ],
+            "right_answer": 1
+        },
+        {
+            "id": 3,
+            "question": "请在以下选择一个正确答案",
+            "answer_options": [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D"
+            ],
+            "right_answer": 2
+        },
+        {
+            "id": 4,
+            "question": "请在以下选择一个正确答案",
+            "answer_options": [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D"
+            ],
+            "right_answer": 3
+        },
+        {
+            "id": 5,
+            "question": "请在以下选择一个正确答案",
+            "answer_options": [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D"
+            ],
+            "right_answer": 0
+        }
+    ]
+}
+</code>
+
+===== 获取金币场列表 =====
+  * 地址：api/level/goldList
+  * 传参：
+
+  * 成功返回值：
+
+^参数名称^含义^
+|current_level|用户当前所在等级|
+|star_level_info.need_strength|关卡所需体力|
+|star_level_info.question_number|关卡题目数量|
+|star_level_info.time_limit|关卡时间限制|
+|star_level_info.reward|通关奖励金币数量|
+|star_level_info.challenge_times|通关次数|
+
+<code>
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": {
+        "current_level": 5,
+        "star_level_info": [
+            {
+                "id": 1,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200,
+                "reward": 2000,
+                "challenge_times": 2
+            },
+            {
+                "id": 2,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200,
+                "reward": 2000,
+                "challenge_times": 2
+            },
+            {
+                "id": 3,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200,
+                "reward": 2000,
+                "challenge_times": 2
+            },
+            {
+                "id": 4,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200,
+                "reward": 2000,
+                "challenge_times": 2
+            },
+            {
+                "id": 5,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200,
+                "reward": 2000,
+                "challenge_times": 1
+            },
+            {
+                "id": 6,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200,
+                "reward": 2000,
+                "challenge_times": 0
+            },
+            {
+                "id": 7,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200,
+                "reward": 2000,
+                "challenge_times": 0
+            },
+            {
+                "id": 8,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200,
+                "reward": 2000,
+                "challenge_times": 0
+            },
+            {
+                "id": 9,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200,
+                "reward": 2000,
+                "challenge_times": 0
+            },
+            {
+                "id": 10,
+                "need_strength": 40,
+                "question_number": 100,
+                "time_limit": 1200,
+                "reward": 2000,
+                "challenge_times": 0
+            }
+        ]
+    }
+}
+</code>
+
+===== 金币场题目详情 =====
+  * 地址：api/level/goldDetail
+  * 传参：
+
+^参数名称^含义^
+|gold_id|关卡ID|
+|before_question_id|上一道题目ID,默认为1|
+|limit|获取题目数量|
+
+  * 成功返回值：
+
+^参数名称^含义^
+|right_answer|正确选项 0/1/2/3对应A/B/C/D|
+
+<code>
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": [
+        {
+            "id": 1,
+            "question": "请在以下选择一个正确答案",
+            "answer_options": [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D"
+            ],
+            "right_answer": 0
+        },
+        {
+            "id": 2,
+            "question": "请在以下选择一个正确答案",
+            "answer_options": [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D"
+            ],
+            "right_answer": 1
+        },
+        {
+            "id": 3,
+            "question": "请在以下选择一个正确答案",
+            "answer_options": [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D"
+            ],
+            "right_answer": 2
+        },
+        {
+            "id": 4,
+            "question": "请在以下选择一个正确答案",
+            "answer_options": [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D"
+            ],
+            "right_answer": 3
+        },
+        {
+            "id": 5,
+            "question": "请在以下选择一个正确答案",
+            "answer_options": [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D"
+            ],
+            "right_answer": 0
+        }
+    ]
+}
+</code>
+
+
+===== 道具商城 =====
+  * 地址：api/items/store
+  * 传参：
+
+  * 成功返回值：
+
+
+<code>
+
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": [
+        {
+            "id": 1,
+            "title": "时间暂定卡",
+            "need_gold": 10000,
+            "already_have": 0
+        },
+        {
+            "id": 1,
+            "title": "延时挑战卡",
+            "need_gold": 20000,
+            "already_have": 2
+        },
+        {
+            "id": 1,
+            "title": "重复挑战卡",
+            "need_gold": 30000,
+            "already_have": 0
+        }
+    ]
+}
+</code>
+
+===== 星级场排名 =====
+  * 地址：api/rank/star
+  * 传参：
+
+  * 成功返回值：
+
+
+<code>
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": [
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "star": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "star": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "star": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "star": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "star": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "star": 10200
+        }
+    ]
+}
+</code>
+
+===== 金币场排名 =====
+  * 地址：api/rank/gold
+  * 传参：
+
+  * 成功返回值：
+
+<code>
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": [
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "gold": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "gold": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "gold": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "gold": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "gold": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "gold": 10200
+        }
+    ]
+}
+</code>
