@@ -1,18 +1,33 @@
 ====== NG wiki ======
 ===== 统一说明 =====
-  * 所有接口使用post请求方式
+  * 如接口无单独指明请求方式，所有接口使用post请求
   * 测试域名: http://1609217uc2.iask.in/
+  * 每个接口必传参数
+
+^ 参数名        ^ 参数值            ^ 选项                    ^
+| uid        | 用户             | 如果用户登录，用户相关接口必传       |
+| token      | 用户标识           | 如果用户登录，用户相关接口必传（上线后）  |
+| device_id  | 设备号            | 选传                    |
+| client     | ios / android  | 选传                    |
 
 
 
-===== 获取启动信息 =====
+===== 获取服务器当前时间戳 =====
 
-  * 地址： api/getstartinfo
+  * 地址： timestamp
+  * 请求方式：GET
   * 传参：无
+  * 返回值：
 
-^ 参数名称      ^ 含义     ^
-| start_ad  | 启动页广告  |
-| announce  | 游戏公告   |
+<code>
+1481853672
+</code>
+
+
+===== 获取启动页广告 =====
+
+  * 地址： api/startad
+  * 传参：无
 
 
   * 返回值：
@@ -22,42 +37,67 @@
     "error_code": 0,
     "message": "请求成功",
     "data": {
-        "start_ad": {
             "title": "启动页广告",
             "cover": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
             "second": 3,
             "link": "http://www.baidu.com"
-        },
-        "announce": {
-            "title": "游戏公告",
-            "content": "两类关卡均有时间限制，后台可设置\r\n关卡通过标准：规定时间内100%完成答题\r\n关卡失败标准：超时未完成或者答题错误\r\n星级场每通过一个关卡获得一个星级奖励\r\n金币场每通过一个关卡获得不等金币奖励\r\n失败则需重新挑战，所有题目随机不重复\r\n",
-            "link": "http://www.baidu.com",
-            "create_time": 1481806140
-        }
     }
 }
 </code>
 
 
 
-===== 获取验证码 =====
+===== 获取通知-公告/好友请求 =====
 
-  * 地址： api/sms/getVerifyCode
-  * 传参：
+  * 地址： api/index/notice
+  * 传参：无
+  * 返回值：
 
-^参数名称^含义^
-|mobile|用户手机号码|
-|from|用途，只有两个值，reg为注册，req为找回密码|
+^ 参数名        ^ 参数值            ^ 
+| announce| 公告             |        
+| friend_requests| 添加好友请求           | 
+| friend_strength| 好友邀请加体力请求            | 
 
-  * 成功返回值：
-
+<code>
 {
-    "code": 0,
-    "message": "success",
+    "error_code": 0,
+    "message": "请求成功",
     "data": {
-        "vid": 644
+        "announce": {
+            "title": "游戏公告",
+            "content": "两类关卡均有时间限制，后台可设置\r\n关卡通过标准：规定时间内100%完成答题\r\n关卡失败标准：超时未完成或者答题错误\r\n星级场每通过一个关卡获得一个星级奖励\r\n金币场每通过一个关卡获得不等金币奖励\r\n失败则需重新挑战，所有题目随机不重复\r\n",
+            "link": "http://www.baidu.com",
+            "create_time": 1481878081
+        },
+        "friend_requests": [
+            {
+                "uid": 1,
+                "nickname": "nickname1",
+                "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg"
+            },
+            {
+                "uid": 1,
+                "nickname": "nickname1",
+                "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg"
+            }
+        ],
+        "friend_strength": [
+            {
+                "uid": 1,
+                "nickname": "nickname1",
+                "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg"
+            },
+            {
+                "uid": 1,
+                "nickname": "nickname1",
+                "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg"
+            }
+        ]
     }
 }
+</code>
+
+
 
 
 ===== 用户手机号注册 =====
@@ -68,8 +108,6 @@
 ^参数名称^含义^
 |mobile|用户手机号码|
 |password |用户密码|
-|vid  |获取验证码时返回的vid值|
-|verifyCode|验证码（测试期间统一为123456）|
 
   * 成功返回值：
 
@@ -125,25 +163,39 @@
 </code>
 
 
-===== 找回密码 =====
-
-  * 地址：api/user/findPassword
+===== 三方登录 =====
+  * 地址：api/user/thirdLogin
   * 传参：
 
 ^参数名称^含义^
-|mobile|用户手机号码|
-|password|用户密码|
-|repassword|第二次用户密码|
-|vid  |获取验证码时返回的vid值|
-|verifyCode|验证码（测试期间统一为123456）|
+|uuid|用户uuid|
+|avatar|用户头像|
+|nickname|用户昵称|
 
   * 成功返回值：
 
+<code>
 {
-    "code": 0,
-    "message": "success",
-    "data": {}
+    "error_code": 0,
+    "message": "请求成功",
+    "data": {
+        "userInfo": {
+            "uid": "121",
+            "mobile": "18782960000",
+            "nickname": "皮皮熊",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "rank": "土豪",
+            "gold": 2000,
+            "star": 100,
+            "strength": 100
+        },
+        "token": "TsnKXtglprH8ybEOehJZLaDikB9d4qS1UWYQjGCo"
+    }
 }
+</code>
+
+
+
 
 ===== 获取用户当前所持有的道具 =====
   * 地址：api/user/getUserItems
