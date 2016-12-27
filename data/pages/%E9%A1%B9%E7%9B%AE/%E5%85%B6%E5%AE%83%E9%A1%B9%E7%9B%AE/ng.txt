@@ -312,6 +312,9 @@
         {
             "id": 1,
             "question": "请在以下选择一个正确答案",
+            "content": "问题描述",
+            "image1": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "image2": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
             "answer_options": [
                 "选项A",
                 "选项B",
@@ -323,6 +326,9 @@
         {
             "id": 2,
             "question": "请在以下选择一个正确答案",
+            "content": "问题描述",
+            "image1": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "image2": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
             "answer_options": [
                 "选项A",
                 "选项B",
@@ -334,6 +340,9 @@
         {
             "id": 3,
             "question": "请在以下选择一个正确答案",
+            "content": "问题描述",
+            "image1": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "image2": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
             "answer_options": [
                 "选项A",
                 "选项B",
@@ -345,6 +354,9 @@
         {
             "id": 4,
             "question": "请在以下选择一个正确答案",
+            "content": "问题描述",
+            "image1": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "image2": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
             "answer_options": [
                 "选项A",
                 "选项B",
@@ -356,6 +368,9 @@
         {
             "id": 5,
             "question": "请在以下选择一个正确答案",
+            "content": "问题描述",
+            "image1": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "image2": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
             "answer_options": [
                 "选项A",
                 "选项B",
@@ -496,6 +511,9 @@
         {
             "id": 1,
             "question": "请在以下选择一个正确答案",
+            "content": "问题描述",
+            "image1": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "image2": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
             "answer_options": [
                 "选项A",
                 "选项B",
@@ -507,6 +525,9 @@
         {
             "id": 2,
             "question": "请在以下选择一个正确答案",
+            "content": "问题描述",
+            "image1": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "image2": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
             "answer_options": [
                 "选项A",
                 "选项B",
@@ -518,6 +539,9 @@
         {
             "id": 3,
             "question": "请在以下选择一个正确答案",
+            "content": "问题描述",
+            "image1": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "image2": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
             "answer_options": [
                 "选项A",
                 "选项B",
@@ -529,6 +553,9 @@
         {
             "id": 4,
             "question": "请在以下选择一个正确答案",
+            "content": "问题描述",
+            "image1": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "image2": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
             "answer_options": [
                 "选项A",
                 "选项B",
@@ -540,6 +567,9 @@
         {
             "id": 5,
             "question": "请在以下选择一个正确答案",
+            "content": "问题描述",
+            "image1": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "image2": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
             "answer_options": [
                 "选项A",
                 "选项B",
