@@ -1,5 +1,49 @@
+====== laravel ======
+
+
 [[http://laravelacademy.org/laravel-docs-5_3|laravel学院的中文文档]]
 
 [[https://laravel.com/docs/5.3|laravel官网文档(英文)]]
 
 [[https://laravel-china.org/docs/5.3|laravel-china]]
+
+[[https://www.insp.top/learn-laravel-container|laravel 学习笔记 —— 神奇的服务容器]]
+
+[[https://segmentfault.com/a/1190000005085328|Laravel学习笔记之Seeder填充数据小技巧]]
+
+<code>
+barryvdh/laravel-ide-helper
+
+php artisan ide-helper:generate
+
+php artisan ide-helper:models
+
+mpociot/laravel-test-factory-helper
+
+php artisan test-factory-helper:generate
+
+</code>
+
+
+
+
+[[http://www.cnblogs.com/shanyou/archive/2009/09/21/1570716.html|面向对象设计的SOLID原则]]
+
+<WRAP>
+|  SRP  |  The Single Responsibility Principle  |  单一责任原则  |
+|  OCP  |  The Open Closed Principle            |  开放封闭原则  |
+|  LSP  |  The Liskov Substitution Principle    |  里氏替换原则  |
+|  DIP  |  The Dependency Inversion Principle   |  依赖倒置原则  |
+|  ISP  |  The Interface Segregation Principle  |  接口分离原则  |
+</WRAP>
+
+
+====== Laravel 的中大型專案架構 ======
+
+
+[[http://oomusou.io/laravel/laravel-architecture/]]
+
+
+====== laravel ======
+
+[[http://www.jianshu.com/p/3793c2a9436f|Laravel 填充数据Faker]]

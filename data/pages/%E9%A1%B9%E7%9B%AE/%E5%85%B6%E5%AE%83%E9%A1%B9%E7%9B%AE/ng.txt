@@ -24,7 +24,7 @@
 </code>
 
 
-===== 获取启动页广告 =====
+===== 获取启动页广告（测试通过） =====
 
   * 地址： api/startad
   * 传参：无
@@ -105,9 +105,11 @@
   * 地址：api/user/reg
   * 传参：
 
-^参数名称^含义^
-|mobile|用户手机号码|
-|password |用户密码|
+^ 参数名称      ^ 含义           ^
+| mobile    | 用户手机号码       |
+| password  | 用户密码         |
+| nickname  | 用户昵称         |
+| avatar    | 上传接口返回的头像链接  |
 
   * 成功返回值：
 
@@ -124,15 +126,34 @@
             "rank": "土豪",
             "gold": 2000,
             "star": 100,
-            "strength": 100
+            "strength": 100,
+            "token": "TsnKXtglprH8ybEOehJZLaDikB9d4qS1UWYQjGCo"
         },
-        "token": "TsnKXtglprH8ybEOehJZLaDikB9d4qS1UWYQjGCo"
+        
     }
 }
 </code>
 
+===== 上传用户头像 =====
+ * 地址：api/user/uploadAvatar(和通用接口的上传图片类似,返回值不同)
 
-===== 登录 =====
+ * 传参：
+
+^ 参数名称    ^ 含义    ^
+| avatar  | 表单数组  |
+
+  * 成功返回值(用户头像)：
+
+<code>
+{
+    "error_code": 0,
+    "message": "头像保存成功",
+    "data": {
+        "avatar": "http://ng_local/storage/app/avatars/3f32d8b3a3c03ec1b0eb12ff18c1a3c0.png"
+    }
+}
+</code>
+===== 登录（测试通过） =====
   * 地址：api/user/login
   * 传参：
 
@@ -155,9 +176,10 @@
             "rank": "土豪",
             "gold": 2000,
             "star": 100,
-            "strength": 100
+            "strength": 100,
+            "token": "TsnKXtglprH8ybEOehJZLaDikB9d4qS1UWYQjGCo"
         },
-        "token": "TsnKXtglprH8ybEOehJZLaDikB9d4qS1UWYQjGCo"
+        
     }
 }
 </code>
@@ -187,11 +209,34 @@
             "rank": "土豪",
             "gold": 2000,
             "star": 100,
-            "strength": 100
+            "strength": 100,
+            "token": "TsnKXtglprH8ybEOehJZLaDikB9d4qS1UWYQjGCo"
         },
-        "token": "TsnKXtglprH8ybEOehJZLaDikB9d4qS1UWYQjGCo"
+        
     }
 }
+</code>
+
+
+===== 好友列表 =====
+  * 地址：api/friends
+  * 传参：
+
+  * 成功返回值：
+
+<code>
+
+</code>
+
+
+===== 添加好友 =====
+  * 地址：api/friends/add
+  * 传参：
+
+  * 成功返回值：
+
+<code>
+
 </code>
 
 
@@ -583,6 +628,29 @@
 </code>
 
 
+===== 通关提交 =====
+  * 地址：api/level/submit
+  * 传参：
+
+^参数名称^含义^
+|star_id|参数任选其一，星级场传此参数|
+|gold_id|参数任选其一，金币场传此参数|
+
+  * 成功返回值：
+
+
+<code>
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": {
+        "message": "恭喜过关"
+    }
+}
+</code>
+
+
+
 ===== 道具商城 =====
   * 地址：api/items/store
   * 传参：
@@ -620,7 +688,7 @@
 
 ===== 星级场排名 =====
   * 地址：api/rank/star
-  * 传参：
+  * 传参：friends = 1 则获取好友排名
 
   * 成功返回值：
 
@@ -672,7 +740,7 @@
 
 ===== 金币场排名 =====
   * 地址：api/rank/gold
-  * 传参：
+  * 传参：friends = 1 则获取好友排名
 
   * 成功返回值：
 

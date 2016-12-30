@@ -1,5 +1,27 @@
-a:2:{s:7:"current";a:9:{s:4:"date";a:2:{s:7:"created";i:1465742957;s:8:"modified";i:1480587852;}s:7:"creator";s:5:"lijin";s:4:"user";s:12:"eugene_lijin";s:11:"last_change";a:8:{s:4:"date";i:1480587852;s:2:"ip";s:9:"127.0.0.1";s:4:"type";s:1:"E";s:2:"id";s:34:"知识管理:技术:框架:laravel";s:4:"user";s:12:"eugene_lijin";s:3:"sum";s:0:"";s:5:"extra";s:0:"";s:10:"sizechange";i:41;}s:11:"contributor";a:1:{s:12:"eugene_lijin";s:5:"LiJin";}s:11:"plugin_move";a:0:{}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}s:11:"description";a:1:{s:8:"abstract";s:72:"laravel学院的中文文档
+a:2:{s:7:"current";a:10:{s:4:"date";a:2:{s:7:"created";i:1465742957;s:8:"modified";i:1483077687;}s:7:"creator";s:5:"lijin";s:4:"user";s:12:"eugene_lijin";s:11:"last_change";a:8:{s:4:"date";i:1483077687;s:2:"ip";s:9:"127.0.0.1";s:4:"type";s:1:"E";s:2:"id";s:34:"知识管理:技术:框架:laravel";s:4:"user";s:12:"eugene_lijin";s:3:"sum";s:35:"[Laravel 的中大型專案架構] ";s:5:"extra";s:0:"";s:10:"sizechange";i:92;}s:11:"contributor";a:1:{s:12:"eugene_lijin";s:5:"LiJin";}s:11:"plugin_move";a:0:{}s:5:"title";s:7:"laravel";s:11:"description";a:2:{s:15:"tableofcontents";a:3:{i:0;a:4:{s:3:"hid";s:7:"laravel";s:5:"title";s:7:"laravel";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:1;a:4:{s:3:"hid";s:32:"laravel_的中大型專案架構";s:5:"title";s:32:"Laravel 的中大型專案架構";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:2;a:4:{s:3:"hid";s:8:"laravel1";s:5:"title";s:7:"laravel";s:4:"type";s:2:"ul";s:5:"level";i:1;}}s:8:"abstract";s:459:"laravel
+
+laravel学院的中文文档
 
 laravel官网文档(英文)
 
-laravel-china";}s:8:"relation";a:1:{s:10:"firstimage";s:0:"";}}s:10:"persistent";a:6:{s:4:"date";a:2:{s:7:"created";i:1465742957;s:8:"modified";i:1480587852;}s:7:"creator";s:5:"lijin";s:4:"user";s:12:"eugene_lijin";s:11:"last_change";a:8:{s:4:"date";i:1480587852;s:2:"ip";s:9:"127.0.0.1";s:4:"type";s:1:"E";s:2:"id";s:34:"知识管理:技术:框架:laravel";s:4:"user";s:12:"eugene_lijin";s:3:"sum";s:0:"";s:5:"extra";s:0:"";s:10:"sizechange";i:41;}s:11:"contributor";a:1:{s:12:"eugene_lijin";s:5:"LiJin";}s:11:"plugin_move";a:0:{}}}
+laravel-china
+
+laravel 学习笔记 —— 神奇的服务容器
+
+Laravel学习笔记之Seeder填充数据小技巧
+
+
+barryvdh/laravel-ide-helper
+
+php artisan ide-helper:generate
+
+php artisan ide-helper:models
+
+mpociot/laravel-test-factory-helper
+
+php artisan test-factory-helper:generate
+
+
+
+面向对象设计的SOLID原则
+  SRP    The Single Responsibility Principle    单一责任原则";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}s:8:"relation";a:1:{s:10:"firstimage";s:0:"";}}s:10:"persistent";a:6:{s:4:"date";a:2:{s:7:"created";i:1465742957;s:8:"modified";i:1483077687;}s:7:"creator";s:5:"lijin";s:4:"user";s:12:"eugene_lijin";s:11:"last_change";a:8:{s:4:"date";i:1483077687;s:2:"ip";s:9:"127.0.0.1";s:4:"type";s:1:"E";s:2:"id";s:34:"知识管理:技术:框架:laravel";s:4:"user";s:12:"eugene_lijin";s:3:"sum";s:35:"[Laravel 的中大型專案架構] ";s:5:"extra";s:0:"";s:10:"sizechange";i:92;}s:11:"contributor";a:1:{s:12:"eugene_lijin";s:5:"LiJin";}s:11:"plugin_move";a:0:{}}}
