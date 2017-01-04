@@ -47,3 +47,5 @@ php artisan test-factory-helper:generate
 ====== laravel ======
 
 [[http://www.jianshu.com/p/3793c2a9436f|Laravel 填充数据Faker]]
+
+[[https://segmentfault.com/a/1190000006221897|下载量最高 100 个 Laravel 扩展包推荐]]

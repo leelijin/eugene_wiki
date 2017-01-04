@@ -219,13 +219,24 @@
 
 
 ===== 好友列表 =====
-  * 地址：api/friends
+  * 地址：api/friends/mine
   * 传参：
 
   * 成功返回值：
 
 <code>
-
+[
+    {
+        "uid": 2,
+        "nickname": "Anais Legros V",
+        "avatar": "http://ng_local/storage/app/avatars/3f32d8b3a3c03ec1b0eb12ff18c1a3c0.png"
+    },
+    {
+        "uid": 29,
+        "nickname": "chelsea.weissnat",
+        "avatar": "http://lorempixel.com/80/80/?48330"
+    }
+]
 </code>
 
 
@@ -233,26 +244,87 @@
   * 地址：api/friends/add
   * 传参：
 
+^参数名称^含义^
+|to_uid|对方用户uid|
+
   * 成功返回值：
 
 <code>
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": {
+        "message": "成功发送添加好友请求"
+    }
+}
+</code>
 
+
+===== 处理好友请求 =====
+  * 地址：api/friends/handle
+  * 传参：
+
+^参数名称^含义^
+|id|请求ID|
+|request|accept或reject 两个值任选其一|
+
+  * 成功返回值：
+
+<code>
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": {
+        "message": "您已成功添加好友"
+    }
+}
+</code>
+
+
+===== 赠送体力请求 =====
+  * 地址：api/friends/strengthRequest
+  * 传参：
+
+^参数名称^含义^
+|to_uid|对方用户uid|
+
+  * 成功返回值：
+
+<code>
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": {
+        "message": "成功发送体力请求"
+    }
+}
+</code>
+
+===== 处理体力请求 =====
+  * 地址：api/friends/strengthHandle
+  * 传参：
+
+^参数名称^含义^
+|id|请求ID|
+|request|accept或reject 两个值任选其一|
+
+  * 成功返回值：
+
+<code>
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": {
+        "message": "您已成功赠送体力"
+    }
+}
 </code>
 
 
 
 
-===== 获取用户当前所持有的道具 =====
-  * 地址：api/user/getUserItems
-  * 传参：
-
-
-  * 成功返回值：
-
-
-
 ===== 获取星级场列表 =====
-  * 地址：api/level/starlist
+  * 地址：api/level/starList
   * 传参：
 
   * 成功返回值：
@@ -652,7 +724,7 @@
 
 
 ===== 道具商城 =====
-  * 地址：api/items/store
+  * 地址：api/item/store
   * 传参：
 
   * 成功返回值：
@@ -685,6 +757,16 @@
     ]
 }
 </code>
+
+
+===== 获取用户当前所持有的道具 =====
+  * 地址：api/item/user
+  * 传参：
+
+
+  * 成功返回值：
+
+
 
 ===== 星级场排名 =====
   * 地址：api/rank/star

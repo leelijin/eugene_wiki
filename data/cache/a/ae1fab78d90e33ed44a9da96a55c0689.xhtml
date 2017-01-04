@@ -52,7 +52,7 @@
 
 </div>
 <!-- EDIT4 SECTION "获取服务器当前时间戳" [590-743] -->
-<h2 class="sectionedit5" id="获取启动页广告">获取启动页广告</h2>
+<h2 class="sectionedit5" id="获取启动页广告_测试通过">获取启动页广告（测试通过）</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址： api/startad</div>
@@ -76,7 +76,7 @@
 }</pre>
 
 </div>
-<!-- EDIT5 SECTION "获取启动页广告" [744-1119] -->
+<!-- EDIT5 SECTION "获取启动页广告（测试通过）" [744-1137] -->
 <h2 class="sectionedit6" id="获取通知-公告好友请求">获取通知-公告/好友请求</h2>
 <div class="level2">
 <ul>
@@ -103,7 +103,7 @@
 		<td class="col0"> friend_strength</td><td class="col1 leftalign"> 好友邀请加体力请求            </td>
 	</tr>
 </table></div>
-<!-- EDIT7 TABLE [1232-1429] --><pre class="code">{
+<!-- EDIT7 TABLE [1250-1447] --><pre class="code">{
     &quot;error_code&quot;: 0,
     &quot;message&quot;: &quot;请求成功&quot;,
     &quot;data&quot;: {
@@ -141,7 +141,7 @@
 }</pre>
 
 </div>
-<!-- EDIT6 SECTION "获取通知-公告/好友请求" [1120-2825] -->
+<!-- EDIT6 SECTION "获取通知-公告/好友请求" [1138-2843] -->
 <h2 class="sectionedit8" id="用户手机号注册">用户手机号注册</h2>
 <div class="level2">
 <ul>
@@ -153,17 +153,23 @@
 <div class="table sectionedit9"><table class="inline">
 	<thead>
 	<tr class="row0">
-		<th class="col0">参数名称</th><th class="col1">含义</th>
+		<th class="col0 leftalign"> 参数名称      </th><th class="col1 leftalign"> 含义           </th>
 	</tr>
 	</thead>
 	<tr class="row1">
-		<td class="col0">mobile</td><td class="col1">用户手机号码</td>
+		<td class="col0 leftalign"> mobile    </td><td class="col1 leftalign"> 用户手机号码       </td>
 	</tr>
 	<tr class="row2">
-		<td class="col0">password </td><td class="col1">用户密码</td>
+		<td class="col0 leftalign"> password  </td><td class="col1 leftalign"> 用户密码         </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign"> nickname  </td><td class="col1 leftalign"> 用户昵称         </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0 leftalign"> avatar    </td><td class="col1 leftalign"> 上传接口返回的头像链接  </td>
 	</tr>
 </table></div>
-<!-- EDIT9 TABLE [2902-2976] --><ul>
+<!-- EDIT9 TABLE [2920-3126] --><ul>
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
@@ -179,15 +185,50 @@
             &quot;rank&quot;: &quot;土豪&quot;,
             &quot;gold&quot;: 2000,
             &quot;star&quot;: 100,
-            &quot;strength&quot;: 100
+            &quot;strength&quot;: 100,
+            &quot;token&quot;: &quot;TsnKXtglprH8ybEOehJZLaDikB9d4qS1UWYQjGCo&quot;
         },
-        &quot;token&quot;: &quot;TsnKXtglprH8ybEOehJZLaDikB9d4qS1UWYQjGCo&quot;
+        
     }
 }</pre>
 
 </div>
-<!-- EDIT8 SECTION "用户手机号注册" [2826-3473] -->
-<h2 class="sectionedit10" id="登录">登录</h2>
+<!-- EDIT8 SECTION "用户手机号注册" [2844-3636] -->
+<h2 class="sectionedit10" id="上传用户头像">上传用户头像</h2>
+<div class="level2">
+
+<p>
+ * 地址：api/user/uploadAvatar(和通用接口的上传图片类似,返回值不同)
+</p>
+
+<p>
+ * 传参：
+</p>
+<div class="table sectionedit11"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 leftalign"> 参数名称    </th><th class="col1 leftalign"> 含义    </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 leftalign"> avatar  </td><td class="col1 leftalign"> 表单数组  </td>
+	</tr>
+</table></div>
+<!-- EDIT11 TABLE [3771-3830] --><ul>
+<li class="level1"><div class="li"> 成功返回值(用户头像)：</div>
+</li>
+</ul>
+<pre class="code">{
+    &quot;error_code&quot;: 0,
+    &quot;message&quot;: &quot;头像保存成功&quot;,
+    &quot;data&quot;: {
+        &quot;avatar&quot;: &quot;http://ng_local/storage/app/avatars/3f32d8b3a3c03ec1b0eb12ff18c1a3c0.png&quot;
+    }
+}</pre>
+
+</div>
+<!-- EDIT10 SECTION "上传用户头像" [3637-4059] -->
+<h2 class="sectionedit12" id="登录_测试通过">登录（测试通过）</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/user/login</div>
@@ -195,7 +236,7 @@
 <li class="level1"><div class="li"> 传参：</div>
 </li>
 </ul>
-<div class="table sectionedit11"><table class="inline">
+<div class="table sectionedit13"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -208,7 +249,7 @@
 		<td class="col0">password</td><td class="col1">用户密码</td>
 	</tr>
 </table></div>
-<!-- EDIT11 TABLE [3536-3609] --><ul>
+<!-- EDIT13 TABLE [4140-4213] --><ul>
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
@@ -224,15 +265,16 @@
             &quot;rank&quot;: &quot;土豪&quot;,
             &quot;gold&quot;: 2000,
             &quot;star&quot;: 100,
-            &quot;strength&quot;: 100
+            &quot;strength&quot;: 100,
+            &quot;token&quot;: &quot;TsnKXtglprH8ybEOehJZLaDikB9d4qS1UWYQjGCo&quot;
         },
-        &quot;token&quot;: &quot;TsnKXtglprH8ybEOehJZLaDikB9d4qS1UWYQjGCo&quot;
+        
     }
 }</pre>
 
 </div>
-<!-- EDIT10 SECTION "登录" [3474-4106] -->
-<h2 class="sectionedit12" id="三方登录">三方登录</h2>
+<!-- EDIT12 SECTION "登录（测试通过）" [4060-4724] -->
+<h2 class="sectionedit14" id="三方登录">三方登录</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/user/thirdLogin</div>
@@ -240,7 +282,7 @@
 <li class="level1"><div class="li"> 传参：</div>
 </li>
 </ul>
-<div class="table sectionedit13"><table class="inline">
+<div class="table sectionedit15"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -256,7 +298,7 @@
 		<td class="col0">nickname</td><td class="col1">用户昵称</td>
 	</tr>
 </table></div>
-<!-- EDIT13 TABLE [4180-4265] --><ul>
+<!-- EDIT15 TABLE [4798-4883] --><ul>
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
@@ -272,18 +314,19 @@
             &quot;rank&quot;: &quot;土豪&quot;,
             &quot;gold&quot;: 2000,
             &quot;star&quot;: 100,
-            &quot;strength&quot;: 100
+            &quot;strength&quot;: 100,
+            &quot;token&quot;: &quot;TsnKXtglprH8ybEOehJZLaDikB9d4qS1UWYQjGCo&quot;
         },
-        &quot;token&quot;: &quot;TsnKXtglprH8ybEOehJZLaDikB9d4qS1UWYQjGCo&quot;
+        
     }
 }</pre>
 
 </div>
-<!-- EDIT12 SECTION "三方登录" [4107-4764] -->
-<h2 class="sectionedit14" id="获取用户当前所持有的道具">获取用户当前所持有的道具</h2>
+<!-- EDIT14 SECTION "三方登录" [4725-5394] -->
+<h2 class="sectionedit16" id="好友列表">好友列表</h2>
 <div class="level2">
 <ul>
-<li class="level1"><div class="li"> 地址：api/user/getUserItems</div>
+<li class="level1"><div class="li"> 地址：api/friends/mine</div>
 </li>
 <li class="level1"><div class="li"> 传参：</div>
 </li>
@@ -292,13 +335,159 @@
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
+<pre class="code">[
+    {
+        &quot;uid&quot;: 2,
+        &quot;nickname&quot;: &quot;Anais Legros V&quot;,
+        &quot;avatar&quot;: &quot;http://ng_local/storage/app/avatars/3f32d8b3a3c03ec1b0eb12ff18c1a3c0.png&quot;
+    },
+    {
+        &quot;uid&quot;: 29,
+        &quot;nickname&quot;: &quot;chelsea.weissnat&quot;,
+        &quot;avatar&quot;: &quot;http://lorempixel.com/80/80/?48330&quot;
+    }
+]</pre>
 
 </div>
-<!-- EDIT14 SECTION "获取用户当前所持有的道具" [4765-4890] -->
-<h2 class="sectionedit15" id="获取星级场列表">获取星级场列表</h2>
+<!-- EDIT16 SECTION "好友列表" [5395-5797] -->
+<h2 class="sectionedit17" id="添加好友">添加好友</h2>
 <div class="level2">
 <ul>
-<li class="level1"><div class="li"> 地址：api/level/starlist</div>
+<li class="level1"><div class="li"> 地址：api/friends/add</div>
+</li>
+<li class="level1"><div class="li"> 传参：</div>
+</li>
+</ul>
+<div class="table sectionedit18"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0">参数名称</th><th class="col1">含义</th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0">to_uid</td><td class="col1">对方用户uid</td>
+	</tr>
+</table></div>
+<!-- EDIT18 TABLE [5867-5913] --><ul>
+<li class="level1"><div class="li"> 成功返回值：</div>
+</li>
+</ul>
+<pre class="code">{
+    &quot;error_code&quot;: 0,
+    &quot;message&quot;: &quot;请求成功&quot;,
+    &quot;data&quot;: {
+        &quot;message&quot;: &quot;成功发送添加好友请求&quot;
+    }
+}</pre>
+
+</div>
+<!-- EDIT17 SECTION "添加好友" [5798-6083] -->
+<h2 class="sectionedit19" id="处理好友请求">处理好友请求</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> 地址：api/friends/handle</div>
+</li>
+<li class="level1"><div class="li"> 传参：</div>
+</li>
+</ul>
+<div class="table sectionedit20"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0">参数名称</th><th class="col1">含义</th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0">id</td><td class="col1">请求ID</td>
+	</tr>
+	<tr class="row2">
+		<td class="col0">request</td><td class="col1">accept或reject 两个值任选其一</td>
+	</tr>
+</table></div>
+<!-- EDIT20 TABLE [6162-6245] --><ul>
+<li class="level1"><div class="li"> 成功返回值：</div>
+</li>
+</ul>
+<pre class="code">{
+    &quot;error_code&quot;: 0,
+    &quot;message&quot;: &quot;请求成功&quot;,
+    &quot;data&quot;: {
+        &quot;message&quot;: &quot;您已成功添加好友&quot;
+    }
+}</pre>
+
+</div>
+<!-- EDIT19 SECTION "处理好友请求" [6084-6409] -->
+<h2 class="sectionedit21" id="赠送体力请求">赠送体力请求</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> 地址：api/friends/strengthRequest</div>
+</li>
+<li class="level1"><div class="li"> 传参：</div>
+</li>
+</ul>
+<div class="table sectionedit22"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0">参数名称</th><th class="col1">含义</th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0">to_uid</td><td class="col1">对方用户uid</td>
+	</tr>
+</table></div>
+<!-- EDIT22 TABLE [6497-6543] --><ul>
+<li class="level1"><div class="li"> 成功返回值：</div>
+</li>
+</ul>
+<pre class="code">{
+    &quot;error_code&quot;: 0,
+    &quot;message&quot;: &quot;请求成功&quot;,
+    &quot;data&quot;: {
+        &quot;message&quot;: &quot;成功发送体力请求&quot;
+    }
+}</pre>
+
+</div>
+<!-- EDIT21 SECTION "赠送体力请求" [6410-6706] -->
+<h2 class="sectionedit23" id="处理体力请求">处理体力请求</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> 地址：api/friends/strengthHandle</div>
+</li>
+<li class="level1"><div class="li"> 传参：</div>
+</li>
+</ul>
+<div class="table sectionedit24"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0">参数名称</th><th class="col1">含义</th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0">id</td><td class="col1">请求ID</td>
+	</tr>
+	<tr class="row2">
+		<td class="col0">request</td><td class="col1">accept或reject 两个值任选其一</td>
+	</tr>
+</table></div>
+<!-- EDIT24 TABLE [6793-6876] --><ul>
+<li class="level1"><div class="li"> 成功返回值：</div>
+</li>
+</ul>
+<pre class="code">{
+    &quot;error_code&quot;: 0,
+    &quot;message&quot;: &quot;请求成功&quot;,
+    &quot;data&quot;: {
+        &quot;message&quot;: &quot;您已成功赠送体力&quot;
+    }
+}</pre>
+
+</div>
+<!-- EDIT23 SECTION "处理体力请求" [6707-7042] -->
+<h2 class="sectionedit25" id="获取星级场列表">获取星级场列表</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> 地址：api/level/starList</div>
 </li>
 <li class="level1"><div class="li"> 传参：</div>
 </li>
@@ -307,7 +496,7 @@
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
-<div class="table sectionedit16"><table class="inline">
+<div class="table sectionedit26"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -326,7 +515,7 @@
 		<td class="col0">star_level_info.time_limit</td><td class="col1">关卡时间限制</td>
 	</tr>
 </table></div>
-<!-- EDIT16 TABLE [4996-5210] --><pre class="code">{
+<!-- EDIT26 TABLE [7148-7362] --><pre class="code">{
     &quot;error_code&quot;: 0,
     &quot;message&quot;: &quot;请求成功&quot;,
     &quot;data&quot;: {
@@ -397,8 +586,8 @@
 }</pre>
 
 </div>
-<!-- EDIT15 SECTION "获取星级场列表" [4891-7030] -->
-<h2 class="sectionedit17" id="星级场题目详情">星级场题目详情</h2>
+<!-- EDIT25 SECTION "获取星级场列表" [7043-9182] -->
+<h2 class="sectionedit27" id="星级场题目详情">星级场题目详情</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/level/starDetail</div>
@@ -406,7 +595,7 @@
 <li class="level1"><div class="li"> 传参：</div>
 </li>
 </ul>
-<div class="table sectionedit18"><table class="inline">
+<div class="table sectionedit28"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -422,11 +611,11 @@
 		<td class="col0">limit</td><td class="col1">获取题目数量</td>
 	</tr>
 </table></div>
-<!-- EDIT18 TABLE [7114-7231] --><ul>
+<!-- EDIT28 TABLE [9266-9383] --><ul>
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
-<div class="table sectionedit19"><table class="inline">
+<div class="table sectionedit29"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -436,13 +625,16 @@
 		<td class="col0">right_answer</td><td class="col1">正确选项 0/1/2/3对应A/B/C/D</td>
 	</tr>
 </table></div>
-<!-- EDIT19 TABLE [7257-7327] --><pre class="code">{
+<!-- EDIT29 TABLE [9409-9479] --><pre class="code">{
     &quot;error_code&quot;: 0,
     &quot;message&quot;: &quot;请求成功&quot;,
     &quot;data&quot;: [
         {
             &quot;id&quot;: 1,
             &quot;question&quot;: &quot;请在以下选择一个正确答案&quot;,
+            &quot;content&quot;: &quot;问题描述&quot;,
+            &quot;image1&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;image2&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
             &quot;answer_options&quot;: [
                 &quot;选项A&quot;,
                 &quot;选项B&quot;,
@@ -454,6 +646,9 @@
         {
             &quot;id&quot;: 2,
             &quot;question&quot;: &quot;请在以下选择一个正确答案&quot;,
+            &quot;content&quot;: &quot;问题描述&quot;,
+            &quot;image1&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;image2&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
             &quot;answer_options&quot;: [
                 &quot;选项A&quot;,
                 &quot;选项B&quot;,
@@ -465,6 +660,9 @@
         {
             &quot;id&quot;: 3,
             &quot;question&quot;: &quot;请在以下选择一个正确答案&quot;,
+            &quot;content&quot;: &quot;问题描述&quot;,
+            &quot;image1&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;image2&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
             &quot;answer_options&quot;: [
                 &quot;选项A&quot;,
                 &quot;选项B&quot;,
@@ -476,6 +674,9 @@
         {
             &quot;id&quot;: 4,
             &quot;question&quot;: &quot;请在以下选择一个正确答案&quot;,
+            &quot;content&quot;: &quot;问题描述&quot;,
+            &quot;image1&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;image2&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
             &quot;answer_options&quot;: [
                 &quot;选项A&quot;,
                 &quot;选项B&quot;,
@@ -487,6 +688,9 @@
         {
             &quot;id&quot;: 5,
             &quot;question&quot;: &quot;请在以下选择一个正确答案&quot;,
+            &quot;content&quot;: &quot;问题描述&quot;,
+            &quot;image1&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;image2&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
             &quot;answer_options&quot;: [
                 &quot;选项A&quot;,
                 &quot;选项B&quot;,
@@ -499,8 +703,8 @@
 }</pre>
 
 </div>
-<!-- EDIT17 SECTION "星级场题目详情" [7031-8869] -->
-<h2 class="sectionedit20" id="获取金币场列表">获取金币场列表</h2>
+<!-- EDIT27 SECTION "星级场题目详情" [9183-11986] -->
+<h2 class="sectionedit30" id="获取金币场列表">获取金币场列表</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/level/goldList</div>
@@ -512,7 +716,7 @@
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
-<div class="table sectionedit21"><table class="inline">
+<div class="table sectionedit31"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -537,7 +741,7 @@
 		<td class="col0">star_level_info.challenge_times</td><td class="col1">通关次数</td>
 	</tr>
 </table></div>
-<!-- EDIT21 TABLE [8975-9286] --><pre class="code">{
+<!-- EDIT31 TABLE [12092-12403] --><pre class="code">{
     &quot;error_code&quot;: 0,
     &quot;message&quot;: &quot;请求成功&quot;,
     &quot;data&quot;: {
@@ -628,8 +832,8 @@
 }</pre>
 
 </div>
-<!-- EDIT20 SECTION "获取金币场列表" [8870-11806] -->
-<h2 class="sectionedit22" id="金币场题目详情">金币场题目详情</h2>
+<!-- EDIT30 SECTION "获取金币场列表" [11987-14923] -->
+<h2 class="sectionedit32" id="金币场题目详情">金币场题目详情</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/level/goldDetail</div>
@@ -637,7 +841,7 @@
 <li class="level1"><div class="li"> 传参：</div>
 </li>
 </ul>
-<div class="table sectionedit23"><table class="inline">
+<div class="table sectionedit33"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -653,11 +857,11 @@
 		<td class="col0">limit</td><td class="col1">获取题目数量</td>
 	</tr>
 </table></div>
-<!-- EDIT23 TABLE [11890-12007] --><ul>
+<!-- EDIT33 TABLE [15007-15124] --><ul>
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
-<div class="table sectionedit24"><table class="inline">
+<div class="table sectionedit34"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -667,13 +871,16 @@
 		<td class="col0">right_answer</td><td class="col1">正确选项 0/1/2/3对应A/B/C/D</td>
 	</tr>
 </table></div>
-<!-- EDIT24 TABLE [12033-12103] --><pre class="code">{
+<!-- EDIT34 TABLE [15150-15220] --><pre class="code">{
     &quot;error_code&quot;: 0,
     &quot;message&quot;: &quot;请求成功&quot;,
     &quot;data&quot;: [
         {
             &quot;id&quot;: 1,
             &quot;question&quot;: &quot;请在以下选择一个正确答案&quot;,
+            &quot;content&quot;: &quot;问题描述&quot;,
+            &quot;image1&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;image2&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
             &quot;answer_options&quot;: [
                 &quot;选项A&quot;,
                 &quot;选项B&quot;,
@@ -685,6 +892,9 @@
         {
             &quot;id&quot;: 2,
             &quot;question&quot;: &quot;请在以下选择一个正确答案&quot;,
+            &quot;content&quot;: &quot;问题描述&quot;,
+            &quot;image1&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;image2&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
             &quot;answer_options&quot;: [
                 &quot;选项A&quot;,
                 &quot;选项B&quot;,
@@ -696,6 +906,9 @@
         {
             &quot;id&quot;: 3,
             &quot;question&quot;: &quot;请在以下选择一个正确答案&quot;,
+            &quot;content&quot;: &quot;问题描述&quot;,
+            &quot;image1&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;image2&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
             &quot;answer_options&quot;: [
                 &quot;选项A&quot;,
                 &quot;选项B&quot;,
@@ -707,6 +920,9 @@
         {
             &quot;id&quot;: 4,
             &quot;question&quot;: &quot;请在以下选择一个正确答案&quot;,
+            &quot;content&quot;: &quot;问题描述&quot;,
+            &quot;image1&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;image2&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
             &quot;answer_options&quot;: [
                 &quot;选项A&quot;,
                 &quot;选项B&quot;,
@@ -718,6 +934,9 @@
         {
             &quot;id&quot;: 5,
             &quot;question&quot;: &quot;请在以下选择一个正确答案&quot;,
+            &quot;content&quot;: &quot;问题描述&quot;,
+            &quot;image1&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;image2&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
             &quot;answer_options&quot;: [
                 &quot;选项A&quot;,
                 &quot;选项B&quot;,
@@ -730,11 +949,46 @@
 }</pre>
 
 </div>
-<!-- EDIT22 SECTION "金币场题目详情" [11807-13646] -->
-<h2 class="sectionedit25" id="道具商城">道具商城</h2>
+<!-- EDIT32 SECTION "金币场题目详情" [14924-17728] -->
+<h2 class="sectionedit35" id="通关提交">通关提交</h2>
 <div class="level2">
 <ul>
-<li class="level1"><div class="li"> 地址：api/items/store</div>
+<li class="level1"><div class="li"> 地址：api/level/submit</div>
+</li>
+<li class="level1"><div class="li"> 传参：</div>
+</li>
+</ul>
+<div class="table sectionedit36"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0">参数名称</th><th class="col1">含义</th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0">star_id</td><td class="col1">参数任选其一，星级场传此参数</td>
+	</tr>
+	<tr class="row2">
+		<td class="col0">gold_id</td><td class="col1">参数任选其一，金币场传此参数</td>
+	</tr>
+</table></div>
+<!-- EDIT36 TABLE [17799-17926] --><ul>
+<li class="level1"><div class="li"> 成功返回值：</div>
+</li>
+</ul>
+<pre class="code">{
+    &quot;error_code&quot;: 0,
+    &quot;message&quot;: &quot;请求成功&quot;,
+    &quot;data&quot;: {
+        &quot;message&quot;: &quot;恭喜过关&quot;
+    }
+}</pre>
+
+</div>
+<!-- EDIT35 SECTION "通关提交" [17729-18080] -->
+<h2 class="sectionedit37" id="道具商城">道具商城</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> 地址：api/item/store</div>
 </li>
 <li class="level1"><div class="li"> 传参：</div>
 </li>
@@ -770,13 +1024,28 @@
 }</pre>
 
 </div>
-<!-- EDIT25 SECTION "道具商城" [13647-14264] -->
-<h2 class="sectionedit26" id="星级场排名">星级场排名</h2>
+<!-- EDIT37 SECTION "道具商城" [18081-18698] -->
+<h2 class="sectionedit38" id="获取用户当前所持有的道具">获取用户当前所持有的道具</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> 地址：api/item/user</div>
+</li>
+<li class="level1"><div class="li"> 传参：</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> 成功返回值：</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT38 SECTION "获取用户当前所持有的道具" [18699-18816] -->
+<h2 class="sectionedit39" id="星级场排名">星级场排名</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/rank/star</div>
 </li>
-<li class="level1"><div class="li"> 传参：</div>
+<li class="level1"><div class="li"> 传参：friends = 1 则获取好友排名</div>
 </li>
 </ul>
 <ul>
@@ -827,13 +1096,13 @@
 }</pre>
 
 </div>
-<!-- EDIT26 SECTION "星级场排名" [14265-15548] -->
-<h2 class="sectionedit27" id="金币场排名">金币场排名</h2>
+<!-- EDIT39 SECTION "星级场排名" [18817-20133] -->
+<h2 class="sectionedit40" id="金币场排名">金币场排名</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/rank/gold</div>
 </li>
-<li class="level1"><div class="li"> 传参：</div>
+<li class="level1"><div class="li"> 传参：friends = 1 则获取好友排名</div>
 </li>
 </ul>
 <ul>
@@ -884,4 +1153,4 @@
 }</pre>
 
 </div>
-<!-- EDIT27 SECTION "金币场排名" [15549-] -->
+<!-- EDIT40 SECTION "金币场排名" [20134-] -->
