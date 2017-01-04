@@ -50,7 +50,7 @@
 ===== 获取通知-公告/好友请求 =====
 
   * 地址： api/index/notice
-  * 传参：无
+  * 传参：选择性登录，不登录只返回公告信息；如需获取好友等请求，需要登录
   * 返回值：
 
 ^ 参数名        ^ 参数值            ^ 
@@ -99,6 +99,8 @@
 
 
 
+
+====== 用户相关 ======
 
 ===== 用户手机号注册 =====
 
@@ -218,6 +220,10 @@
 </code>
 
 
+====== 好友相关 ======
+
+  * 地址以api/friends开头，都需要登录
+
 ===== 好友列表 =====
   * 地址：api/friends/mine
   * 传参：
@@ -262,7 +268,7 @@
 
 ===== 处理好友请求 =====
   * 地址：api/friends/handle
-  * 传参：
+  * 传参：需要登录
 
 ^参数名称^含义^
 |id|请求ID|
@@ -283,7 +289,7 @@
 
 ===== 赠送体力请求 =====
   * 地址：api/friends/strengthRequest
-  * 传参：
+  * 传参：需要登录
 
 ^参数名称^含义^
 |to_uid|对方用户uid|
@@ -302,7 +308,7 @@
 
 ===== 处理体力请求 =====
   * 地址：api/friends/strengthHandle
-  * 传参：
+  * 传参：需要登录
 
 ^参数名称^含义^
 |id|请求ID|
@@ -321,6 +327,11 @@
 </code>
 
 
+
+
+====== 题库相关 ======
+
+  * 地址以api/level开头的都需要登录
 
 
 ===== 获取星级场列表 =====
@@ -722,58 +733,64 @@
 </code>
 
 
-
-===== 道具商城 =====
-  * 地址：api/item/store
+===== 星级场排名 =====
+  * 地址：api/rank/star
   * 传参：
 
   * 成功返回值：
 
 
 <code>
-
 {
     "error_code": 0,
     "message": "请求成功",
     "data": [
         {
-            "id": 1,
-            "title": "时间暂定卡",
-            "need_gold": 10000,
-            "already_have": 0
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "star": 10200
         },
         {
-            "id": 1,
-            "title": "延时挑战卡",
-            "need_gold": 20000,
-            "already_have": 2
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "star": 10200
         },
         {
-            "id": 1,
-            "title": "重复挑战卡",
-            "need_gold": 30000,
-            "already_have": 0
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "star": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "star": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "star": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "star": 10200
         }
     ]
 }
 </code>
 
 
-===== 获取用户当前所持有的道具 =====
-  * 地址：api/item/user
-  * 传参：
-
-
-  * 成功返回值：
-
-
-
-===== 星级场排名 =====
-  * 地址：api/rank/star
-  * 传参：friends = 1 则获取好友排名
+===== 星级场好友排名 =====
+  * 地址：api/rank/star/friends
+  * 传参：需要登录
 
   * 成功返回值：
-
 
 <code>
 {
@@ -822,7 +839,7 @@
 
 ===== 金币场排名 =====
   * 地址：api/rank/gold
-  * 传参：friends = 1 则获取好友排名
+  * 传参：
 
   * 成功返回值：
 
@@ -870,3 +887,135 @@
     ]
 }
 </code>
+
+===== 金币场好友排名 =====
+  * 地址：api/rank/gold/friends
+  * 传参：需要登录
+
+  * 成功返回值：
+
+<code>
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": [
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "gold": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "gold": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "gold": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "gold": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "gold": 10200
+        },
+        {
+            "uid": 1,
+            "nickname": "nickname1",
+            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
+            "gold": 10200
+        }
+    ]
+}
+</code>
+====== 商城相关 ======
+
+  * 以api/item开头的地址，都需要登录
+
+===== 道具商城 =====
+  * 地址：api/item/store
+  * 传参：
+
+  * 成功返回值：
+
+
+<code>
+
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": [
+        {
+            "id": 1,
+            "title": "时间暂定卡",
+            "need_gold": 10000,
+            "already_have": 0
+        },
+        {
+            "id": 1,
+            "title": "延时挑战卡",
+            "need_gold": 20000,
+            "already_have": 2
+        },
+        {
+            "id": 1,
+            "title": "重复挑战卡",
+            "need_gold": 30000,
+            "already_have": 0
+        }
+    ]
+}
+</code>
+
+
+===== 获取用户当前所持有的道具 =====
+  * 地址：api/item/user
+  * 传参：需要登录。道具较少，和商城返回数据一样
+
+  * 成功返回值：
+
+<code>
+{
+    "error_code": 0,
+    "message": "请求成功",
+    "data": [
+        {
+            "id": 1,
+            "title": "时间暂定卡",
+            "need_gold": 1000,
+            "already_have": 1
+        },
+        {
+            "id": 2,
+            "title": "延时挑战卡",
+            "need_gold": 2000,
+            "already_have": 1
+        },
+        {
+            "id": 3,
+            "title": "重复挑战卡",
+            "need_gold": 3000,
+            "already_have": 0
+        }
+    ]
+}
+
+</code>
+
+===== 购买道具 =====
+  * 地址：api/item/buy
+  * 传参：需要登录
+
+  * 成功返回值：
+
+

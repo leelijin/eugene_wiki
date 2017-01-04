@@ -82,7 +82,7 @@
 <ul>
 <li class="level1"><div class="li"> 地址： api/index/notice</div>
 </li>
-<li class="level1"><div class="li"> 传参：无</div>
+<li class="level1"><div class="li"> 传参：选择性登录，不登录只返回公告信息；如需获取好友等请求，需要登录</div>
 </li>
 <li class="level1"><div class="li"> 返回值：</div>
 </li>
@@ -103,7 +103,7 @@
 		<td class="col0"> friend_strength</td><td class="col1 leftalign"> 好友邀请加体力请求            </td>
 	</tr>
 </table></div>
-<!-- EDIT7 TABLE [1250-1447] --><pre class="code">{
+<!-- EDIT7 TABLE [1340-1537] --><pre class="code">{
     &quot;error_code&quot;: 0,
     &quot;message&quot;: &quot;请求成功&quot;,
     &quot;data&quot;: {
@@ -141,8 +141,13 @@
 }</pre>
 
 </div>
-<!-- EDIT6 SECTION "获取通知-公告/好友请求" [1138-2843] -->
-<h2 class="sectionedit8" id="用户手机号注册">用户手机号注册</h2>
+<!-- EDIT6 SECTION "获取通知-公告/好友请求" [1138-2933] -->
+<h1 class="sectionedit8" id="用户相关">用户相关</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT8 SECTION "用户相关" [2934-2961] -->
+<h2 class="sectionedit9" id="用户手机号注册">用户手机号注册</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/user/reg</div>
@@ -150,7 +155,7 @@
 <li class="level1"><div class="li"> 传参：</div>
 </li>
 </ul>
-<div class="table sectionedit9"><table class="inline">
+<div class="table sectionedit10"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0 leftalign"> 参数名称      </th><th class="col1 leftalign"> 含义           </th>
@@ -169,7 +174,7 @@
 		<td class="col0 leftalign"> avatar    </td><td class="col1 leftalign"> 上传接口返回的头像链接  </td>
 	</tr>
 </table></div>
-<!-- EDIT9 TABLE [2920-3126] --><ul>
+<!-- EDIT10 TABLE [3038-3244] --><ul>
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
@@ -193,8 +198,8 @@
 }</pre>
 
 </div>
-<!-- EDIT8 SECTION "用户手机号注册" [2844-3636] -->
-<h2 class="sectionedit10" id="上传用户头像">上传用户头像</h2>
+<!-- EDIT9 SECTION "用户手机号注册" [2962-3754] -->
+<h2 class="sectionedit11" id="上传用户头像">上传用户头像</h2>
 <div class="level2">
 
 <p>
@@ -204,7 +209,7 @@
 <p>
  * 传参：
 </p>
-<div class="table sectionedit11"><table class="inline">
+<div class="table sectionedit12"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0 leftalign"> 参数名称    </th><th class="col1 leftalign"> 含义    </th>
@@ -214,7 +219,7 @@
 		<td class="col0 leftalign"> avatar  </td><td class="col1 leftalign"> 表单数组  </td>
 	</tr>
 </table></div>
-<!-- EDIT11 TABLE [3771-3830] --><ul>
+<!-- EDIT12 TABLE [3889-3948] --><ul>
 <li class="level1"><div class="li"> 成功返回值(用户头像)：</div>
 </li>
 </ul>
@@ -227,8 +232,8 @@
 }</pre>
 
 </div>
-<!-- EDIT10 SECTION "上传用户头像" [3637-4059] -->
-<h2 class="sectionedit12" id="登录_测试通过">登录（测试通过）</h2>
+<!-- EDIT11 SECTION "上传用户头像" [3755-4177] -->
+<h2 class="sectionedit13" id="登录_测试通过">登录（测试通过）</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/user/login</div>
@@ -236,7 +241,7 @@
 <li class="level1"><div class="li"> 传参：</div>
 </li>
 </ul>
-<div class="table sectionedit13"><table class="inline">
+<div class="table sectionedit14"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -249,7 +254,7 @@
 		<td class="col0">password</td><td class="col1">用户密码</td>
 	</tr>
 </table></div>
-<!-- EDIT13 TABLE [4140-4213] --><ul>
+<!-- EDIT14 TABLE [4258-4331] --><ul>
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
@@ -273,8 +278,8 @@
 }</pre>
 
 </div>
-<!-- EDIT12 SECTION "登录（测试通过）" [4060-4724] -->
-<h2 class="sectionedit14" id="三方登录">三方登录</h2>
+<!-- EDIT13 SECTION "登录（测试通过）" [4178-4842] -->
+<h2 class="sectionedit15" id="三方登录">三方登录</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/user/thirdLogin</div>
@@ -282,7 +287,7 @@
 <li class="level1"><div class="li"> 传参：</div>
 </li>
 </ul>
-<div class="table sectionedit15"><table class="inline">
+<div class="table sectionedit16"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -298,7 +303,7 @@
 		<td class="col0">nickname</td><td class="col1">用户昵称</td>
 	</tr>
 </table></div>
-<!-- EDIT15 TABLE [4798-4883] --><ul>
+<!-- EDIT16 TABLE [4916-5001] --><ul>
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
@@ -322,8 +327,17 @@
 }</pre>
 
 </div>
-<!-- EDIT14 SECTION "三方登录" [4725-5394] -->
-<h2 class="sectionedit16" id="好友列表">好友列表</h2>
+<!-- EDIT15 SECTION "三方登录" [4843-5512] -->
+<h1 class="sectionedit17" id="好友相关">好友相关</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> 地址以api/friends开头，都需要登录</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT17 SECTION "好友相关" [5513-5590] -->
+<h2 class="sectionedit18" id="好友列表">好友列表</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/friends/mine</div>
@@ -349,8 +363,8 @@
 ]</pre>
 
 </div>
-<!-- EDIT16 SECTION "好友列表" [5395-5797] -->
-<h2 class="sectionedit17" id="添加好友">添加好友</h2>
+<!-- EDIT18 SECTION "好友列表" [5591-5993] -->
+<h2 class="sectionedit19" id="添加好友">添加好友</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/friends/add</div>
@@ -358,7 +372,7 @@
 <li class="level1"><div class="li"> 传参：</div>
 </li>
 </ul>
-<div class="table sectionedit18"><table class="inline">
+<div class="table sectionedit20"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -368,7 +382,7 @@
 		<td class="col0">to_uid</td><td class="col1">对方用户uid</td>
 	</tr>
 </table></div>
-<!-- EDIT18 TABLE [5867-5913] --><ul>
+<!-- EDIT20 TABLE [6063-6109] --><ul>
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
@@ -381,16 +395,16 @@
 }</pre>
 
 </div>
-<!-- EDIT17 SECTION "添加好友" [5798-6083] -->
-<h2 class="sectionedit19" id="处理好友请求">处理好友请求</h2>
+<!-- EDIT19 SECTION "添加好友" [5994-6279] -->
+<h2 class="sectionedit21" id="处理好友请求">处理好友请求</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/friends/handle</div>
 </li>
-<li class="level1"><div class="li"> 传参：</div>
+<li class="level1"><div class="li"> 传参：需要登录</div>
 </li>
 </ul>
-<div class="table sectionedit20"><table class="inline">
+<div class="table sectionedit22"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -403,7 +417,7 @@
 		<td class="col0">request</td><td class="col1">accept或reject 两个值任选其一</td>
 	</tr>
 </table></div>
-<!-- EDIT20 TABLE [6162-6245] --><ul>
+<!-- EDIT22 TABLE [6370-6453] --><ul>
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
@@ -416,16 +430,16 @@
 }</pre>
 
 </div>
-<!-- EDIT19 SECTION "处理好友请求" [6084-6409] -->
-<h2 class="sectionedit21" id="赠送体力请求">赠送体力请求</h2>
+<!-- EDIT21 SECTION "处理好友请求" [6280-6617] -->
+<h2 class="sectionedit23" id="赠送体力请求">赠送体力请求</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/friends/strengthRequest</div>
 </li>
-<li class="level1"><div class="li"> 传参：</div>
+<li class="level1"><div class="li"> 传参：需要登录</div>
 </li>
 </ul>
-<div class="table sectionedit22"><table class="inline">
+<div class="table sectionedit24"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -435,7 +449,7 @@
 		<td class="col0">to_uid</td><td class="col1">对方用户uid</td>
 	</tr>
 </table></div>
-<!-- EDIT22 TABLE [6497-6543] --><ul>
+<!-- EDIT24 TABLE [6717-6763] --><ul>
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
@@ -448,16 +462,16 @@
 }</pre>
 
 </div>
-<!-- EDIT21 SECTION "赠送体力请求" [6410-6706] -->
-<h2 class="sectionedit23" id="处理体力请求">处理体力请求</h2>
+<!-- EDIT23 SECTION "赠送体力请求" [6618-6926] -->
+<h2 class="sectionedit25" id="处理体力请求">处理体力请求</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/friends/strengthHandle</div>
 </li>
-<li class="level1"><div class="li"> 传参：</div>
+<li class="level1"><div class="li"> 传参：需要登录</div>
 </li>
 </ul>
-<div class="table sectionedit24"><table class="inline">
+<div class="table sectionedit26"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -470,7 +484,7 @@
 		<td class="col0">request</td><td class="col1">accept或reject 两个值任选其一</td>
 	</tr>
 </table></div>
-<!-- EDIT24 TABLE [6793-6876] --><ul>
+<!-- EDIT26 TABLE [7025-7108] --><ul>
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
@@ -483,8 +497,17 @@
 }</pre>
 
 </div>
-<!-- EDIT23 SECTION "处理体力请求" [6707-7042] -->
-<h2 class="sectionedit25" id="获取星级场列表">获取星级场列表</h2>
+<!-- EDIT25 SECTION "处理体力请求" [6927-7274] -->
+<h1 class="sectionedit27" id="题库相关">题库相关</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> 地址以api/level开头的都需要登录</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT27 SECTION "题库相关" [7275-7351] -->
+<h2 class="sectionedit28" id="获取星级场列表">获取星级场列表</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/level/starList</div>
@@ -496,7 +519,7 @@
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
-<div class="table sectionedit26"><table class="inline">
+<div class="table sectionedit29"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -515,7 +538,7 @@
 		<td class="col0">star_level_info.time_limit</td><td class="col1">关卡时间限制</td>
 	</tr>
 </table></div>
-<!-- EDIT26 TABLE [7148-7362] --><pre class="code">{
+<!-- EDIT29 TABLE [7457-7671] --><pre class="code">{
     &quot;error_code&quot;: 0,
     &quot;message&quot;: &quot;请求成功&quot;,
     &quot;data&quot;: {
@@ -586,8 +609,8 @@
 }</pre>
 
 </div>
-<!-- EDIT25 SECTION "获取星级场列表" [7043-9182] -->
-<h2 class="sectionedit27" id="星级场题目详情">星级场题目详情</h2>
+<!-- EDIT28 SECTION "获取星级场列表" [7352-9491] -->
+<h2 class="sectionedit30" id="星级场题目详情">星级场题目详情</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/level/starDetail</div>
@@ -595,7 +618,7 @@
 <li class="level1"><div class="li"> 传参：</div>
 </li>
 </ul>
-<div class="table sectionedit28"><table class="inline">
+<div class="table sectionedit31"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -611,11 +634,11 @@
 		<td class="col0">limit</td><td class="col1">获取题目数量</td>
 	</tr>
 </table></div>
-<!-- EDIT28 TABLE [9266-9383] --><ul>
+<!-- EDIT31 TABLE [9575-9692] --><ul>
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
-<div class="table sectionedit29"><table class="inline">
+<div class="table sectionedit32"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -625,7 +648,7 @@
 		<td class="col0">right_answer</td><td class="col1">正确选项 0/1/2/3对应A/B/C/D</td>
 	</tr>
 </table></div>
-<!-- EDIT29 TABLE [9409-9479] --><pre class="code">{
+<!-- EDIT32 TABLE [9718-9788] --><pre class="code">{
     &quot;error_code&quot;: 0,
     &quot;message&quot;: &quot;请求成功&quot;,
     &quot;data&quot;: [
@@ -703,8 +726,8 @@
 }</pre>
 
 </div>
-<!-- EDIT27 SECTION "星级场题目详情" [9183-11986] -->
-<h2 class="sectionedit30" id="获取金币场列表">获取金币场列表</h2>
+<!-- EDIT30 SECTION "星级场题目详情" [9492-12295] -->
+<h2 class="sectionedit33" id="获取金币场列表">获取金币场列表</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/level/goldList</div>
@@ -716,7 +739,7 @@
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
-<div class="table sectionedit31"><table class="inline">
+<div class="table sectionedit34"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -741,7 +764,7 @@
 		<td class="col0">star_level_info.challenge_times</td><td class="col1">通关次数</td>
 	</tr>
 </table></div>
-<!-- EDIT31 TABLE [12092-12403] --><pre class="code">{
+<!-- EDIT34 TABLE [12401-12712] --><pre class="code">{
     &quot;error_code&quot;: 0,
     &quot;message&quot;: &quot;请求成功&quot;,
     &quot;data&quot;: {
@@ -832,8 +855,8 @@
 }</pre>
 
 </div>
-<!-- EDIT30 SECTION "获取金币场列表" [11987-14923] -->
-<h2 class="sectionedit32" id="金币场题目详情">金币场题目详情</h2>
+<!-- EDIT33 SECTION "获取金币场列表" [12296-15232] -->
+<h2 class="sectionedit35" id="金币场题目详情">金币场题目详情</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/level/goldDetail</div>
@@ -841,7 +864,7 @@
 <li class="level1"><div class="li"> 传参：</div>
 </li>
 </ul>
-<div class="table sectionedit33"><table class="inline">
+<div class="table sectionedit36"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -857,11 +880,11 @@
 		<td class="col0">limit</td><td class="col1">获取题目数量</td>
 	</tr>
 </table></div>
-<!-- EDIT33 TABLE [15007-15124] --><ul>
+<!-- EDIT36 TABLE [15316-15433] --><ul>
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
-<div class="table sectionedit34"><table class="inline">
+<div class="table sectionedit37"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -871,7 +894,7 @@
 		<td class="col0">right_answer</td><td class="col1">正确选项 0/1/2/3对应A/B/C/D</td>
 	</tr>
 </table></div>
-<!-- EDIT34 TABLE [15150-15220] --><pre class="code">{
+<!-- EDIT37 TABLE [15459-15529] --><pre class="code">{
     &quot;error_code&quot;: 0,
     &quot;message&quot;: &quot;请求成功&quot;,
     &quot;data&quot;: [
@@ -949,8 +972,8 @@
 }</pre>
 
 </div>
-<!-- EDIT32 SECTION "金币场题目详情" [14924-17728] -->
-<h2 class="sectionedit35" id="通关提交">通关提交</h2>
+<!-- EDIT35 SECTION "金币场题目详情" [15233-18037] -->
+<h2 class="sectionedit38" id="通关提交">通关提交</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/level/submit</div>
@@ -958,7 +981,7 @@
 <li class="level1"><div class="li"> 传参：</div>
 </li>
 </ul>
-<div class="table sectionedit36"><table class="inline">
+<div class="table sectionedit39"><table class="inline">
 	<thead>
 	<tr class="row0">
 		<th class="col0">参数名称</th><th class="col1">含义</th>
@@ -971,7 +994,7 @@
 		<td class="col0">gold_id</td><td class="col1">参数任选其一，金币场传此参数</td>
 	</tr>
 </table></div>
-<!-- EDIT36 TABLE [17799-17926] --><ul>
+<!-- EDIT39 TABLE [18108-18235] --><ul>
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
@@ -984,8 +1007,245 @@
 }</pre>
 
 </div>
-<!-- EDIT35 SECTION "通关提交" [17729-18080] -->
-<h2 class="sectionedit37" id="道具商城">道具商城</h2>
+<!-- EDIT38 SECTION "通关提交" [18038-18388] -->
+<h2 class="sectionedit40" id="星级场排名">星级场排名</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> 地址：api/rank/star</div>
+</li>
+<li class="level1"><div class="li"> 传参：</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> 成功返回值：</div>
+</li>
+</ul>
+<pre class="code">{
+    &quot;error_code&quot;: 0,
+    &quot;message&quot;: &quot;请求成功&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;star&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;star&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;star&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;star&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;star&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;star&quot;: 10200
+        }
+    ]
+}</pre>
+
+</div>
+<!-- EDIT40 SECTION "星级场排名" [18389-19673] -->
+<h2 class="sectionedit41" id="星级场好友排名">星级场好友排名</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> 地址：api/rank/star/friends</div>
+</li>
+<li class="level1"><div class="li"> 传参：需要登录</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> 成功返回值：</div>
+</li>
+</ul>
+<pre class="code">{
+    &quot;error_code&quot;: 0,
+    &quot;message&quot;: &quot;请求成功&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;star&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;star&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;star&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;star&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;star&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;star&quot;: 10200
+        }
+    ]
+}</pre>
+
+</div>
+<!-- EDIT41 SECTION "星级场好友排名" [19674-20982] -->
+<h2 class="sectionedit42" id="金币场排名">金币场排名</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> 地址：api/rank/gold</div>
+</li>
+<li class="level1"><div class="li"> 传参：</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> 成功返回值：</div>
+</li>
+</ul>
+<pre class="code">{
+    &quot;error_code&quot;: 0,
+    &quot;message&quot;: &quot;请求成功&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;gold&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;gold&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;gold&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;gold&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;gold&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;gold&quot;: 10200
+        }
+    ]
+}</pre>
+
+</div>
+<!-- EDIT42 SECTION "金币场排名" [20983-22265] -->
+<h2 class="sectionedit43" id="金币场好友排名">金币场好友排名</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> 地址：api/rank/gold/friends</div>
+</li>
+<li class="level1"><div class="li"> 传参：需要登录</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> 成功返回值：</div>
+</li>
+</ul>
+<pre class="code">{
+    &quot;error_code&quot;: 0,
+    &quot;message&quot;: &quot;请求成功&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;gold&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;gold&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;gold&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;gold&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;gold&quot;: 10200
+        },
+        {
+            &quot;uid&quot;: 1,
+            &quot;nickname&quot;: &quot;nickname1&quot;,
+            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
+            &quot;gold&quot;: 10200
+        }
+    ]
+}</pre>
+
+</div>
+<!-- EDIT43 SECTION "金币场好友排名" [22266-23573] -->
+<h1 class="sectionedit44" id="商城相关">商城相关</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> 以api/item开头的地址，都需要登录</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT44 SECTION "商城相关" [23574-23651] -->
+<h2 class="sectionedit45" id="道具商城">道具商城</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/item/store</div>
@@ -1024,28 +1284,13 @@
 }</pre>
 
 </div>
-<!-- EDIT37 SECTION "道具商城" [18081-18698] -->
-<h2 class="sectionedit38" id="获取用户当前所持有的道具">获取用户当前所持有的道具</h2>
+<!-- EDIT45 SECTION "道具商城" [23652-24269] -->
+<h2 class="sectionedit46" id="获取用户当前所持有的道具">获取用户当前所持有的道具</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> 地址：api/item/user</div>
 </li>
-<li class="level1"><div class="li"> 传参：</div>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> 成功返回值：</div>
-</li>
-</ul>
-
-</div>
-<!-- EDIT38 SECTION "获取用户当前所持有的道具" [18699-18816] -->
-<h2 class="sectionedit39" id="星级场排名">星级场排名</h2>
-<div class="level2">
-<ul>
-<li class="level1"><div class="li"> 地址：api/rank/star</div>
-</li>
-<li class="level1"><div class="li"> 传参：friends = 1 则获取好友排名</div>
+<li class="level1"><div class="li"> 传参：需要登录。道具较少，和商城返回数据一样</div>
 </li>
 </ul>
 <ul>
@@ -1057,100 +1302,41 @@
     &quot;message&quot;: &quot;请求成功&quot;,
     &quot;data&quot;: [
         {
-            &quot;uid&quot;: 1,
-            &quot;nickname&quot;: &quot;nickname1&quot;,
-            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
-            &quot;star&quot;: 10200
+            &quot;id&quot;: 1,
+            &quot;title&quot;: &quot;时间暂定卡&quot;,
+            &quot;need_gold&quot;: 1000,
+            &quot;already_have&quot;: 1
         },
         {
-            &quot;uid&quot;: 1,
-            &quot;nickname&quot;: &quot;nickname1&quot;,
-            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
-            &quot;star&quot;: 10200
+            &quot;id&quot;: 2,
+            &quot;title&quot;: &quot;延时挑战卡&quot;,
+            &quot;need_gold&quot;: 2000,
+            &quot;already_have&quot;: 1
         },
         {
-            &quot;uid&quot;: 1,
-            &quot;nickname&quot;: &quot;nickname1&quot;,
-            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
-            &quot;star&quot;: 10200
-        },
-        {
-            &quot;uid&quot;: 1,
-            &quot;nickname&quot;: &quot;nickname1&quot;,
-            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
-            &quot;star&quot;: 10200
-        },
-        {
-            &quot;uid&quot;: 1,
-            &quot;nickname&quot;: &quot;nickname1&quot;,
-            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
-            &quot;star&quot;: 10200
-        },
-        {
-            &quot;uid&quot;: 1,
-            &quot;nickname&quot;: &quot;nickname1&quot;,
-            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
-            &quot;star&quot;: 10200
+            &quot;id&quot;: 3,
+            &quot;title&quot;: &quot;重复挑战卡&quot;,
+            &quot;need_gold&quot;: 3000,
+            &quot;already_have&quot;: 0
         }
     ]
-}</pre>
+}
+</pre>
 
 </div>
-<!-- EDIT39 SECTION "星级场排名" [18817-20133] -->
-<h2 class="sectionedit40" id="金币场排名">金币场排名</h2>
+<!-- EDIT46 SECTION "获取用户当前所持有的道具" [24270-24962] -->
+<h2 class="sectionedit47" id="购买道具">购买道具</h2>
 <div class="level2">
 <ul>
-<li class="level1"><div class="li"> 地址：api/rank/gold</div>
+<li class="level1"><div class="li"> 地址：api/item/buy</div>
 </li>
-<li class="level1"><div class="li"> 传参：friends = 1 则获取好友排名</div>
+<li class="level1"><div class="li"> 传参：需要登录</div>
 </li>
 </ul>
 <ul>
 <li class="level1"><div class="li"> 成功返回值：</div>
 </li>
 </ul>
-<pre class="code">{
-    &quot;error_code&quot;: 0,
-    &quot;message&quot;: &quot;请求成功&quot;,
-    &quot;data&quot;: [
-        {
-            &quot;uid&quot;: 1,
-            &quot;nickname&quot;: &quot;nickname1&quot;,
-            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
-            &quot;gold&quot;: 10200
-        },
-        {
-            &quot;uid&quot;: 1,
-            &quot;nickname&quot;: &quot;nickname1&quot;,
-            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
-            &quot;gold&quot;: 10200
-        },
-        {
-            &quot;uid&quot;: 1,
-            &quot;nickname&quot;: &quot;nickname1&quot;,
-            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
-            &quot;gold&quot;: 10200
-        },
-        {
-            &quot;uid&quot;: 1,
-            &quot;nickname&quot;: &quot;nickname1&quot;,
-            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
-            &quot;gold&quot;: 10200
-        },
-        {
-            &quot;uid&quot;: 1,
-            &quot;nickname&quot;: &quot;nickname1&quot;,
-            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
-            &quot;gold&quot;: 10200
-        },
-        {
-            &quot;uid&quot;: 1,
-            &quot;nickname&quot;: &quot;nickname1&quot;,
-            &quot;avatar&quot;: &quot;http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg&quot;,
-            &quot;gold&quot;: 10200
-        }
-    ]
-}</pre>
 
 </div>
-<!-- EDIT40 SECTION "金币场排名" [20134-] -->
+<!-- EDIT47 SECTION "购买道具" [24963-] -->
