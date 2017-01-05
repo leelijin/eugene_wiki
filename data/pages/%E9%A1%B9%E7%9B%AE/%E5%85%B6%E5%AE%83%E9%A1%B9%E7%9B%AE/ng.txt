@@ -340,11 +340,13 @@
 
   * 成功返回值：
 
-^参数名称^含义^
-|current_level|用户当前所在等级|
-|star_level_info.need_strength|关卡所需体力|
-|star_level_info.question_number|关卡题目数量|
-|star_level_info.time_limit|关卡时间限制|
+^ 参数名称                             ^ 含义                            ^
+| current_level                    | 用户当前所在等级                      |
+| star_level_info.num              | 关卡编号                          |
+| star_level_info.need_strength    | 关卡所需体力                        |
+| star_level_info.question_number  | 关卡题目数量                        |
+| star_level_info.time_limit       | 关卡时间限制                        |
+| star_level_info.status           | 关卡状态，1为已开通关卡，0为未开通关卡.金币场相同规则  |
 
 <code>
 {
@@ -355,63 +357,83 @@
         "star_level_info": [
             {
                 "id": 1,
+                "num": 1,
                 "need_strength": 40,
                 "question_number": 100,
-                "time_limit": 1200
+                "time_limit": 1200,
+                "status": 1
             },
             {
                 "id": 2,
+                "num": 2,
                 "need_strength": 40,
                 "question_number": 100,
-                "time_limit": 1200
+                "time_limit": 1200,
+                "status": 1
             },
             {
                 "id": 3,
+                "num": 3,
                 "need_strength": 40,
                 "question_number": 100,
-                "time_limit": 1200
+                "time_limit": 1200,
+                "status": 1
             },
             {
                 "id": 4,
+                "num": 4,
                 "need_strength": 40,
                 "question_number": 100,
-                "time_limit": 1200
+                "time_limit": 1200,
+                "status": 1
             },
             {
                 "id": 5,
+                "num": 5,
                 "need_strength": 40,
                 "question_number": 100,
-                "time_limit": 1200
+                "time_limit": 1200,
+                "status": 1
             },
             {
                 "id": 6,
+                "num": 6,
                 "need_strength": 40,
                 "question_number": 100,
-                "time_limit": 1200
+                "time_limit": 1200,
+                "status": 1
             },
             {
                 "id": 7,
+                "num": 7,
                 "need_strength": 40,
                 "question_number": 100,
-                "time_limit": 1200
+                "time_limit": 1200,
+                "status": 1
             },
             {
                 "id": 8,
+                "num": 8,
                 "need_strength": 40,
                 "question_number": 100,
-                "time_limit": 1200
+                "time_limit": 1200,
+                "status": 1
             },
             {
                 "id": 9,
+                "num": 9,
                 "need_strength": 40,
                 "question_number": 100,
-                "time_limit": 1200
+                "time_limit": 1200,
+                "status": 1
             },
             {
                 "id": 10,
+                "num": 10,
                 "need_strength": 40,
                 "question_number": 100,
-                "time_limit": 1200
+                "time_limit": 1200,
+                "status": 0
             }
         ]
     }
@@ -519,11 +541,12 @@
 
 ^参数名称^含义^
 |current_level|用户当前所在等级|
-|star_level_info.need_strength|关卡所需体力|
-|star_level_info.question_number|关卡题目数量|
-|star_level_info.time_limit|关卡时间限制|
-|star_level_info.reward|通关奖励金币数量|
-|star_level_info.challenge_times|通关次数|
+|gold_level_info.need_strength|关卡所需体力|
+|gold_level_info.question_number|关卡题目数量|
+|gold_level_info.time_limit|关卡时间限制|
+|gold_level_info.reward|通关奖励金币数量|
+|gold_level_info.challenge_times|通关次数|
+|gold_level_info.status|关卡状态，1为已开通，0为未开通|
 
 <code>
 {
@@ -531,86 +554,106 @@
     "message": "请求成功",
     "data": {
         "current_level": 5,
-        "star_level_info": [
+        "gold_level_info": [
             {
                 "id": 1,
+                "num": 1,
                 "need_strength": 40,
                 "question_number": 100,
                 "time_limit": 1200,
                 "reward": 2000,
-                "challenge_times": 2
+                "challenge_times": 2,
+                "status": 1
             },
             {
                 "id": 2,
+                "num": 2,
                 "need_strength": 40,
                 "question_number": 100,
                 "time_limit": 1200,
                 "reward": 2000,
-                "challenge_times": 2
+                "challenge_times": 2,
+                "status": 1
             },
             {
                 "id": 3,
+                "num": 3,
                 "need_strength": 40,
                 "question_number": 100,
                 "time_limit": 1200,
                 "reward": 2000,
-                "challenge_times": 2
+                "challenge_times": 2,
+                "status": 1
             },
             {
                 "id": 4,
+                "num": 4,
                 "need_strength": 40,
                 "question_number": 100,
                 "time_limit": 1200,
                 "reward": 2000,
-                "challenge_times": 2
+                "challenge_times": 2,
+                "status": 1
             },
             {
                 "id": 5,
+                "num": 5,
                 "need_strength": 40,
                 "question_number": 100,
                 "time_limit": 1200,
                 "reward": 2000,
-                "challenge_times": 1
+                "challenge_times": 1,
+                "status": 1
             },
             {
                 "id": 6,
+                "num": 6,
                 "need_strength": 40,
                 "question_number": 100,
                 "time_limit": 1200,
                 "reward": 2000,
-                "challenge_times": 0
+                "challenge_times": 0,
+                "status": 1
             },
             {
                 "id": 7,
+                "num": 7,
                 "need_strength": 40,
                 "question_number": 100,
                 "time_limit": 1200,
                 "reward": 2000,
-                "challenge_times": 0
+                "challenge_times": 0,
+                "status": 1
             },
             {
                 "id": 8,
+                "num": 8,
                 "need_strength": 40,
                 "question_number": 100,
                 "time_limit": 1200,
                 "reward": 2000,
-                "challenge_times": 0
+                "challenge_times": 0,
+                "status": 1
             },
             {
                 "id": 9,
+                "num": 9,
                 "need_strength": 40,
                 "question_number": 100,
                 "time_limit": 1200,
                 "reward": 2000,
-                "challenge_times": 0
+                "challenge_times": 0,
+                "status": 0
             },
             {
                 "id": 10,
+                "num": 10,
                 "need_strength": 40,
                 "question_number": 100,
                 "time_limit": 1200,
                 "reward": 2000,
-                "challenge_times": 0
+                "challenge_times": 0,
+                "status": 0
             }
         ]
     }
@@ -733,6 +776,9 @@
 </code>
 
 
+====== 排行榜 ======
+
+
 ===== 星级场排名 =====
   * 地址：api/rank/star
   * 传参：
@@ -790,53 +836,7 @@
   * 地址：api/rank/star/friends
   * 传参：需要登录
 
-  * 成功返回值：
-
-<code>
-{
-    "error_code": 0,
-    "message": "请求成功",
-    "data": [
-        {
-            "uid": 1,
-            "nickname": "nickname1",
-            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
-            "star": 10200
-        },
-        {
-            "uid": 1,
-            "nickname": "nickname1",
-            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
-            "star": 10200
-        },
-        {
-            "uid": 1,
-            "nickname": "nickname1",
-            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
-            "star": 10200
-        },
-        {
-            "uid": 1,
-            "nickname": "nickname1",
-            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
-            "star": 10200
-        },
-        {
-            "uid": 1,
-            "nickname": "nickname1",
-            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
-            "star": 10200
-        },
-        {
-            "uid": 1,
-            "nickname": "nickname1",
-            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
-            "star": 10200
-        }
-    ]
-}
-</code>
-
+  * 成功返回值：和全部排名相同
 ===== 金币场排名 =====
   * 地址：api/rank/gold
   * 传参：
@@ -892,52 +892,7 @@
   * 地址：api/rank/gold/friends
   * 传参：需要登录
 
-  * 成功返回值：
-
-<code>
-{
-    "error_code": 0,
-    "message": "请求成功",
-    "data": [
-        {
-            "uid": 1,
-            "nickname": "nickname1",
-            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
-            "gold": 10200
-        },
-        {
-            "uid": 1,
-            "nickname": "nickname1",
-            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
-            "gold": 10200
-        },
-        {
-            "uid": 1,
-            "nickname": "nickname1",
-            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
-            "gold": 10200
-        },
-        {
-            "uid": 1,
-            "nickname": "nickname1",
-            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
-            "gold": 10200
-        },
-        {
-            "uid": 1,
-            "nickname": "nickname1",
-            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
-            "gold": 10200
-        },
-        {
-            "uid": 1,
-            "nickname": "nickname1",
-            "avatar": "http://7xq7jw.com1.z0.glb.clouddn.com/n0S9qzkI.jpeg",
-            "gold": 10200
-        }
-    ]
-}
-</code>
+  * 成功返回值：和全部排名相同
 ====== 商城相关 ======
 
   * 以api/item开头的地址，都需要登录
